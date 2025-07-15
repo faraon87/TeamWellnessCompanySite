@@ -401,7 +401,7 @@ const Settings = () => {
                           How do I sync my fitness devices?
                         </summary>
                         <div className="p-4 pt-0 text-sm text-gray-600">
-                          Go to Settings > Connected Devices and follow the setup instructions for your device.
+                          Go to Settings &gt; Connected Devices and follow the setup instructions for your device.
                         </div>
                       </details>
                       <details className="border border-gray-200 rounded-lg">
