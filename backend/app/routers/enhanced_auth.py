@@ -321,7 +321,7 @@ async def demo_login():
         }
         
         session_token = generate_token()
-        create_user_session("demo-user-id", session_token)
+        await create_user_session("demo-user-id", session_token)
         
         return AuthResponse(
             access_token=session_token,
