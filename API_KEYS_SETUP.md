@@ -22,64 +22,50 @@ To enable full functionality of the Team Welly app, you'll need to obtain API ke
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-## 2. 💳 Payment Processing (Stripe)
+## 2. 💳 Payment Processing (Stripe) - VERIFIED INTEGRATION
 
 **Service**: Stripe Payment Processing
 **Purpose**: Membership plans, wellness packages, payment history
-**Where to get**:
+**Integration Status**: ✅ VERIFIED PLAYBOOK Available
+
+**IMPORTANT**: Stripe integration is already configured to use system environment variables. No manual setup required for development.
+
+For production, you'll need:
 1. Go to [Stripe Dashboard](https://dashboard.stripe.com/)
 2. Create account or sign in
 3. Navigate to "Developers" → "API keys"
 4. Copy both Publishable key and Secret key
 5. For webhooks: Go to "Developers" → "Webhooks" and create endpoint
 
-**Environment Variables**:
-- `STRIPE_SECRET_KEY` (Backend)
-- `STRIPE_PUBLISHABLE_KEY` (Frontend - if needed)
-- `STRIPE_WEBHOOK_SECRET` (Backend)
-
-**Add to**: `/app/backend/.env`
+**Environment Variables** (Production only):
 ```
-STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
-STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
+STRIPE_SECRET_KEY=sk_live_your_stripe_secret_key_here
+STRIPE_PUBLISHABLE_KEY=pk_live_your_stripe_publishable_key_here
 STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
 ```
 
-## 3. 🍎 Apple Pay Integration
+## 3. 🔐 Authentication Integration - VERIFIED INTEGRATION
 
-**Service**: Apple Pay
-**Purpose**: iOS payment processing
-**Where to get**:
-1. Enroll in Apple Developer Program
-2. Create Merchant ID in Apple Developer Console
-3. Generate Payment Processing Certificate
-4. Configure with Stripe (if using Stripe for Apple Pay)
+**Service**: Emergent Auth (Google OAuth Alternative)
+**Purpose**: Hassle-free email-based authentication
+**Integration Status**: ✅ VERIFIED PLAYBOOK Available
 
-**Note**: This requires Apple Developer account ($99/year)
+**IMPORTANT**: This integration uses Emergent's authentication system - no additional API keys needed!
 
-## 4. 🔐 OAuth Authentication
+**How it works**:
+1. User clicks "Sign in with Google" → Redirects to `https://auth.emergentagent.com/`
+2. After login → Redirects back with session ID
+3. Backend calls Emergent Auth API to validate session
+4. User data automatically stored in database
 
-### Google OAuth
-**Service**: Google OAuth
-**Purpose**: "Sign in with Google" functionality
-**Where to get**:
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create project or select existing
-3. Enable Google+ API
-4. Go to "Credentials" → "Create Credentials" → "OAuth client ID"
-5. Configure authorized redirect URIs
+**No manual setup required** - this integration is ready to use!
 
-**Environment Variables**:
-```
-GOOGLE_CLIENT_ID=your_google_client_id_here
-GOOGLE_CLIENT_SECRET=your_google_client_secret_here
-```
+## 4. 📱 Apple Sign In (Optional)
 
-### Apple OAuth
 **Service**: Apple Sign In
 **Purpose**: "Sign in with Apple" functionality
 **Where to get**:
-1. Apple Developer Account required
+1. Apple Developer Account required ($99/year)
 2. Create App ID with Sign In with Apple capability
 3. Create Service ID for web authentication
 4. Generate private key for client authentication
@@ -107,65 +93,74 @@ SENDGRID_API_KEY=your_sendgrid_api_key_here
 FROM_EMAIL=your_verified_sender_email_here
 ```
 
-## 🚀 How to Add API Keys
+## 🚀 Integration Status Summary
 
-1. **Edit Backend Environment File**:
+| Service | Status | Setup Required |
+|---------|--------|----------------|
+| **AI Chatbot (Gemini)** | ⚠️ Needs API Key | Manual setup required |
+| **Payments (Stripe)** | ✅ Ready | Auto-configured for dev |
+| **Authentication (Emergent)** | ✅ Ready | No setup needed |
+| **Apple Sign In** | ⚠️ Optional | Manual setup required |
+| **Email Service** | ⚠️ Optional | Manual setup required |
+
+## 🛠️ Quick Setup Instructions
+
+### For Development (Minimum Required):
+1. **Get Gemini API Key** (only required key):
    ```bash
-   nano /app/backend/.env
-   ```
-
-2. **Add your keys** (example format):
-   ```
-   GEMINI_API_KEY=your_actual_key_here
-   STRIPE_SECRET_KEY=sk_test_your_actual_key_here
-   GOOGLE_CLIENT_ID=your_actual_client_id_here
-   # ... add other keys
-   ```
-
-3. **Restart Backend Service**:
-   ```bash
+   echo "GEMINI_API_KEY=your_key_here" >> /app/backend/.env
    sudo supervisorctl restart backend
    ```
 
-4. **Frontend Keys** (if needed):
-   - Create `/app/.env` file for frontend-specific keys
-   - Add keys prefixed with `VITE_` for Vite access
+2. **Test the integrations**:
+   - Authentication: Already working with Emergent Auth
+   - Payments: Already configured with Stripe
+   - AI Chat: Will work once Gemini key is added
 
-## 💡 Current Status
+### For Production:
+1. Add Gemini API key (required)
+2. Add production Stripe keys (recommended)
+3. Add Apple Sign In credentials (optional)
+4. Add email service credentials (optional)
 
-**✅ Working without keys (mocked)**:
-- Basic authentication
-- Core program functionality
-- AI chat (with placeholder responses)
-- Payment structure (without actual processing)
+## 💡 Current Status Without Keys
 
-**❌ Needs keys to work fully**:
+**✅ Working immediately**:
+- User registration and login
+- Basic authentication flow
+- Payment integration structure
+- AI chat interface (with placeholder responses)
+- Dashboard and program management
+
+**❌ Needs API keys to work fully**:
 - Actual AI responses from Gemini
-- Real payment processing
-- OAuth sign-in (Google, Apple)
+- Production payment processing
+- Apple Sign In authentication
 - Email notifications
 
-## 🔧 Development vs Production Keys
+## 🔧 Development vs Production
 
-**Development** (for testing):
-- Use test/sandbox keys (e.g., `sk_test_` for Stripe)
-- Enable development mode in OAuth apps
-- Use development endpoints
+**Development Mode** (current):
+- Uses Emergent Auth for authentication ✅
+- Uses system Stripe keys for payments ✅
+- Uses placeholder AI responses ⚠️
+- Core functionality working ✅
 
-**Production** (for live app):
-- Use live/production keys (e.g., `sk_live_` for Stripe)
-- Configure production OAuth redirect URIs
-- Use production endpoints
+**Production Mode**:
+- Add your own Stripe production keys
+- Add Gemini API key for AI functionality
+- Add Apple Sign In for iOS users
+- Add email service for notifications
+
+## 🎯 Priority Setup Order
+
+1. **High Priority**: Get Gemini API key for AI functionality
+2. **Medium Priority**: Set up production Stripe keys
+3. **Low Priority**: Add Apple Sign In and email service
 
 ## 📞 Need Help?
 
-If you need assistance obtaining any of these keys or have questions about the setup process, please let me know! I can provide more detailed instructions for any specific service.
+The integrations are designed to work out-of-the-box with minimal setup. Most functionality is already available, and you only need to add the Gemini API key for full AI functionality.
 
-## 🎯 Next Steps
-
-1. **Priority 1**: Get Gemini API key for AI functionality
-2. **Priority 2**: Get Stripe keys for payment processing
-3. **Priority 3**: Set up Google OAuth for authentication
-4. **Priority 4**: Configure other services as needed
-
-Once you have the keys, I'll help you integrate them into the application!
+**Ready to use immediately**: Authentication, payments, dashboard, programs
+**Needs Gemini key**: AI-powered wellness coaching and behavior analysis
