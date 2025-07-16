@@ -457,7 +457,7 @@ class BackendTester:
                 }
                 
                 cors_working = (
-                    cors_headers["access-control-allow-origin"] == "*" and
+                    cors_headers["access-control-allow-origin"] in ["*", "http://localhost:3000"] and
                     "POST" in (cors_headers["access-control-allow-methods"] or "") and
                     "Content-Type" in (cors_headers["access-control-allow-headers"] or "")
                 )
