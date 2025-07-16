@@ -6,6 +6,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+    allowedHosts: [
+      'localhost',
+      '.preview.emergentagent.com',
+      'c9d1bc23-80d8-46ce-ba5e-22ff1eab640a.preview.emergentagent.com'
+    ]
   }
 })
