@@ -57,11 +57,8 @@ function App() {
 function AppContent() {
   const { user, isAuthenticated, hasCompletedOnboarding } = useAuth();
 
-  if (!isAuthenticated) {
-    return <OnboardingFlow />;
-  }
-
-  if (!hasCompletedOnboarding) {
+  // Show onboarding for users who haven't completed it (whether authenticated or not)
+  if (!isAuthenticated || !hasCompletedOnboarding) {
     return <OnboardingFlow />;
   }
 
