@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Welly - Health & Wellness App</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .welcome-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .welcome-card {
+            max-width: 400px;
+            width: 100%;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 32px;
+            text-align: center;
+        }
+        .logo {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+        }
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .button {
+            width: 100%;
+            background: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .button:hover {
+            background: #15803d;
+            transform: translateY(-1px);
+        }
+        .dashboard {
+            min-height: 100vh;
+            background: #f8f9fa;
+            display: none;
+        }
+        .header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 24px;
+        }
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        .header-subtitle {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .header-stats {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .stat {
+            background: #f0fdf4;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #16a34a;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            padding: 24px;
+        }
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+        .suggestion {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .suggestion-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+        .small-button {
+            width: 100%;
+            background: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .success-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #22c55e;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            padding: 8px 16px;
+            display: none;
+            justify-content: space-around;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 12px;
+            cursor: pointer;
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .nav-item.active {
+            color: #16a34a;
+        }
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        .disclaimer {
+            margin-top: 32px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .navigation {
+                display: flex;
+            }
+            .container {
+                padding-bottom: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Welcome Screen -->
+        <div class="welcome-container" id="welcome">
+            <div class="welcome-card">
+                <div class="logo">❤️</div>
+                <h1 class="title">Welcome to Team Welly</h1>
+                <p class="subtitle">
+                    Your comprehensive health and wellness companion. Let's get you started on your journey to better health.
+                </p>
+                <button class="button" onclick="startJourney()">
+                    🎯 Start Your Wellness Journey
+                </button>
+                <div class="disclaimer">
+                    By continuing, you agree to our Terms of Service and Privacy Policy
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dashboard" id="dashboard">
+            <div class="header">
+                <h1 class="header-title">Good morning! 👋</h1>
+                <p class="header-subtitle">Ready to make today amazing?</p>
+                <div class="header-stats">
+                    <div class="stat">🏆 2,250 WellyPoints</div>
+                    <div class="stat">🔥 3 day streak</div>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="grid">
+                    <!-- Today's Suggestions -->
+                    <div class="card">
+                        <h2 class="card-title">Today's Suggestions</h2>
+                        <div class="suggestion">
+                            <div style="font-size: 24px; margin-bottom: 8px;">🤸</div>
+                            <div class="suggestion-title">Morning Neck Stretch</div>
+                            <div style="font-size: 14px; color: #6b7280;">Stretch • 5 min</div>
+                            <button class="small-button" onclick="showSuccess('Started Morning Neck Stretch!')">Start Now</button>
+                        </div>
+                        <div class="suggestion">
+                            <div style="font-size: 24px; margin-bottom: 8px;">🧘</div>
+                            <div class="suggestion-title">Box Breathing</div>
+                            <div style="font-size: 14px; color: #6b7280;">Breathwork • 3 min</div>
+                            <button class="small-button" onclick="showSuccess('Started Box Breathing!')">Start Now</button>
+                        </div>
+                        <div class="suggestion">
+                            <div style="font-size: 24px; margin-bottom: 8px;">🌿</div>
+                            <div class="suggestion-title">Mindful Moment</div>
+                            <div style="font-size: 14px; color: #6b7280;">Meditation • 7 min</div>
+                            <button class="small-button" onclick="showSuccess('Started Mindful Moment!')">Start Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Sessions -->
+                    <div class="card">
+                        <h2 class="card-title">Upcoming Sessions</h2>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background: #f8f9fa; border-radius: 12px; margin-bottom: 12px;">
+                            <div>
+                                <div style="font-size: 16px; font-weight: 600; color: #111827;">Recovery Session with Chris</div>
+                                <div style="font-size: 14px; color: #6b7280;">Today, 2:00 PM</div>
+                            </div>
+                            <button class="small-button" onclick="showSuccess('Joined session with Chris!')">Join</button>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background: #f8f9fa; border-radius: 12px;">
+                            <div>
+                                <div style="font-size: 16px; font-weight: 600; color: #111827;">Workplace Wellness Workshop</div>
+                                <div style="font-size: 14px; color: #6b7280;">Tomorrow, 10:00 AM</div>
+                            </div>
+                            <button class="small-button" onclick="showSuccess('Registered for workshop!')">Register</button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="card">
+                        <h2 class="card-title">Your Progress</h2>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <div>
+                                <div style="font-weight: 600; color: #111827;">Programs Completed</div>
+                                <div style="font-size: 14px; color: #6b7280;">This month</div>
+                            </div>
+                            <div style="font-size: 24px; font-weight: bold; color: #16a34a;">12</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <div>
+                                <div style="font-weight: 600; color: #111827;">Total Sessions</div>
+                                <div style="font-size: 14px; color: #6b7280;">All time</div>
+                            </div>
+                            <div style="font-size: 24px; font-weight: bold; color: #16a34a;">45</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-weight: 600; color: #111827;">Badges Earned</div>
+                                <div style="font-size: 14px; color: #6b7280;">Achievements</div>
+                            </div>
+                            <div style="font-size: 24px; font-weight: bold; color: #16a34a;">8</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation" id="navigation">
+            <div class="nav-item active" onclick="showDashboard()">
+                <div class="nav-icon">🏠</div>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item" onclick="showSuccess('Programs section coming soon!')">
+                <div class="nav-icon">📚</div>
+                <span>Programs</span>
+            </div>
+            <div class="nav-item" onclick="showSuccess('Coaching section coming soon!')">
+                <div class="nav-icon">👥</div>
+                <span>Coaching</span>
+            </div>
+            <div class="nav-item" onclick="showSuccess('Challenges section coming soon!')">
+                <div class="nav-icon">🏆</div>
+                <span>Challenges</span>
+            </div>
+            <div class="nav-item" onclick="showSuccess('Settings section coming soon!')">
+                <div class="nav-icon">⚙️</div>
+                <span>Settings</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startJourney() {
+            // Show loading state
+            const button = document.querySelector('.button');
+            button.textContent = '⏳ Setting up...';
+            button.disabled = true;
+            
+            // Simulate loading
+            setTimeout(() => {
+                document.getElementById('welcome').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                document.getElementById('navigation').style.display = 'flex';
+                showSuccess('Welcome to Team Welly! 🎉');
+            }, 1000);
+        }
+
+        function showDashboard() {
+            // Update nav active state
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector('.nav-item').classList.add('active');
+        }
+
+        function showSuccess(message) {
+            // Create success message
+            const success = document.createElement('div');
+            success.className = 'success-message';
+            success.textContent = message;
+            document.body.appendChild(success);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                success.remove();
+            }, 3000);
+        }
+
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Team Welly App loaded successfully! 🎉');
+        });
+    </script>
+</body>
+</html>
