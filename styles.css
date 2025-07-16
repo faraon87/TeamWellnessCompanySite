@@ -101,7 +101,7 @@ body {
     min-height: 70px;
     border-radius: 0;
     text-transform: uppercase;
-    font-family: 'Inter', sans-serif;
+    font-family: "Arial", "Helvetica", sans-serif;
 }
 
 .action-button:hover {
