@@ -36,6 +36,7 @@ body {
     right: 40px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 16px;
     color: #12e1b9;
     z-index: 10;
@@ -43,8 +44,8 @@ body {
 
 .logo .flower-logo {
     position: absolute;
-    top: -10px;
-    right: -20px;
+    top: -25px;
+    right: -5px;
     width: 70px;
     height: 90px;
     flex-shrink: 0;
@@ -58,7 +59,7 @@ body {
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
     line-height: 1.1;
     letter-spacing: 0.5px;
-    text-align: left;
+    text-align: center;
     position: relative;
     z-index: 1;
 }
