@@ -78,7 +78,7 @@ app.include_router(enhanced_payments_router, prefix="/api/payments", tags=["Enha
 app.include_router(auth.router, prefix="/api/auth-legacy", tags=["Legacy Authentication"])
 app.include_router(payments.router, prefix="/api/payments-legacy", tags=["Legacy Payments"])
 app.include_router(ai_chat.router, prefix="/api/ai", tags=["AI Chat"])
-app.include_router(wellness_data.router, prefix="/api/wellness", tags=["Wellness Data"])
+
 app.include_router(programs.router, prefix="/api/programs", tags=["Programs"])
 app.include_router(analytics.router, prefix="/api/analytics", tags=["Analytics"])
 
