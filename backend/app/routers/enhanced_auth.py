@@ -214,7 +214,6 @@ async def get_current_user(request: Request):
             raise HTTPException(status_code=401, detail="Missing or invalid authorization header")
         
         session_token = auth_header.split(" ")[1]
-        print(f"🔍 Looking for session token: {session_token}")
         
         # Find active session
         session = await user_sessions_collection.find_one({
@@ -223,14 +222,11 @@ async def get_current_user(request: Request):
             "expires_at": {"$gt": datetime.utcnow()}
         })
         
-        print(f"🔍 Session found: {session}")
-        
         if not session:
             raise HTTPException(status_code=401, detail="Invalid or expired session")
         
         # Get user
         user = await users_collection.find_one({"_id": session["user_id"]})
-        print(f"🔍 User found: {user}")
         
         if not user:
             raise HTTPException(status_code=401, detail="User not found")
