@@ -252,7 +252,8 @@ async def get_program_recommendations(current_user: User = Depends(get_current_u
         goals = user_info.get("selected_goals", []) if user_info else []
         
         # Get programs not yet completed
-        all_programs = await programs_collection.find().to_list(length=1000)
+        all_programs_query = programs_collection.find()
+        all_programs = await all_programs_query.to_list(length=1000)
         
         # Filter and recommend programs
         recommendations = []
