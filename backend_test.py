@@ -304,8 +304,8 @@ class BackendTester:
         )
     
     async def test_payment_endpoints(self):
-        """Test payment endpoints"""
-        print("\n💳 Testing Payment Endpoints...")
+        """Test enhanced payment endpoints"""
+        print("\n💳 Testing Enhanced Payment Endpoints...")
         
         # Test get wellness packages (no auth required)
         success, data, status = await self.make_request("GET", "/api/payments/packages")
@@ -315,26 +315,74 @@ class BackendTester:
             f"Packages retrieved: {len(data.get('packages', [])) if success else 'Failed'}"
         )
         
+        # Test demo packages info
+        success, data, status = await self.make_request("GET", "/api/payments/demo/packages")
+        self.log_test(
+            "Demo packages info", 
+            success and status == 200,
+            f"Demo packages info retrieved: {success}"
+        )
+        
+        # Test demo payment success
+        success, data, status = await self.make_request("POST", "/api/payments/demo/success")
+        self.log_test(
+            "Demo payment success", 
+            success and status == 200,
+            f"Demo payment success: {success}"
+        )
+        
         if not self.access_token:
             self.log_test("Payment tests (authenticated)", False, "No authentication token available")
             return
         
-        # Test create checkout session
+        # Test create checkout session for wellness package
         payment_data = {
             "package_id": "plus",
-            "success_url": "https://teamwelly.com/success",
-            "cancel_url": "https://teamwelly.com/cancel",
-            "metadata": {"test": "true"}
+            "origin_url": "http://localhost:3000",
+            "user_id": self.user_id
         }
-        success, data, status = await self.make_request("POST", "/api/payments/v1/checkout/session", payment_data)
+        success, data, status = await self.make_request("POST", "/api/payments/checkout/session", payment_data)
+        session_id = None
+        if success and status == 200:
+            session_id = data.get("session_id")
+            self.log_test(
+                "Create checkout session", 
+                True,
+                f"Checkout session created: {session_id}"
+            )
+        else:
+            self.log_test(
+                "Create checkout session", 
+                False,
+                f"Status: {status}, Response: {data}"
+            )
+        
+        # Test custom checkout session
+        custom_payment_data = {
+            "amount": 29.99,
+            "currency": "usd",
+            "origin_url": "http://localhost:3000",
+            "user_id": self.user_id,
+            "metadata": {"test": "custom_payment"}
+        }
+        success, data, status = await self.make_request("POST", "/api/payments/checkout/custom", custom_payment_data)
         self.log_test(
-            "Create checkout session", 
+            "Create custom checkout session", 
             success and status == 200,
-            f"Checkout session created: {bool(data.get('session_id')) if success else 'Failed'}"
+            f"Custom checkout session created: {bool(data.get('session_id')) if success else 'Failed'}"
         )
         
+        # Test checkout status (if we have a session_id)
+        if session_id:
+            success, data, status = await self.make_request("GET", f"/api/payments/checkout/status/{session_id}")
+            self.log_test(
+                "Get checkout status", 
+                success and status == 200,
+                f"Checkout status retrieved: {success}"
+            )
+        
         # Test get payment history
-        success, data, status = await self.make_request("GET", "/api/payments/history")
+        success, data, status = await self.make_request("GET", f"/api/payments/history?user_id={self.user_id}")
         self.log_test(
             "Get payment history", 
             success and status == 200,
