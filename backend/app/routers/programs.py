@@ -198,7 +198,8 @@ async def get_category_stats(current_user: User = Depends(get_current_user)):
     """Get program statistics by category"""
     try:
         # Get all programs
-        programs = await programs_collection.find().to_list(length=1000)
+        programs_query = programs_collection.find()
+        programs = await programs_query.to_list(length=1000)
         
         # Get user progress
         user_progress = await user_progress_collection.find_one({"user_id": current_user.id})
