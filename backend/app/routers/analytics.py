@@ -94,12 +94,13 @@ async def get_wellness_score(current_user: User = Depends(get_current_user)):
         progress = await user_progress_collection.find_one({"user_id": current_user.id})
         
         # Get recent behavior (last 7 days)
-        recent_behaviors = await user_behavior_collection.find(
+        recent_behaviors_query = user_behavior_collection.find(
             {
                 "user_id": current_user.id,
                 "timestamp": {"$gte": datetime.utcnow() - timedelta(days=7)}
             }
-        ).to_list(length=100)
+        )
+        recent_behaviors = await recent_behaviors_query.to_list(length=100)
         
         # Calculate wellness score components
         score_components = {
