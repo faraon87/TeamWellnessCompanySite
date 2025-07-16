@@ -102,6 +102,7 @@ body {
     padding: 20px 30px;
     font-size: 16px;
     font-weight: 500;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -111,7 +112,6 @@ body {
     min-height: 70px;
     border-radius: 0;
     text-transform: uppercase;
-    font-family: "Arial", "Helvetica", sans-serif;
 }
 
 .action-button:hover {
