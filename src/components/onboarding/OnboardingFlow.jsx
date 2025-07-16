@@ -5,18 +5,33 @@ import Button from '../common/Button';
 import { Heart, ArrowRight, Target } from 'lucide-react';
 
 const OnboardingFlow = () => {
-  const { actions } = useAuth();
+  const { actions, isAuthenticated } = useAuth();
 
-  const handleSkipOnboarding = () => {
-    // For now, just complete onboarding with demo data
-    actions.setSelectedGoals(['Reduce Pain', 'Improve Flexibility']);
-    actions.setAssessmentData({
-      stressLevel: 6,
-      sleepQuality: 7,
-      painAreas: ['neck', 'shoulders'],
-      movementHabits: 'sedentary'
-    });
-    actions.completeOnboarding();
+  const handleStartJourney = async () => {
+    try {
+      // If not authenticated, create a demo user
+      if (!isAuthenticated) {
+        await actions.signUp({
+          email: 'demo@teamwelly.com',
+          name: 'Demo User',
+          plan: 'basic'
+        });
+      }
+      
+      // Set demo goals and assessment data
+      actions.setSelectedGoals(['Reduce Pain', 'Improve Flexibility']);
+      actions.setAssessmentData({
+        stressLevel: 6,
+        sleepQuality: 7,
+        painAreas: ['neck', 'shoulders'],
+        movementHabits: 'sedentary'
+      });
+      
+      // Complete onboarding
+      actions.completeOnboarding();
+    } catch (error) {
+      console.error('Error during onboarding:', error);
+    }
   };
 
   return (
@@ -41,7 +56,7 @@ const OnboardingFlow = () => {
         <div className="space-y-4">
           <Button
             fullWidth
-            onClick={handleSkipOnboarding}
+            onClick={handleStartJourney}
             icon={Target}
             iconPosition="left"
           >
