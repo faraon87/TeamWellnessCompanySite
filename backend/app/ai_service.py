@@ -149,12 +149,13 @@ Tailor your responses to this user's specific situation and goals."""
 
     async def _get_recent_chat_history(self, user_id: str, session_id: str) -> List[Dict[str, Any]]:
         """Get recent chat history for context"""
-        return await chat_history_collection.find(
+        chat_query = chat_history_collection.find(
             {
                 "user_id": user_id,
                 "session_id": session_id
             }
-        ).sort("timestamp", -1).limit(5).to_list(length=5)
+        ).sort("timestamp", -1).limit(5)
+        return await chat_query.to_list(length=5)
 
     def _create_contextual_message(self, message: str, user_data: Dict[str, Any], recent_messages: List[Dict[str, Any]]) -> str:
         """Create contextual message with user data"""
