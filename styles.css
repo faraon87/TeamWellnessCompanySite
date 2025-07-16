@@ -128,26 +128,39 @@ body {
     bottom: 40px;
     left: 40px;
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.social-link {
+.social-link,
+.email-link {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: #10b981;
+    color: #12e1b9;
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
     transition: opacity 0.3s ease;
 }
 
-.social-link:hover {
+.social-link:hover,
+.email-link:hover {
     opacity: 0.8;
 }
 
-.social-link svg {
+.email-link a {
+    color: #12e1b9;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.email-link a:hover {
+    opacity: 0.8;
+}
+
+.social-link svg,
+.email-link svg {
     width: 24px;
     height: 24px;
 }
