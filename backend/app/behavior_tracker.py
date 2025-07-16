@@ -125,12 +125,13 @@ class BehaviorTracker:
         # Get user behavior from last 30 days
         thirty_days_ago = datetime.utcnow() - timedelta(days=30)
         
-        behaviors = await user_behavior_collection.find(
+        behaviors = user_behavior_collection.find(
             {
                 "user_id": user_id,
                 "timestamp": {"$gte": thirty_days_ago}
             }
-        ).sort("timestamp", -1).to_list(length=1000)
+        ).sort("timestamp", -1)
+        behaviors = await behaviors.to_list(length=1000)
         
         # Get user progress
         progress = await user_progress_collection.find_one({"user_id": user_id})
