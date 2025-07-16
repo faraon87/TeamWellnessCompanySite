@@ -18,7 +18,8 @@ _memory_db = {
     "user_behavior": {},
     "challenges": {},
     "bookings": {},
-    "notifications": {}
+    "notifications": {},
+    "wellness_packages": {}
 }
 
 class MemoryCollection:
