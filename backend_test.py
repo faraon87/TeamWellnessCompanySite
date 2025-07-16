@@ -99,28 +99,37 @@ class BackendTester:
         )
     
     async def test_auth_endpoints(self):
-        """Test authentication endpoints"""
-        print("\n🔐 Testing Authentication Endpoints...")
+        """Test enhanced authentication endpoints"""
+        print("\n🔐 Testing Enhanced Authentication Endpoints...")
         
-        # Test signup
+        # Test enhanced signup
         success, data, status = await self.make_request("POST", "/api/auth/signup", TEST_USER_DATA)
         if success and status == 200:
             self.access_token = data.get("access_token")
             self.user_id = data.get("user", {}).get("id")
-            self.log_test("User signup", True, f"User created with ID: {self.user_id}")
+            self.log_test("Enhanced signup", True, f"User created with ID: {self.user_id}")
         else:
-            self.log_test("User signup", False, f"Status: {status}, Response: {data}")
+            self.log_test("Enhanced signup", False, f"Status: {status}, Response: {data}")
         
-        # Test login (if signup failed, try login)
+        # Test enhanced login (if signup failed, try login)
         if not self.access_token:
             login_data = {"email": TEST_USER_DATA["email"], "password": "testpassword"}
             success, data, status = await self.make_request("POST", "/api/auth/login", login_data)
             if success and status == 200:
                 self.access_token = data.get("access_token")
                 self.user_id = data.get("user", {}).get("id")
-                self.log_test("User login", True, f"Logged in with ID: {self.user_id}")
+                self.log_test("Enhanced login", True, f"Logged in with ID: {self.user_id}")
             else:
-                self.log_test("User login", False, f"Status: {status}, Response: {data}")
+                self.log_test("Enhanced login", False, f"Status: {status}, Response: {data}")
+        
+        # Test demo login endpoint
+        success, data, status = await self.make_request("POST", "/api/auth/demo-login")
+        demo_token = None
+        if success and status == 200:
+            demo_token = data.get("access_token")
+            self.log_test("Demo login", True, f"Demo user logged in successfully")
+        else:
+            self.log_test("Demo login", False, f"Status: {status}, Response: {data}")
         
         # Test get current user (requires auth)
         if self.access_token:
@@ -154,7 +163,7 @@ class BackendTester:
         if self.access_token:
             success, data, status = await self.make_request("POST", "/api/auth/logout")
             self.log_test(
-                "User logout", 
+                "Enhanced logout", 
                 success and status == 200,
                 f"Logout successful: {success}"
             )
