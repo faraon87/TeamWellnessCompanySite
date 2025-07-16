@@ -24,8 +24,7 @@ async def get_programs(
             query["level"] = level
         
         # Get programs
-        query_result = await programs_collection.find(query)
-        programs = await query_result.sort("title", 1).to_list(length=100)
+        programs = await programs_collection.find(query).sort("title", 1).to_list(length=100)
         
         # Track program browsing
         await BehaviorTracker.track_action(
