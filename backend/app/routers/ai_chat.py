@@ -88,7 +88,8 @@ async def get_chat_history(
             query["session_id"] = session_id
         
         # Get chat history
-        chat_history = await chat_history_collection.find(query).sort("timestamp", -1).limit(limit).to_list(length=limit)
+        chat_query = chat_history_collection.find(query).sort("timestamp", -1).limit(limit)
+        chat_history = await chat_query.to_list(length=limit)
         
         return {"chat_history": chat_history}
         
