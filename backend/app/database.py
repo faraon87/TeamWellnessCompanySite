@@ -86,7 +86,11 @@ class MemoryCollection:
             if "$inc" in update:
                 for key, value in update["$inc"].items():
                     new_doc[key] = value
-            await self.insert_one(new_doc)
+            
+            # Use the query _id if provided, otherwise generate one
+            doc_id = query.get("_id", str(uuid.uuid4()))
+            new_doc["_id"] = doc_id
+            self.data[doc_id] = new_doc
     
     async def create_index(self, index_spec, unique: bool = False, sparse: bool = False):
         """Create index (no-op for memory database)"""
