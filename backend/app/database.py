@@ -169,6 +169,7 @@ user_behavior_collection = MemoryCollection("user_behavior")
 challenges_collection = MemoryCollection("challenges")
 bookings_collection = MemoryCollection("bookings")
 notifications_collection = MemoryCollection("notifications")
+wellness_packages_collection = MemoryCollection("wellness_packages")
 
 async def init_database():
     """Initialize database with indexes and default data"""
