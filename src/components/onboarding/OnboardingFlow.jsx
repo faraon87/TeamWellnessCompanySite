@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../../hooks/useAuth';
 import Button from '../common/Button';
 import { Heart, ArrowRight, Target } from 'lucide-react';
 
 const OnboardingFlow = () => {
-  const { actions, isAuthenticated } = useAuth();
+  const { actions, isAuthenticated, hasCompletedOnboarding, isLoading } = useAuth();
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleStartJourney = async () => {
+    setIsProcessing(true);
+    
     try {
+      console.log('Starting onboarding process...');
+      
       // If not authenticated, create a demo user
       if (!isAuthenticated) {
+        console.log('Creating demo user...');
         await actions.signUp({
           email: 'demo@teamwelly.com',
           name: 'Demo User',
@@ -19,6 +25,7 @@ const OnboardingFlow = () => {
       }
       
       // Set demo goals and assessment data
+      console.log('Setting goals and assessment data...');
       actions.setSelectedGoals(['Reduce Pain', 'Improve Flexibility']);
       actions.setAssessmentData({
         stressLevel: 6,
@@ -28,9 +35,14 @@ const OnboardingFlow = () => {
       });
       
       // Complete onboarding
+      console.log('Completing onboarding...');
       actions.completeOnboarding();
+      
     } catch (error) {
       console.error('Error during onboarding:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -59,8 +71,10 @@ const OnboardingFlow = () => {
             onClick={handleStartJourney}
             icon={Target}
             iconPosition="left"
+            loading={isProcessing || isLoading}
+            disabled={isProcessing || isLoading}
           >
-            Start Your Wellness Journey
+            {isProcessing || isLoading ? 'Setting up...' : 'Start Your Wellness Journey'}
           </Button>
           
           <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
@@ -71,6 +85,11 @@ const OnboardingFlow = () => {
         
         <div className="mt-8 text-xs text-gray-400">
           By continuing, you agree to our Terms of Service and Privacy Policy
+        </div>
+        
+        {/* Debug info - remove in production */}
+        <div className="mt-4 text-xs text-gray-500 bg-gray-50 p-2 rounded">
+          Debug: Auth: {isAuthenticated ? 'Yes' : 'No'} | Onboarded: {hasCompletedOnboarding ? 'Yes' : 'No'}
         </div>
       </motion.div>
     </div>
