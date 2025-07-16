@@ -87,7 +87,7 @@ class BackendTester:
         self.log_test(
             "Root endpoint (/)", 
             success and status == 200,
-            f"Status: {status}, Response: {data}"
+            f"Status: {status}, Version: {data.get('version') if success else 'Failed'}"
         )
         
         # Test health endpoint
@@ -95,7 +95,15 @@ class BackendTester:
         self.log_test(
             "Health endpoint (/health)", 
             success and status == 200,
-            f"Status: {status}, Response: {data}"
+            f"Status: {status}, Services: {data.get('services') if success else 'Failed'}"
+        )
+        
+        # Test API info endpoint
+        success, data, status = await self.make_request("GET", "/api/info")
+        self.log_test(
+            "API info endpoint (/api/info)", 
+            success and status == 200,
+            f"API info retrieved: {bool(data.get('features')) if success else 'Failed'}"
         )
     
     async def test_auth_endpoints(self):
