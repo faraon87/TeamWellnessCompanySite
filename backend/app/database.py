@@ -159,7 +159,7 @@ DATABASE_NAME = os.getenv("DATABASE_NAME", "teamwelly")
 # Use in-memory database for development
 database = None
 users_collection = MemoryCollection("users")
-sessions_collection = MemoryCollection("sessions")
+user_sessions_collection = MemoryCollection("sessions")
 programs_collection = MemoryCollection("programs")
 user_progress_collection = MemoryCollection("user_progress")
 chat_history_collection = MemoryCollection("chat_history")
@@ -175,7 +175,7 @@ async def init_database():
         # Create indexes
         await users_collection.create_index("email", unique=True)
         await users_collection.create_index("google_id", unique=True, sparse=True)
-        await sessions_collection.create_index("session_id", unique=True)
+        await user_sessions_collection.create_index("session_id", unique=True)
         await chat_history_collection.create_index("user_id")
         await user_behavior_collection.create_index("user_id")
         await payment_transactions_collection.create_index("session_id", unique=True)
