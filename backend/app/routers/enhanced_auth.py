@@ -106,7 +106,7 @@ async def login(request: LoginRequest):
         
         # Create session
         session_token = generate_token()
-        create_user_session(user["_id"], session_token)
+        await create_user_session(user["_id"], session_token)
         
         return AuthResponse(
             access_token=session_token,
