@@ -135,6 +135,22 @@ class MemoryQuery:
         if length:
             return self.documents[:length]
         return self.documents
+    
+    def __aiter__(self):
+        """Make async iterable"""
+        return self
+    
+    async def __anext__(self):
+        """Async iterator"""
+        if not hasattr(self, '_index'):
+            self._index = 0
+        
+        if self._index >= len(self.documents):
+            raise StopAsyncIteration
+        
+        doc = self.documents[self._index]
+        self._index += 1
+        return doc
 
 # Database configuration
 USE_MEMORY_DB = os.getenv("USE_MEMORY_DB", "false").lower() == "true"
