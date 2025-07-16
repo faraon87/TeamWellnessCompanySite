@@ -277,9 +277,10 @@ async def get_wellness_packages():
 async def get_payment_history(current_user: User = Depends(get_current_user)):
     """Get user's payment history"""
     try:
-        transactions = await payment_transactions_collection.find(
+        transactions_query = payment_transactions_collection.find(
             {"user_id": current_user.id}
-        ).sort("created_at", -1).limit(50).to_list(length=50)
+        ).sort("created_at", -1).limit(50)
+        transactions = await transactions_query.to_list(length=50)
         
         return {"transactions": transactions}
         
