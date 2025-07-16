@@ -204,9 +204,11 @@ body {
     .footer {
         bottom: 20px;
         left: 20px;
+        gap: 12px;
     }
     
-    .social-link {
+    .social-link,
+    .email-link {
         font-size: 14px;
     }
 }
