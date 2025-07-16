@@ -28,12 +28,13 @@ async def get_behavior_analytics(
         # Get behavior data
         start_date = datetime.utcnow() - timedelta(days=days)
         
-        behaviors = await user_behavior_collection.find(
+        behaviors = user_behavior_collection.find(
             {
                 "user_id": current_user.id,
                 "timestamp": {"$gte": start_date}
             }
-        ).sort("timestamp", -1).to_list(length=1000)
+        ).sort("timestamp", -1)
+        behaviors = await behaviors.to_list(length=1000)
         
         # Analyze behavior patterns
         analytics = {
