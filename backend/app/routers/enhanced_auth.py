@@ -299,12 +299,11 @@ async def complete_onboarding(request: Request, goals: list = None, assessment: 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Onboarding completion failed: {str(e)}")
 
-# Demo/Testing endpoints
 @router.post("/demo-login")
 async def demo_login():
     """Quick demo login for testing"""
     try:
-        demo_user = {
+        demo_user_data = {
             "_id": "demo-user-id",
             "id": "demo-user-id",
             "email": "demo@teamwelly.com",
@@ -320,12 +319,19 @@ async def demo_login():
             }
         }
         
+        # Insert or update demo user in database
+        await users_collection.update_one(
+            {"_id": "demo-user-id"},
+            {"$set": demo_user_data},
+            upsert=True
+        )
+        
         session_token = generate_token()
         await create_user_session("demo-user-id", session_token)
         
         return AuthResponse(
             access_token=session_token,
-            user=demo_user
+            user=demo_user_data
         )
         
     except Exception as e:
