@@ -44,8 +44,8 @@ body {
 
 .logo .flower-logo {
     position: absolute;
-    top: -25px;
-    right: -5px;
+    top: -40px;
+    right: 0px;
     width: 70px;
     height: 90px;
     flex-shrink: 0;
