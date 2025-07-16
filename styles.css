@@ -166,6 +166,7 @@ body {
 .email-link a {
     color: #12e1b9;
     text-decoration: none;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
     transition: opacity 0.3s ease;
 }
 
