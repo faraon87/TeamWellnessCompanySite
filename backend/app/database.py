@@ -363,3 +363,16 @@ async def init_default_challenges():
             {"$set": challenge}, 
             upsert=True
         )
+
+def get_database():
+    """Get database instance"""
+    return {
+        "users": users_collection,
+        "user_sessions": user_sessions_collection,
+        "payment_transactions": payment_transactions_collection,
+        "programs": programs_collection,
+        "user_progress": user_progress_collection,
+        "user_behavior": user_behavior_collection,
+        "chat_history": chat_history_collection,
+        "wellness_packages": wellness_packages_collection
+    }
