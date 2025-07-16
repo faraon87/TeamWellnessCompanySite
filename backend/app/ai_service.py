@@ -103,12 +103,13 @@ Always prioritize user safety and suggest consulting healthcare professionals fo
         progress_doc = await user_progress_collection.find_one({"user_id": user_id})
         
         # Get recent behavior (last 7 days)
-        recent_behavior = await user_behavior_collection.find(
+        recent_behavior_query = user_behavior_collection.find(
             {
                 "user_id": user_id,
                 "timestamp": {"$gte": datetime.utcnow() - timedelta(days=7)}
             }
-        ).sort("timestamp", -1).limit(50).to_list(length=50)
+        ).sort("timestamp", -1).limit(50)
+        recent_behavior = await recent_behavior_query.to_list(length=50)
         
         return {
             "user": user_doc,
