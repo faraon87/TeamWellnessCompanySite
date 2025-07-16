@@ -151,12 +151,14 @@ body {
     opacity: 0.8;
 }
 
+.social-link a,
 .email-link a {
     color: #12e1b9;
     text-decoration: none;
     transition: opacity 0.3s ease;
 }
 
+.social-link a:hover,
 .email-link a:hover {
     opacity: 0.8;
 }
