@@ -81,6 +81,8 @@ async def get_optional_user(credentials: Optional[HTTPAuthorizationCredentials] 
         if user_doc is None:
             return None
             
+        # Set the id field from _id
+        user_doc["id"] = user_doc["_id"]
         return User(**user_doc)
     except JWTError:
         return None
