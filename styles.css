@@ -192,12 +192,12 @@ body {
     .logo {
         top: 20px;
         right: 20px;
-        gap: 12px;
+        gap: 8px;
     }
     
-    .logo svg {
-        width: 45px;
-        height: 60px;
+    .logo .flower-logo {
+        width: 35px;
+        height: 45px;
     }
     
     .logo-text {
