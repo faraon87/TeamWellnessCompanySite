@@ -116,8 +116,7 @@ async def api_info():
             "payments": "/api/payments/*", 
             "ai_chat": "/api/ai/*",
             "programs": "/api/programs/*",
-            "analytics": "/api/analytics/*",
-            "wellness": "/api/wellness/*"
+            "analytics": "/api/analytics/*"
         }
     }
 
