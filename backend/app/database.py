@@ -98,6 +98,24 @@ class MemoryCollection:
             if key == "_id":
                 if doc.get("_id") != value:
                     return False
+            elif key == "expires_at" and isinstance(value, dict):
+                # Handle datetime comparisons
+                doc_value = doc.get("expires_at")
+                if not doc_value:
+                    return False
+                
+                if "$gt" in value:
+                    if doc_value <= value["$gt"]:
+                        return False
+                if "$gte" in value:
+                    if doc_value < value["$gte"]:
+                        return False
+                if "$lt" in value:
+                    if doc_value >= value["$lt"]:
+                        return False
+                if "$lte" in value:
+                    if doc_value > value["$lte"]:
+                        return False
             elif key == "timestamp" and isinstance(value, dict):
                 # Handle timestamp range queries
                 doc_timestamp = doc.get("timestamp")
