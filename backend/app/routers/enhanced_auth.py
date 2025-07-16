@@ -37,7 +37,7 @@ class UserResponse(BaseModel):
 def generate_token():
     return str(uuid.uuid4())
 
-def create_user_session(user_id: str, session_token: str):
+async def create_user_session(user_id: str, session_token: str):
     """Create a new user session"""
     session_data = {
         "user_id": user_id,
@@ -46,7 +46,7 @@ def create_user_session(user_id: str, session_token: str):
         "expires_at": datetime.utcnow() + timedelta(days=7),
         "active": True
     }
-    return user_sessions_collection.insert_one(session_data)
+    return await user_sessions_collection.insert_one(session_data)
 
 @router.post("/signup", response_model=AuthResponse)
 async def signup(request: SignUpRequest):
