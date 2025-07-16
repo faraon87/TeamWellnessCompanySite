@@ -45,7 +45,7 @@ class MemoryCollection:
                 return doc
         return None
     
-    async def find(self, query: Dict[str, Any] = None):
+    def find(self, query: Dict[str, Any] = None):
         """Find multiple documents"""
         if not query:
             return MemoryQuery(list(self.data.values()))
