@@ -57,6 +57,8 @@ async def verify_token(credentials: HTTPAuthorizationCredentials = Depends(secur
             headers={"WWW-Authenticate": "Bearer"},
         )
     
+    # Set the id field from _id
+    user_doc["id"] = user_doc["_id"]
     return User(**user_doc)
 
 async def get_current_user(token: str = Depends(verify_token)):
