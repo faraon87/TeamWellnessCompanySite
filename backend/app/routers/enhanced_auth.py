@@ -195,7 +195,7 @@ async def verify_emergent_session(session_id: str):
         
         # Create session with Emergent session token
         session_token = auth_data["session_token"]
-        create_user_session(user["_id"], session_token)
+        await create_user_session(user["_id"], session_token)
         
         return AuthResponse(
             access_token=session_token,
