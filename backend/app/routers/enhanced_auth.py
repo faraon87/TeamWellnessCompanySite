@@ -321,16 +321,11 @@ async def demo_login():
         }
         
         # Insert or update demo user in database
-        print(f"🔍 Creating demo user: {demo_user_data['_id']}")
         await users_collection.update_one(
             {"_id": "demo-user-id"},
             {"$set": demo_user_data},
             upsert=True
         )
-        
-        # Verify user was created
-        created_user = await users_collection.find_one({"_id": "demo-user-id"})
-        print(f"🔍 Demo user created: {created_user}")
         
         session_token = generate_token()
         await create_user_session("demo-user-id", session_token)
@@ -341,5 +336,4 @@ async def demo_login():
         )
         
     except Exception as e:
-        print(f"❌ Demo login error: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Demo login failed: {str(e)}")
