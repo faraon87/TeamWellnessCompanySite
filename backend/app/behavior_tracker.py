@@ -1,5 +1,5 @@
 from typing import Dict, Any, Optional
-from datetime import datetime
+from datetime import datetime, timedelta
 from .database import user_behavior_collection, user_progress_collection
 from .models import UserBehavior
 
