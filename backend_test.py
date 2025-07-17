@@ -558,6 +558,7 @@ class BackendTester:
         try:
             await self.test_health_endpoints()
             await self.test_auth_endpoints()
+            await self.test_oauth_endpoints()  # New OAuth tests
             await self.test_programs_endpoints()
             await self.test_ai_chat_endpoints()
             await self.test_payment_endpoints()
