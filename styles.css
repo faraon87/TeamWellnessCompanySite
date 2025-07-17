@@ -399,8 +399,8 @@ body {
 
 .cta-button {
     background: transparent;
-    border: 2px solid #12e1b9;
-    color: #12e1b9;
+    border: 2px solid #2D8A5A;
+    color: #2D8A5A;
     padding: 12px 24px;
     font-size: 14px;
     font-weight: 500;
@@ -413,31 +413,31 @@ body {
 }
 
 .cta-button:hover {
-    background: #12e1b9;
-    color: #070d29;
+    background: #2D8A5A;
+    color: #0F1B2E;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(18, 225, 185, 0.3);
+    box-shadow: 0 8px 25px rgba(45, 138, 90, 0.3);
 }
 
 .cta-button.primary {
-    background: #12e1b9;
-    color: #070d29;
+    background: #2D8A5A;
+    color: #0F1B2E;
 }
 
 .cta-button.primary:hover {
     background: transparent;
-    color: #12e1b9;
+    color: #2D8A5A;
 }
 
 .cta-button.secondary {
     background: transparent;
-    color: #12e1b9;
+    color: #2D8A5A;
 }
 
 .founders-section {
-    background: rgba(7, 13, 41, 0.3);
+    background: rgba(15, 27, 46, 0.3);
     padding: 20px;
-    border-left: 3px solid #12e1b9;
+    border-left: 3px solid #2D8A5A;
     margin: 20px 0;
 }
 
@@ -446,7 +446,7 @@ body {
 }
 
 .founder .title {
-    color: #12e1b9;
+    color: #2D8A5A;
     font-size: 12px;
     font-weight: 500;
     margin-bottom: 8px;
