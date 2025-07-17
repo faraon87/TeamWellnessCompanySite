@@ -863,8 +863,8 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 80%, rgba(18, 225, 185, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(7, 13, 41, 0.1) 0%, transparent 50%);
+    background: radial-gradient(circle at 20% 80%, rgba(45, 138, 90, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(15, 27, 46, 0.1) 0%, transparent 50%);
     pointer-events: none;
     z-index: -1;
 }
