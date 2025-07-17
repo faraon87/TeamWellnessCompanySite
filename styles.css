@@ -38,7 +38,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 2px;
-    color: #12e1b9;
+    color: #2D8A5A;
     z-index: 10;
 }
 
@@ -53,6 +53,7 @@ body {
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
     font-weight: 700;
     letter-spacing: 0.5px;
+    fill: #2D8A5A;
     opacity: 0.9;
 }
 
