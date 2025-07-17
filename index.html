@@ -38,28 +38,14 @@
             <p class="subtitle">RESTORING YOUR AURA ONE BREATHE AT A TIME</p>
             
             <div class="buttons-grid">
-                <button class="action-button">
-                    <span>EMPLOYER LOGIN</span>
+                <button class="action-button" onclick="openSigninModal()">
+                    <span>SIGN IN</span>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
                 
-                <button class="action-button">
-                    <span>EMPLOYEE LOGIN</span>
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-                
-                <button class="action-button">
-                    <span>INDIVIDUAL LOGIN</span>
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-                
-                <button class="action-button">
+                <button class="action-button" onclick="openLearnMoreModal()">
                     <span>LEARN MORE</span>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -87,5 +73,336 @@
             </div>
         </div>
     </div>
+
+    <!-- Sign In Modal -->
+    <div id="signinModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sign In</h2>
+                <span class="close" onclick="closeSigninModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="signin-options">
+                    <!-- SSO Options -->
+                    <div class="sso-section">
+                        <h3>Quick Sign In</h3>
+                        <div class="sso-buttons">
+                            <button class="sso-button apple-sso">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAxOCAyMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjg0NDUgMTEuNzQzNEMxMi44NzM0IDguNzYzNjcgMTUuNDE5OSA3LjMyNjE3IDE1LjU1MDggNy4yNTc4MUMxNC4zNjMzIDUuNDc5NDkgMTIuNTEzNyA1LjIxNDg0IDExLjgzMzkgNS4xOTUzMUMxMC4xNzE5IDUuMDE3NTggOC41NTU2NiA2LjE5NzI3IDcuNzA3MDMgNi4xOTcyN0M2Ljg0ODY3IDYuMTk3MjcgNS40NzQ2MSA1LjIxNDg0IDQuMDkxOCA1LjI0NDE0QzMuMDI5MyA1LjI3MzQ0IDEuMDY0NDUgNS44NzUgMC4xMzQ3NjYgNy4yNTc4MUMtMS44NzIwNyA5Ljk5NTEyIC0wLjMxNDQ1MyAxNC4yNDA2IDEuNTY4MzYgMTYuNjAxNkMyLjQ1NzAzIDE3Ljc3MTUgMy41MDU4NiAxOS4wNzYyIDQuOTA5MTggMTkuMDE3NkM2LjI5Mjk3IDE4Ljk1MzEgNi43NjM2NyAxOC4yMzgzIDguMzc2OTUgMTguMjM4M0M5Ljk4MDQ3IDE4LjIzODMgMTAuNDE0MSAxOS4wMTc2IDExLjgzMzkgMTguOTg4M0MxMy4yNzczIDE4Ljk1MzEgMTQuMTkxNCA5Ljk5NTEyIDE1LjAwNzggOC40MzE2NEMxNS44NzUgNy4wNzIyNyAxNS41OTk2IDYuMTk3MjcgMTUuNTk5NiA2LjE5NzI3UzEzLjA0MzQgNi4xOTcyNyAxMi44NDQ1IDExLjc0MzRaTTEwLjIxNDggMy4zNzJweFExMC4yMTQ4IDEuNzE0ODQgMTEuNjM2NyAwLjI1VjEzLjc3MzRaTTEwLjIxNDggMy4zNzJweFExMC4yMTQ4IDEuNzE0ODQgMTEuNjM2NyAwLjI1VjEzLjc3MzRaTTEwLjIxNDggMy4zNzJweFExMC4yMTQ4IDEuNzE0ODQgMTEuNjM2NyAwLjI1VjEzLjc3MzRaTTEwLjIxNDggMy4zNzJweFExMC4yMTQ4IDEuNzE0ODQgMTEuNjM2NyAwLjI1VjEzLjc3MzRaIiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo=" alt="Apple">
+                                <span>Continue with Apple</span>
+                            </button>
+                            <button class="sso-button google-sso">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjY0IDkuMjA0NTVDMTcuNjQgOC41NjU5MSAxNy41ODYzIDcuOTUyMjcgMTcuNDg2MyA3LjM2MzY0SDE5VjEwLjcwNDVIMTQuMjI3M1YxMC43MDQ1QzE0LjIyNzMgMTAuNzA0NSAxNC4yMjczIDEwLjcwNDUgMTQuMjI3MyAxMC43MDQ1SDE0LjIyNzNWMTAuNzA0NUgxNC4yMjczVjEwLjcwNDVIMTQuMjI3M1YxMC43MDQ1SDE0LjIyNzNWMTAuNzA0NUgxNC4yMjczVjEwLjcwNDVIMTQuMjI3M1YxMC43MDQ1SDE0LjIyNzNWMTAuNzA0NUgxNC4yMjczVjEwLjcwNDVIMTQuMjI3M1YxMC43MDQ1SDE0LjIyNzNWMTAuNzA0NUgxNC4yMjczVjEwLjcwNDUiIGZpbGw9IiM0Mjg1RjQiLz4KPC9zdmc+Cg==" alt="Google">
+                                <span>Sign in with Google</span>
+                            </button>
+                            <button class="sso-button x-sso">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/>
+                                </svg>
+                                <span>Continue with X</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="divider">
+                        <span>or</span>
+                    </div>
+
+                    <!-- Traditional Login Options -->
+                    <div class="traditional-section">
+                        <h3>Traditional Login</h3>
+                        <div class="traditional-buttons">
+                            <button class="traditional-button" onclick="redirectToLogin('corporate')">
+                                <span>Corporate Login</span>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <button class="traditional-button" onclick="redirectToLogin('individual')">
+                                <span>Individual User</span>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learn More Modal -->
+    <div id="learnMoreModal" class="modal">
+        <div class="modal-content learn-more-modal">
+            <div class="modal-header">
+                <h2>Learn More</h2>
+                <span class="close" onclick="closeLearnMoreModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="learn-more-content">
+                    <!-- Welcome Section -->
+                    <section class="welcome-section">
+                        <h3>Welcome to Team Welly</h3>
+                        <h4>Custom Wellness for Teams & Individuals</h4>
+                        <p>Team Welly is your all-in-one solution for modern wellness. Whether you're an HR leader supporting your team or an individual looking to improve performance, we've built the platform to help you move, recover, and thrive — every day.</p>
+                        <div class="action-buttons">
+                            <button class="cta-button primary">Join Now</button>
+                            <button class="cta-button secondary">Book a Demo</button>
+                        </div>
+                    </section>
+
+                    <!-- Mission Section -->
+                    <section class="mission-section">
+                        <h3>Our Mission</h3>
+                        <p>We believe that when people feel better, they lead better — at home, at work, and everywhere in between.</p>
+                        <p>Team Welly was created to make wellness actionable, measurable, and meaningful for both individuals and companies. Whether you're recovering from stress, aiming to move better, or leading a high-performing team, our platform helps you build sustainable routines that actually stick.</p>
+                        <p><strong>We're not just another wellness app. We're a movement towards daily ownership of mind, body, and culture.</strong></p>
+                        
+                        <div class="founders-section">
+                            <h4>Meet the Founders</h4>
+                            <div class="founder">
+                                <h5>Dr. Chris Zeiter, DC, CPT, CCWS</h5>
+                                <p class="title">Chiropractor · Trainer · Recovery Director · Corporate Wellness Specialist</p>
+                                <p>Chris brings a unique perspective that blends hands-on recovery expertise with scalable systems for movement, pain relief, and performance — helping people transition from dysfunction to mastery.</p>
+                            </div>
+                            <div class="founder">
+                                <h5>Franchesca Yates, SHRM-CP</h5>
+                                <p class="title">People & Culture Manager · HR Consultant · Wellness Culture Strategist · Certified Sculpt & Pilates Instructor</p>
+                                <p>With deep experience in HR, employee engagement, and culture development, Fran has helped build inclusive, wellness-forward workplaces. From curating internal events to leading remote teams across the U.S., she understands what it takes to make wellness part of the employee experience — not an afterthought.</p>
+                            </div>
+                            <p><strong>Together, we're combining real health science with human-centered culture strategy — to make wellness personal, proactive, and powerful.</strong></p>
+                        </div>
+                    </section>
+
+                    <!-- How It Works Section -->
+                    <section class="how-it-works-section">
+                        <h3>How It Works</h3>
+                        <p>Team Welly uses a proven 4-phase framework to guide every user:</p>
+                        <ol>
+                            <li><strong>Onboarding</strong> – Set goals, take a baseline assessment, and sync your wearable devices</li>
+                            <li><strong>Content Discovery</strong> – Explore stretch, breathwork, and movement routines based on your needs</li>
+                            <li><strong>Daily Engagement</strong> – Track your wellness points, build consistency, and celebrate wins</li>
+                            <li><strong>Social + Coaching</strong> – Join challenges, get 1-on-1 coaching, and build community</li>
+                            <li><strong>Analytics + Growth</strong> – See your trends and progress over time</li>
+                        </ol>
+                        <p><strong>→ Our platform meets users where they are — and helps them go further.</strong></p>
+                    </section>
+
+                    <!-- Individual Plans Section -->
+                    <section class="pricing-section">
+                        <h3>Individual Plans</h3>
+                        <p>Choose your level of commitment and support.</p>
+                        <div class="pricing-table">
+                            <div class="pricing-tier">
+                                <h4>Core Recovery</h4>
+                                <div class="price">$99/mo</div>
+                                <p>Guided mobility + breathwork routines, daily wellness dashboard</p>
+                            </div>
+                            <div class="pricing-tier">
+                                <h4>Flex & Focus</h4>
+                                <div class="price">$199/mo</div>
+                                <p>All of Core + custom progressions + email support</p>
+                            </div>
+                            <div class="pricing-tier">
+                                <h4>1-on-1 Coaching</h4>
+                                <div class="price">$299/mo</div>
+                                <p>All of above + 1 monthly virtual session with a coach</p>
+                            </div>
+                            <div class="pricing-tier featured">
+                                <h4>Elite Plan</h4>
+                                <div class="price">$499/mo</div>
+                                <p>Full access, advanced tracking, 2x coaching sessions, performance programming</p>
+                            </div>
+                        </div>
+                        <button class="cta-button primary">Start My Plan</button>
+                        <p class="note">All plans include Apple Health/Fitbit/Oura integration + WellyPoints system.</p>
+                    </section>
+
+                    <!-- Corporate Wellness Section -->
+                    <section class="corporate-section">
+                        <h3>Corporate Wellness</h3>
+                        <p>Bring better health to your culture.</p>
+                        <div class="corporate-pricing">
+                            <div class="corporate-tier">
+                                <div class="team-size">0–15 employees</div>
+                                <div class="price">$350/mo</div>
+                            </div>
+                            <div class="corporate-tier">
+                                <div class="team-size">16–50 employees</div>
+                                <div class="price">$750/mo</div>
+                            </div>
+                            <div class="corporate-tier">
+                                <div class="team-size">51–100 employees</div>
+                                <div class="price">$1,200/mo</div>
+                            </div>
+                            <div class="corporate-tier">
+                                <div class="team-size">100+ employees</div>
+                                <div class="price">Custom quote</div>
+                            </div>
+                        </div>
+                        <div class="features-list">
+                            <h4>What's Included:</h4>
+                            <ul>
+                                <li>Monthly virtual wellness talks</li>
+                                <li>Employee onboarding and wellness assessments</li>
+                                <li>1-on-1 coaching access (optional)</li>
+                                <li>Admin dashboard with usage + engagement data</li>
+                                <li>Customized reporting for ROI tracking</li>
+                            </ul>
+                        </div>
+                        <button class="cta-button primary">Talk to Sales</button>
+                    </section>
+
+                    <!-- Why Team Welly Section -->
+                    <section class="why-section">
+                        <h3>Why Team Welly</h3>
+                        <div class="why-grid">
+                            <div class="why-item">
+                                <h4>Real pain-point solutions</h4>
+                                <p>Other companies wait until burnout hits. We build systems that prevent it.</p>
+                            </div>
+                            <div class="why-item">
+                                <h4>Coached by real healthcare professionals</h4>
+                                <p>Other programs feel generic or disconnected. We personalize wellness down to the individual.</p>
+                            </div>
+                            <div class="why-item">
+                                <h4>Data-secure, scalable, and results-driven</h4>
+                                <p>Other platforms feel either too clinical or too casual. We combine expert-level care with real-life simplicity.</p>
+                            </div>
+                        </div>
+                        <p class="why-conclusion">We turn daily habits into long-term health, engagement, and performance. Because when your people thrive, your company does too.</p>
+                    </section>
+
+                    <!-- FAQ Section -->
+                    <section class="faq-section">
+                        <h3>FAQ</h3>
+                        <div class="faq-item">
+                            <h4>Q: Can my company customize the program?</h4>
+                            <p>A: Yes. We work with HR teams to tailor onboarding, programming, and engagement strategy.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Q: Are coaching sessions included?</h4>
+                            <p>A: Individuals can choose coaching tiers. Companies can add sessions à la carte or in bundles.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Q: How long does onboarding take?</h4>
+                            <p>A: Less than 5 minutes for individuals. For companies, we can fully launch in under 10 days.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Q: What tech is supported?</h4>
+                            <p>A: Apple HealthKit, Google Fit, Fitbit, Oura, Calendly/Zoom, Outlook, Eventbrite, SurveyMonkey, Google Forms, and more.</p>
+                        </div>
+                    </section>
+
+                    <!-- Contact Section -->
+                    <section class="contact-section">
+                        <h3>Contact Us</h3>
+                        <div class="contact-info">
+                            <p><strong>Book a Call:</strong> <a href="#" class="contact-link">Calendly link</a></p>
+                            <p><strong>Email:</strong> <a href="mailto:hello@teamwelly.com" class="contact-link">hello@teamwelly.com</a></p>
+                            <p><strong>Follow:</strong> <a href="#" class="contact-link">@teamwellnesscompany</a> | <a href="#" class="contact-link">LinkedIn</a> | <a href="#" class="contact-link">YouTube</a></p>
+                        </div>
+                        
+                        <div class="contact-form">
+                            <h4>Join Our Newsletter</h4>
+                            <p>Weekly wellness insights, challenges, and updates.</p>
+                            <form>
+                                <input type="email" placeholder="Enter your email" required>
+                                <button type="submit" class="cta-button primary">Subscribe</button>
+                            </form>
+                        </div>
+
+                        <div class="app-download">
+                            <h4>Download Our App</h4>
+                            <button class="app-store-button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" fill="currentColor"/>
+                                </svg>
+                                <span>Download on the App Store</span>
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        function openSigninModal() {
+            document.getElementById('signinModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSigninModal() {
+            document.getElementById('signinModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function openLearnMoreModal() {
+            document.getElementById('learnMoreModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLearnMoreModal() {
+            document.getElementById('learnMoreModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const signinModal = document.getElementById('signinModal');
+            const learnMoreModal = document.getElementById('learnMoreModal');
+            if (event.target === signinModal) {
+                closeSigninModal();
+            }
+            if (event.target === learnMoreModal) {
+                closeLearnMoreModal();
+            }
+        }
+
+        // SSO and login redirects
+        function redirectToLogin(type) {
+            if (type === 'corporate') {
+                // Redirect to corporate login - this will determine employer vs employee
+                window.location.href = '/src/BackendIntegratedApp.jsx';
+            } else if (type === 'individual') {
+                // Redirect to individual user login
+                window.location.href = '/src/BackendIntegratedApp.jsx';
+            }
+        }
+
+        // SSO button handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            const appleSSOButton = document.querySelector('.apple-sso');
+            const googleSSOButton = document.querySelector('.google-sso');
+            const xSSOButton = document.querySelector('.x-sso');
+
+            if (appleSSOButton) {
+                appleSSOButton.addEventListener('click', function() {
+                    // Handle Apple SSO
+                    console.log('Apple SSO clicked');
+                    // Implement Apple OAuth flow here
+                });
+            }
+
+            if (googleSSOButton) {
+                googleSSOButton.addEventListener('click', function() {
+                    // Handle Google SSO
+                    console.log('Google SSO clicked');
+                    // Implement Google OAuth flow here
+                });
+            }
+
+            if (xSSOButton) {
+                xSSOButton.addEventListener('click', function() {
+                    // Handle X SSO
+                    console.log('X SSO clicked');
+                    // Implement X OAuth flow here
+                });
+            }
+        });
+    </script>
 </body>
 </html>
