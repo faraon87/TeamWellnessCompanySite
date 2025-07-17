@@ -652,6 +652,7 @@ body {
 }
 
 .social-link,
+.linkedin-link,
 .email-link {
     display: flex;
     align-items: center;
@@ -664,11 +665,13 @@ body {
 }
 
 .social-link:hover,
+.linkedin-link:hover,
 .email-link:hover {
     opacity: 0.8;
 }
 
 .social-link a,
+.linkedin-link a,
 .email-link a {
     color: #2D8A5A;
     text-decoration: none;
@@ -677,6 +680,7 @@ body {
 }
 
 .social-link a:hover,
+.linkedin-link a:hover,
 .email-link a:hover {
     opacity: 0.8;
 }
