@@ -524,9 +524,9 @@ body {
 }
 
 .features-list {
-    background: rgba(7, 13, 41, 0.3);
+    background: rgba(15, 27, 46, 0.3);
     padding: 20px;
-    border-left: 3px solid #12e1b9;
+    border-left: 3px solid #2D8A5A;
     margin: 20px 0;
 }
 
@@ -538,15 +538,15 @@ body {
 }
 
 .why-item {
-    background: rgba(7, 13, 41, 0.4);
+    background: rgba(15, 27, 46, 0.4);
     padding: 20px;
-    border-left: 3px solid #12e1b9;
+    border-left: 3px solid #2D8A5A;
 }
 
 .why-conclusion {
-    background: rgba(18, 225, 185, 0.1);
+    background: rgba(45, 138, 90, 0.1);
     padding: 20px;
-    border: 2px solid #12e1b9;
+    border: 2px solid #2D8A5A;
     text-align: center;
     font-weight: 600;
     margin: 20px 0;
@@ -555,8 +555,8 @@ body {
 .faq-item {
     margin-bottom: 20px;
     padding: 15px;
-    background: rgba(7, 13, 41, 0.3);
-    border-left: 3px solid #12e1b9;
+    background: rgba(15, 27, 46, 0.3);
+    border-left: 3px solid #2D8A5A;
 }
 
 .contact-info {
@@ -564,7 +564,7 @@ body {
 }
 
 .contact-link {
-    color: #12e1b9;
+    color: #2D8A5A;
     text-decoration: none;
     transition: opacity 0.3s ease;
 }
@@ -574,9 +574,9 @@ body {
 }
 
 .contact-form {
-    background: rgba(7, 13, 41, 0.4);
+    background: rgba(15, 27, 46, 0.4);
     padding: 20px;
-    border: 2px solid #12e1b9;
+    border: 2px solid #2D8A5A;
     margin: 20px 0;
 }
 
@@ -589,9 +589,9 @@ body {
 .contact-form input {
     flex: 1;
     padding: 12px;
-    background: rgba(7, 13, 41, 0.8);
-    border: 2px solid #12e1b9;
-    color: #f3f4f4;
+    background: rgba(15, 27, 46, 0.8);
+    border: 2px solid #2D8A5A;
+    color: #E8F0F5;
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
     font-size: 14px;
     border-radius: 0;
@@ -599,11 +599,11 @@ body {
 
 .contact-form input:focus {
     outline: none;
-    background: rgba(18, 225, 185, 0.1);
+    background: rgba(45, 138, 90, 0.1);
 }
 
 .contact-form input::placeholder {
-    color: rgba(243, 244, 244, 0.6);
+    color: rgba(232, 240, 245, 0.6);
 }
 
 .app-download {
