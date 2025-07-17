@@ -14,8 +14,8 @@
 
 body {
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
-    background-color: #0F1B2E;
-    background: linear-gradient(135deg, #0F1B2E 0%, #1B2A42 30%, #2D4A5A 70%, #4A6B7A 100%);
+    background-color: #0A0E1A;
+    background: linear-gradient(135deg, #0A0E1A 0%, #1A1F2E 25%, #2A3441 50%, #1E2A3A 75%, #0A0E1A 100%);
     min-height: 100vh;
     color: #E8F0F5;
     overflow-x: hidden;
