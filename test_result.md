@@ -184,6 +184,10 @@ Complete revamp of "Team Welly" health and wellness app with focus on:
 4. Focus on usability improvements
 5. Implement core features progressively
 
+## Agent Communication
+- **Agent**: testing
+- **Message**: OAuth endpoints testing completed successfully. Google OAuth is properly configured and working, Apple and Twitter return appropriate 501 errors as expected. Minor issue with OAuth user info retrieval endpoint (500 error) but core OAuth functionality is working. Backend success rate improved to 47.6%. Main remaining issues are Programs and Analytics implementations, not OAuth-related.
+
 ## Notes
 - User wants manual testing
 - No API keys available yet - need placeholders
