@@ -99,8 +99,8 @@ body {
 
 .action-button {
     background: transparent;
-    border: 2px solid #12e1b9;
-    color: #12e1b9;
+    border: 2px solid #2D8A5A;
+    color: #2D8A5A;
     padding: 20px 30px;
     font-size: 16px;
     font-weight: 500;
@@ -117,10 +117,10 @@ body {
 }
 
 .action-button:hover {
-    background: #12e1b9;
-    color: #070d29;
+    background: #2D8A5A;
+    color: #0F1B2E;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(18, 225, 185, 0.3);
+    box-shadow: 0 8px 25px rgba(45, 138, 90, 0.3);
 }
 
 .action-button:active {
