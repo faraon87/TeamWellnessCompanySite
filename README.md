@@ -4,26 +4,26 @@ A professional landing page website for Team Wellness Company, featuring a moder
 
 ## 🌟 Features
 
-### For Users
-- **Personalized Dashboard** with daily suggestions and progress tracking
-- **Wellness Programs Library** with 6+ categories (Stretch & Mobility, Pain to Performance, etc.)
-- **Live Coaching** with 1-on-1 sessions and group workshops
-- **Gamification System** with challenges, leaderboards, and rewards
-- **Progress Tracking** with visual progress rings and analytics
-- **Device Integration** support for Apple Health, Fitbit, and Garmin
+### Landing Page
+- **Professional Design** with dark blue gradient theme and SensaWild-Fill font
+- **Sign In Modal** with Apple, Google, and X SSO options plus traditional login
+- **Learn More Modal** with comprehensive business information, pricing, and contact forms
+- **Responsive Layout** optimized for all screen sizes
+- **Interactive Elements** with smooth animations and hover effects
 
-### For Administrators
-- **Corporate Dashboard** with employee engagement metrics
-- **ROI Reports** showing wellness program impact
-- **Employee Messaging** system for tips and announcements
-- **Package Customization** for corporate clients
+### Business Information
+- **Company Mission** and founder profiles
+- **Service Offerings** with detailed descriptions
+- **Pricing Plans** for individual and corporate clients
+- **Contact Information** with Calendly integration and email links
+- **Social Media Links** and newsletter signup
 
 ### Technical Features
-- **Progressive Web App (PWA)** with offline support
-- **Responsive Design** optimized for mobile and desktop
-- **iOS-optimized** user experience
-- **Real-time Notifications** and updates
-- **Secure Authentication** with social login options
+- **Static HTML/CSS/JavaScript** for optimal performance
+- **Custom SVG Logo** with Team Welly branding
+- **Modal System** for enhanced user experience
+- **Responsive Design** for mobile and desktop
+- **Professional Typography** with custom font integration
 
 ## 🚀 Tech Stack
 
