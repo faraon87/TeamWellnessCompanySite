@@ -270,14 +270,14 @@ body {
     left: 0;
     right: 0;
     height: 1px;
-    background: #12e1b9;
+    background: #2D8A5A;
     opacity: 0.3;
 }
 
 .divider span {
-    background: linear-gradient(135deg, #0a1628 0%, #047857 50%, #12e1b9 100%);
+    background: linear-gradient(135deg, #1B2A42 0%, #2D4A5A 50%, #4A6B7A 100%);
     padding: 0 20px;
-    color: #12e1b9;
+    color: #2D8A5A;
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
     font-weight: 500;
     text-transform: uppercase;
@@ -292,8 +292,8 @@ body {
 
 .traditional-button {
     background: transparent;
-    border: 2px solid #12e1b9;
-    color: #12e1b9;
+    border: 2px solid #2D8A5A;
+    color: #2D8A5A;
     padding: 15px 20px;
     font-size: 16px;
     font-weight: 500;
@@ -310,10 +310,10 @@ body {
 }
 
 .traditional-button:hover {
-    background: #12e1b9;
-    color: #070d29;
+    background: #2D8A5A;
+    color: #0F1B2E;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(18, 225, 185, 0.3);
+    box-shadow: 0 8px 25px rgba(45, 138, 90, 0.3);
 }
 
 .traditional-button svg {
