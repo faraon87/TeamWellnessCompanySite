@@ -404,11 +404,15 @@
         window.onclick = function(event) {
             const signinModal = document.getElementById('signinModal');
             const learnMoreModal = document.getElementById('learnMoreModal');
+            const legalNoticeModal = document.getElementById('legalNoticeModal');
             if (event.target === signinModal) {
                 closeSigninModal();
             }
             if (event.target === learnMoreModal) {
                 closeLearnMoreModal();
+            }
+            if (event.target === legalNoticeModal) {
+                closeLegalNoticeModal();
             }
         }
 
