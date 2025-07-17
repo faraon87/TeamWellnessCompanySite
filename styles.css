@@ -14,10 +14,10 @@
 
 body {
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
-    background-color: #070d29;
-    background: linear-gradient(135deg, #070d29 0%, #0a1628 30%, #047857 70%, #12e1b9 100%);
+    background-color: #0F1B2E;
+    background: linear-gradient(135deg, #0F1B2E 0%, #1B2A42 30%, #2D4A5A 70%, #4A6B7A 100%);
     min-height: 100vh;
-    color: #f3f4f4;
+    color: #E8F0F5;
     overflow-x: hidden;
 }
 
