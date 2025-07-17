@@ -1,152 +1,176 @@
-# Team Welly - Health & Wellness App
+# Team Wellness Company - Landing Page Website
 
-A comprehensive health and wellness platform designed for individual and corporate users, offering an intuitive and engaging user experience with personalized programs, live coaching, gamification, and admin portal.
+A professional landing page website for Team Wellness Company, featuring a modern design with sign-in and learn more functionality. The site showcases our wellness services, pricing plans, and company information with an elegant dark theme and responsive design.
 
 ## 🌟 Features
 
-### For Users
-- **Personalized Dashboard** with daily suggestions and progress tracking
-- **Wellness Programs Library** with 6+ categories (Stretch & Mobility, Pain to Performance, etc.)
-- **Live Coaching** with 1-on-1 sessions and group workshops
-- **Gamification System** with challenges, leaderboards, and rewards
-- **Progress Tracking** with visual progress rings and analytics
-- **Device Integration** support for Apple Health, Fitbit, and Garmin
+### Landing Page
+- **Professional Design** with dark blue gradient theme and SensaWild-Fill font
+- **Sign In Modal** with Apple, Google, and X SSO options plus traditional login
+- **Learn More Modal** with comprehensive business information, pricing, and contact forms
+- **Responsive Layout** optimized for all screen sizes
+- **Interactive Elements** with smooth animations and hover effects
 
-### For Administrators
-- **Corporate Dashboard** with employee engagement metrics
-- **ROI Reports** showing wellness program impact
-- **Employee Messaging** system for tips and announcements
-- **Package Customization** for corporate clients
+### Business Information
+- **Company Mission** and founder profiles
+- **Service Offerings** with detailed descriptions
+- **Pricing Plans** for individual and corporate clients
+- **Contact Information** with Calendly integration and email links
+- **Social Media Links** and newsletter signup
 
 ### Technical Features
-- **Progressive Web App (PWA)** with offline support
-- **Responsive Design** optimized for mobile and desktop
-- **iOS-optimized** user experience
-- **Real-time Notifications** and updates
-- **Secure Authentication** with social login options
+- **Static HTML/CSS/JavaScript** for optimal performance
+- **Custom SVG Logo** with Team Welly branding
+- **Modal System** for enhanced user experience
+- **Responsive Design** for mobile and desktop
+- **Professional Typography** with custom font integration
 
 ## 🚀 Tech Stack
 
-- **Frontend**: React 18.2.0 + Vite
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **State Management**: React Context API
-- **Routing**: React Router
-- **PWA**: Service Worker + Web App Manifest
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Styling**: Custom CSS with gradients and animations
+- **Typography**: SensaWild-Fill custom font
+- **Icons**: Custom SVG icons and social media icons
+- **Responsive Design**: Mobile-first approach
+- **Backend**: FastAPI Python (for future integration)
+- **Database**: MongoDB (for future user data)
 
 ## 📱 Installation & Setup
 
 ### Prerequisites
-- Node.js 16+ and npm
 - Modern web browser
+- Local web server (optional for development)
 
 ### Development Setup
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/team-welly-app.git
+git clone https://github.com/faraon87/TeamWellnessCompanySite.git
 
 # Navigate to project directory
-cd team-welly-app
+cd TeamWellnessCompanySite
 
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
+# Open index.html in your browser
+# Or use a local web server:
+python -m http.server 8000
+# Then visit http://localhost:8000
 ```
 
-### Production Build
-```bash
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+### File Structure
+```
+/
+├── index.html           # Main landing page
+├── styles.css          # Custom CSS styling
+├── fonts/              # Custom font files
+│   ├── SensaWild-Fill.otf
+│   └── SensaWild-Fill.ttf
+├── public/             # Static assets
+│   ├── background.png  # Background image
+│   └── twclogo.svg     # Team Welly logo
+└── README.md           # This file
 ```
 
 ## 🌐 Deployment
 
-### Vercel Deployment
-1. Connect your GitHub repository to Vercel
-2. Configure build settings:
-   - Framework: Vite
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-3. Deploy automatically on every push
+### Static Hosting
+This website can be deployed on any static hosting service:
 
-### Environment Variables
-No environment variables required for the current version. All data is stored locally for demo purposes.
+1. **Vercel** - Simple deployment from GitHub
+2. **Netlify** - Drag and drop deployment
+3. **GitHub Pages** - Free hosting for public repositories
+4. **AWS S3** - Scalable static website hosting
+
+### Deployment Steps
+1. Upload all files to your hosting service
+2. Ensure `index.html` is in the root directory
+3. Configure custom domain (optional)
+4. Test all functionality including modals and links
+
+### Environment Configuration
+- No build process required - pure HTML/CSS/JS
+- All assets should be properly linked in `index.html`
+- Verify custom fonts are loading correctly
+- Test responsive design on various devices
 
 ## 🏗️ Architecture
 
-### Component Structure
+### File Structure
 ```
-src/
-├── components/
-│   ├── common/           # Reusable UI components
-│   ├── onboarding/       # User onboarding flow
-│   ├── dashboard/        # Main dashboard
-│   ├── programs/         # Programs library
-│   ├── coaching/         # Live coaching features
-│   ├── challenges/       # Gamification system
-│   ├── settings/         # User settings
-│   ├── admin/           # Admin portal
-│   └── membership/      # Subscription plans
-├── contexts/            # React Context providers
-├── hooks/              # Custom React hooks
-└── App.jsx             # Main application component
+/
+├── index.html           # Main landing page with modal structure
+├── styles.css          # All CSS styling and responsive design
+├── fonts/              # Custom typography
+│   ├── SensaWild-Fill.otf
+│   └── SensaWild-Fill.ttf
+├── public/             # Static assets
+│   ├── background.png  # Custom background image
+│   ├── twclogo.svg     # Team Welly logo
+│   └── favicon.ico     # Site icon
+└── README.md           # Documentation
 ```
 
-## 🎯 Key User Journeys
+### Key Components
+- **Landing Page**: Main content with title, buttons, and footer
+- **Sign In Modal**: SSO options and traditional login choices
+- **Learn More Modal**: Complete business information and pricing
+- **Responsive Design**: Mobile-first CSS with breakpoints
+- **Typography**: Custom font integration with fallbacks
 
-### New User Onboarding
-1. Welcome screen with intro video
-2. Goal selection (Reduce Pain, Improve Flexibility, etc.)
-3. Baseline self-assessment
-4. Device integration setup
-5. Dashboard introduction
+## 🎯 Key Features
 
-### Daily Wellness Routine
-1. Check personalized daily suggestions
-2. Complete wellness activities
-3. Track progress and earn WellyPoints
-4. Participate in challenges
-5. Book coaching sessions
+### Landing Page Experience
+1. **Professional Welcome**: Company title and tagline with elegant typography
+2. **Call-to-Action Buttons**: "Sign In" and "Learn More" with smooth interactions
+3. **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+4. **Social Media Integration**: Instagram and email contact links
+5. **Modern Aesthetics**: Dark theme with blue-green gradients
 
-### Corporate Admin Flow
-1. View employee engagement dashboard
-2. Analyze wellness program ROI
-3. Send targeted messages to employees
-4. Customize package features
-5. Generate detailed reports
+### Sign In Modal
+1. **SSO Options**: Apple, Google, and X (Twitter) authentication
+2. **Traditional Login**: Corporate and individual user options
+3. **User-Friendly Interface**: Clean design with hover effects
+4. **Accessibility**: Keyboard navigation and screen reader support
 
-## 📊 Future Backend Integration
+### Learn More Modal
+1. **Company Information**: Mission, founders, and business details
+2. **Pricing Tables**: Individual and corporate pricing plans
+3. **Contact Forms**: Newsletter signup and contact information
+4. **Service Details**: Comprehensive feature descriptions
+5. **Call-to-Action**: Multiple conversion points throughout
 
-### Required API Endpoints
-- **Authentication**: `/api/auth/*` (login, register, social auth)
-- **User Management**: `/api/user/*` (profile, progress, settings)
-- **Programs**: `/api/programs/*` (catalog, bookmarks, completion)
-- **Coaching**: `/api/coaching/*` (bookings, sessions, coaches)
-- **Challenges**: `/api/challenges/*` (daily/weekly, leaderboard, rewards)
-- **Admin**: `/api/admin/*` (dashboard, employees, reports)
+## 🔧 Customization
 
-### Database Schema
-- Users, Programs, Progress, Bookings, Challenges, Companies, Admin Actions
+### Styling
+- **Colors**: Modify CSS variables in `styles.css` for theme changes
+- **Typography**: Replace SensaWild-Fill font files for different branding
+- **Layout**: Adjust responsive breakpoints and grid layouts
+- **Animations**: Customize hover effects and transitions
+
+### Content
+- **Business Information**: Update company details in the Learn More modal
+- **Pricing**: Modify pricing plans and features in `index.html`
+- **Contact Info**: Update email addresses and social media links
+- **Logo**: Replace SVG logo with custom branding
+
+### Assets
+- **Background**: Replace `background.png` with custom background image
+- **Logo**: Update `twclogo.svg` with your company logo
+- **Icons**: Modify SVG icons for social media and buttons
+- **Fonts**: Add custom font files to the `/fonts/` directory
 
 ## 🔧 Development Guidelines
 
-### Code Style
-- ES6+ JavaScript with React Hooks
-- Tailwind CSS for styling
-- Component-based architecture
-- Responsive-first design approach
+### Code Structure
+- **HTML**: Semantic markup with proper accessibility attributes
+- **CSS**: Organized with responsive design and custom properties
+- **JavaScript**: Vanilla ES6+ for modal functionality and interactions
+- **Assets**: Optimized images and scalable vector graphics
 
-### Performance Optimization
-- Lazy loading for route components
-- Image optimization and placeholders
-- Progressive Web App caching
-- Efficient state management
+### Best Practices
+- **Performance**: Optimized images and minimal JavaScript
+- **Accessibility**: ARIA labels and keyboard navigation
+- **SEO**: Proper meta tags and semantic HTML structure
+- **Cross-browser**: Compatible with modern browsers
+- **Mobile-first**: Responsive design approach
 
 ## 📄 License
 
@@ -154,16 +178,27 @@ This project is licensed under the MIT License.
 
 ## 🤝 Contributing
 
-1. Fork the repository
+1. Fork the repository: `https://github.com/faraon87/TeamWellnessCompanySite`
 2. Create feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit changes (`git commit -m 'Add amazing feature'`)
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open Pull Request
 
+### Contribution Guidelines
+- Follow existing code style and structure
+- Test on multiple devices and browsers
+- Optimize images and assets before committing
+- Update documentation for any new features
+- Ensure accessibility standards are maintained
+
 ## 📞 Support
 
-For support, please contact the development team or create an issue in the repository.
+For support and inquiries:
+- **Email**: [Drchriszeiter@gmail.com](mailto:Drchriszeiter@gmail.com)
+- **Calendly**: [Schedule a meeting](https://calendly.com/drchriszeiter)
+- **Instagram**: [@teamwellnesscompany](https://www.instagram.com/teamwellnesscompany)
+- **Repository Issues**: [GitHub Issues](https://github.com/faraon87/TeamWellnessCompanySite/issues)
 
 ---
 
-**Team Welly - Making wellness accessible, engaging, and effective for everyone! 🌱**
+**Team Wellness Company - Restoring Your Aura One Breath at a Time! 🌱**

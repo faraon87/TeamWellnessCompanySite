@@ -15,7 +15,8 @@
 body {
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
     background-color: #0A0E1A;
-    background: linear-gradient(135deg, #0A0E1A 0%, #1A1F2E 25%, #2A3441 50%, #1E2A3A 75%, #0A0E1A 100%);
+    background: url('public/background.png') no-repeat center center fixed;
+    background-size: cover;
     min-height: 100vh;
     color: #E8F0F5;
     overflow-x: hidden;
@@ -40,21 +41,22 @@ body {
     gap: 2px;
     color: #2D8A5A;
     z-index: 10;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
-.logo .team-welly-logo {
+.logo .team-welly-logo-img {
     width: 60px;
     height: 80px;
     flex-shrink: 0;
     opacity: 0.9;
-}
-
-.logo .team-welly-logo text {
+    object-fit: contain;
+    border-radius: 8px;
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
     font-weight: 700;
     letter-spacing: 0.5px;
-    fill: #2D8A5A;
-    opacity: 0.9;
+    filter: contrast(1.1) brightness(1.05);
 }
 
 /* Main Content */
@@ -657,6 +659,7 @@ body {
 }
 
 .social-link,
+.linkedin-link,
 .email-link {
     display: flex;
     align-items: center;
@@ -669,11 +672,13 @@ body {
 }
 
 .social-link:hover,
+.linkedin-link:hover,
 .email-link:hover {
     opacity: 0.8;
 }
 
 .social-link a,
+.linkedin-link a,
 .email-link a {
     color: #2D8A5A;
     text-decoration: none;
@@ -682,11 +687,13 @@ body {
 }
 
 .social-link a:hover,
+.linkedin-link a:hover,
 .email-link a:hover {
     opacity: 0.8;
 }
 
 .social-link svg,
+.linkedin-link svg,
 .email-link svg {
     width: 24px;
     height: 24px;
@@ -704,17 +711,15 @@ body {
         gap: 1px;
     }
     
-    .logo .team-welly-logo {
+    .logo .team-welly-logo-img {
         width: 65px;
         height: 80px;
-    }
-    
-    .logo .team-welly-logo text {
-        font-size: 9px;
+        object-fit: contain;
+        border-radius: 8px;
         font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
         font-weight: 700;
-        letter-spacing: 0.4px;
-        fill: #2D8A5A;
+        letter-spacing: 0.5px;
+        filter: contrast(1.1) brightness(1.05);
     }
     
     .main-content {
@@ -740,6 +745,7 @@ body {
     }
     
     .social-link,
+    .linkedin-link,
     .email-link {
         font-size: 14px;
     }
