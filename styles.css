@@ -150,7 +150,7 @@ body {
 }
 
 .modal-content {
-    background: linear-gradient(135deg, #1B2A42 0%, #2D4A5A 50%, #4A6B7A 100%);
+    background: linear-gradient(135deg, #1A1F2E 0%, #2A3441 50%, #1E2A3A 100%);
     margin: 2% auto;
     padding: 0;
     border: 2px solid #2D8A5A;
@@ -168,7 +168,7 @@ body {
 }
 
 .modal-header {
-    background: #0F1B2E;
+    background: #0A0E1A;
     padding: 20px 30px;
     border-bottom: 2px solid #2D8A5A;
     display: flex;
