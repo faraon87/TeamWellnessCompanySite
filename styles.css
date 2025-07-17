@@ -461,33 +461,33 @@ body {
 }
 
 .pricing-tier {
-    background: rgba(7, 13, 41, 0.6);
-    border: 2px solid #12e1b9;
+    background: rgba(15, 27, 46, 0.6);
+    border: 2px solid #2D8A5A;
     padding: 20px;
     text-align: center;
     transition: all 0.3s ease;
 }
 
 .pricing-tier:hover {
-    background: rgba(18, 225, 185, 0.1);
+    background: rgba(45, 138, 90, 0.1);
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(18, 225, 185, 0.2);
+    box-shadow: 0 10px 30px rgba(45, 138, 90, 0.2);
 }
 
 .pricing-tier.featured {
-    background: rgba(18, 225, 185, 0.1);
-    border-color: #12e1b9;
+    background: rgba(45, 138, 90, 0.1);
+    border-color: #2D8A5A;
 }
 
 .pricing-tier h4 {
-    color: #12e1b9;
+    color: #2D8A5A;
     margin-bottom: 10px;
 }
 
 .pricing-tier .price {
     font-size: 24px;
     font-weight: 700;
-    color: #f3f4f4;
+    color: #E8F0F5;
     margin-bottom: 15px;
 }
 
@@ -499,20 +499,20 @@ body {
 }
 
 .corporate-tier {
-    background: rgba(7, 13, 41, 0.6);
-    border: 2px solid #12e1b9;
+    background: rgba(15, 27, 46, 0.6);
+    border: 2px solid #2D8A5A;
     padding: 15px;
     text-align: center;
     transition: all 0.3s ease;
 }
 
 .corporate-tier:hover {
-    background: rgba(18, 225, 185, 0.1);
+    background: rgba(45, 138, 90, 0.1);
     transform: translateY(-3px);
 }
 
 .corporate-tier .team-size {
-    color: #12e1b9;
+    color: #2D8A5A;
     font-weight: 600;
     margin-bottom: 10px;
 }
@@ -520,7 +520,7 @@ body {
 .corporate-tier .price {
     font-size: 18px;
     font-weight: 700;
-    color: #f3f4f4;
+    color: #E8F0F5;
 }
 
 .features-list {
