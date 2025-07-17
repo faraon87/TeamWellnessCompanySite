@@ -193,8 +193,12 @@ This project is licensed under the MIT License.
 
 ## 📞 Support
 
-For support, please contact the development team or create an issue in the repository.
+For support and inquiries:
+- **Email**: [Drchriszeiter@gmail.com](mailto:Drchriszeiter@gmail.com)
+- **Calendly**: [Schedule a meeting](https://calendly.com/drchriszeiter)
+- **Instagram**: [@teamwellnesscompany](https://www.instagram.com/teamwellnesscompany)
+- **Repository Issues**: [GitHub Issues](https://github.com/faraon87/TeamWellnessCompanySite/issues)
 
 ---
 
-**Team Welly - Making wellness accessible, engaging, and effective for everyone! 🌱**
+**Team Wellness Company - Restoring Your Aura One Breath at a Time! 🌱**
