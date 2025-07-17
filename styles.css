@@ -648,6 +648,50 @@ body {
     margin-top: 15px;
 }
 
+/* Legal Notice Modal Styles */
+.legal-notice-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.legal-placeholder {
+    padding: 20px 0;
+}
+
+.legal-placeholder h3 {
+    color: #2D8A5A;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.legal-placeholder p {
+    color: #E8F0F5;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.legal-placeholder ul {
+    color: #E8F0F5;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
+
+.legal-placeholder li {
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
 /* Footer */
 .footer {
     position: absolute;
@@ -660,7 +704,8 @@ body {
 
 .social-link,
 .linkedin-link,
-.email-link {
+.email-link,
+.legal-link {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -673,13 +718,15 @@ body {
 
 .social-link:hover,
 .linkedin-link:hover,
-.email-link:hover {
+.email-link:hover,
+.legal-link:hover {
     opacity: 0.8;
 }
 
 .social-link a,
 .linkedin-link a,
-.email-link a {
+.email-link a,
+.legal-link a {
     color: #2D8A5A;
     text-decoration: none;
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
@@ -688,13 +735,15 @@ body {
 
 .social-link a:hover,
 .linkedin-link a:hover,
-.email-link a:hover {
+.email-link a:hover,
+.legal-link a:hover {
     opacity: 0.8;
 }
 
 .social-link svg,
 .linkedin-link svg,
-.email-link svg {
+.email-link svg,
+.legal-link svg {
     width: 24px;
     height: 24px;
 }
@@ -746,7 +795,8 @@ body {
     
     .social-link,
     .linkedin-link,
-    .email-link {
+    .email-link,
+    .legal-link {
         font-size: 14px;
     }
 

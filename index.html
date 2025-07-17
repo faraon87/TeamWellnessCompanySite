@@ -61,6 +61,16 @@
                 </svg>
                 <a href="mailto:Drchriszeiter@gmail.com">Drchriszeiter@gmail.com</a>
             </div>
+            <div class="legal-link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/>
+                    <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2"/>
+                    <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2"/>
+                    <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2"/>
+                    <polyline points="10,9 9,9 8,9" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <a href="#" onclick="openLegalNoticeModal()">Legal Notice</a>
+            </div>
         </div>
     </div>
 
@@ -330,6 +340,34 @@
         </div>
     </div>
 
+    <!-- Legal Notice Modal -->
+    <div id="legalNoticeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Legal Notice</h2>
+                <span class="close" onclick="closeLegalNoticeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="legal-notice-content">
+                    <section class="legal-placeholder">
+                        <h3>Legal Notice - Coming Soon</h3>
+                        <p>This section will contain important legal information including:</p>
+                        <ul>
+                            <li>Terms of Service</li>
+                            <li>Privacy Policy</li>
+                            <li>Disclaimer</li>
+                            <li>Copyright Information</li>
+                            <li>Limitation of Liability</li>
+                            <li>Governing Law</li>
+                        </ul>
+                        <p><strong>Note:</strong> This is a placeholder. Legal content will be added at a later time.</p>
+                        <p>For immediate legal inquiries, please contact: <a href="mailto:Drchriszeiter@gmail.com" class="contact-link">Drchriszeiter@gmail.com</a></p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Modal functionality
         function openSigninModal() {
@@ -352,15 +390,29 @@
             document.body.style.overflow = 'auto';
         }
 
+        function openLegalNoticeModal() {
+            document.getElementById('legalNoticeModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLegalNoticeModal() {
+            document.getElementById('legalNoticeModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
         // Close modal when clicking outside
         window.onclick = function(event) {
             const signinModal = document.getElementById('signinModal');
             const learnMoreModal = document.getElementById('learnMoreModal');
+            const legalNoticeModal = document.getElementById('legalNoticeModal');
             if (event.target === signinModal) {
                 closeSigninModal();
             }
             if (event.target === learnMoreModal) {
                 closeLearnMoreModal();
+            }
+            if (event.target === legalNoticeModal) {
+                closeLegalNoticeModal();
             }
         }
 
