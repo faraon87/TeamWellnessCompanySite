@@ -38,31 +38,35 @@ A professional landing page website for Team Wellness Company, featuring a moder
 ## 📱 Installation & Setup
 
 ### Prerequisites
-- Node.js 16+ and npm
 - Modern web browser
+- Local web server (optional for development)
 
 ### Development Setup
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/team-welly-app.git
+git clone https://github.com/faraon87/TeamWellnessCompanySite.git
 
 # Navigate to project directory
-cd team-welly-app
+cd TeamWellnessCompanySite
 
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
+# Open index.html in your browser
+# Or use a local web server:
+python -m http.server 8000
+# Then visit http://localhost:8000
 ```
 
-### Production Build
-```bash
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+### File Structure
+```
+/
+├── index.html           # Main landing page
+├── styles.css          # Custom CSS styling
+├── fonts/              # Custom font files
+│   ├── SensaWild-Fill.otf
+│   └── SensaWild-Fill.ttf
+├── public/             # Static assets
+│   ├── background.png  # Background image
+│   └── twclogo.svg     # Team Welly logo
+└── README.md           # This file
 ```
 
 ## 🌐 Deployment
