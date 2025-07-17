@@ -52,6 +52,7 @@ async def root():
         "version": "2.0.0",
         "features": [
             "✅ Enhanced Authentication with Emergent Auth",
+            "✅ OAuth Authentication (Google, Apple, Twitter/X)",
             "✅ Stripe Payment Integration",
             "✅ AI-powered Wellness Coaching",
             "✅ Comprehensive Program Management",
