@@ -27,13 +27,13 @@ A professional landing page website for Team Wellness Company, featuring a moder
 
 ## 🚀 Tech Stack
 
-- **Frontend**: React 18.2.0 + Vite
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **State Management**: React Context API
-- **Routing**: React Router
-- **PWA**: Service Worker + Web App Manifest
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Styling**: Custom CSS with gradients and animations
+- **Typography**: SensaWild-Fill custom font
+- **Icons**: Custom SVG icons and social media icons
+- **Responsive Design**: Mobile-first approach
+- **Backend**: FastAPI Python (for future integration)
+- **Database**: MongoDB (for future user data)
 
 ## 📱 Installation & Setup
 
