@@ -607,17 +607,17 @@ body {
 }
 
 .app-download {
-    background: rgba(7, 13, 41, 0.4);
+    background: rgba(15, 27, 46, 0.4);
     padding: 20px;
-    border: 2px solid #12e1b9;
+    border: 2px solid #2D8A5A;
     margin: 20px 0;
     text-align: center;
 }
 
 .app-store-button {
-    background: #070d29;
-    border: 2px solid #12e1b9;
-    color: #12e1b9;
+    background: #0F1B2E;
+    border: 2px solid #2D8A5A;
+    color: #2D8A5A;
     padding: 15px 20px;
     font-size: 14px;
     font-weight: 500;
@@ -632,10 +632,10 @@ body {
 }
 
 .app-store-button:hover {
-    background: #12e1b9;
-    color: #070d29;
+    background: #2D8A5A;
+    color: #0F1B2E;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(18, 225, 185, 0.3);
+    box-shadow: 0 8px 25px rgba(45, 138, 90, 0.3);
 }
 
 .note {
@@ -660,7 +660,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: #12e1b9;
+    color: #2D8A5A;
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
@@ -674,7 +674,7 @@ body {
 
 .social-link a,
 .email-link a {
-    color: #12e1b9;
+    color: #2D8A5A;
     text-decoration: none;
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
     transition: opacity 0.3s ease;
