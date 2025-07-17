@@ -660,7 +660,8 @@ body {
 
 .social-link,
 .linkedin-link,
-.email-link {
+.email-link,
+.legal-link {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -673,13 +674,15 @@ body {
 
 .social-link:hover,
 .linkedin-link:hover,
-.email-link:hover {
+.email-link:hover,
+.legal-link:hover {
     opacity: 0.8;
 }
 
 .social-link a,
 .linkedin-link a,
-.email-link a {
+.email-link a,
+.legal-link a {
     color: #2D8A5A;
     text-decoration: none;
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
@@ -688,7 +691,8 @@ body {
 
 .social-link a:hover,
 .linkedin-link a:hover,
-.email-link a:hover {
+.email-link a:hover,
+.legal-link a:hover {
     opacity: 0.8;
 }
 
