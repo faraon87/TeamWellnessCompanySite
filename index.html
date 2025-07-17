@@ -390,6 +390,16 @@
             document.body.style.overflow = 'auto';
         }
 
+        function openLegalNoticeModal() {
+            document.getElementById('legalNoticeModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLegalNoticeModal() {
+            document.getElementById('legalNoticeModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
         // Close modal when clicking outside
         window.onclick = function(event) {
             const signinModal = document.getElementById('signinModal');
