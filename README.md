@@ -137,18 +137,25 @@ This website can be deployed on any static hosting service:
 4. **Service Details**: Comprehensive feature descriptions
 5. **Call-to-Action**: Multiple conversion points throughout
 
-## 📊 Future Backend Integration
+## 🔧 Customization
 
-### Required API Endpoints
-- **Authentication**: `/api/auth/*` (login, register, social auth)
-- **User Management**: `/api/user/*` (profile, progress, settings)
-- **Programs**: `/api/programs/*` (catalog, bookmarks, completion)
-- **Coaching**: `/api/coaching/*` (bookings, sessions, coaches)
-- **Challenges**: `/api/challenges/*` (daily/weekly, leaderboard, rewards)
-- **Admin**: `/api/admin/*` (dashboard, employees, reports)
+### Styling
+- **Colors**: Modify CSS variables in `styles.css` for theme changes
+- **Typography**: Replace SensaWild-Fill font files for different branding
+- **Layout**: Adjust responsive breakpoints and grid layouts
+- **Animations**: Customize hover effects and transitions
 
-### Database Schema
-- Users, Programs, Progress, Bookings, Challenges, Companies, Admin Actions
+### Content
+- **Business Information**: Update company details in the Learn More modal
+- **Pricing**: Modify pricing plans and features in `index.html`
+- **Contact Info**: Update email addresses and social media links
+- **Logo**: Replace SVG logo with custom branding
+
+### Assets
+- **Background**: Replace `background.png` with custom background image
+- **Logo**: Update `twclogo.svg` with your company logo
+- **Icons**: Modify SVG icons for social media and buttons
+- **Fonts**: Add custom font files to the `/fonts/` directory
 
 ## 🔧 Development Guidelines
 
