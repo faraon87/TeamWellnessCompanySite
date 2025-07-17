@@ -219,20 +219,25 @@ async def get_current_oauth_user(request: Request):
         if not session:
             raise HTTPException(status_code=401, detail="Invalid or expired session")
         
-        # Get user info
+        # Get user info - handle both OAuth and regular users
         user = await users_collection.find_one({"id": session["user_id"]})
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
         
+        # Return user info with safe field access
         return {
-            "id": user["id"],
-            "email": user["email"],
-            "name": user["name"],
-            "plan": user["plan"],
+            "id": user.get("id"),
+            "email": user.get("email"),
+            "name": user.get("name"),
+            "plan": user.get("plan", "basic"),
             "avatar_url": user.get("avatar_url"),
             "oauth_provider": user.get("oauth_provider"),
-            "last_login": user.get("last_login")
+            "last_login": user.get("last_login"),
+            "created_at": user.get("created_at"),
+            "is_active": user.get("is_active", True)
         }
         
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get user info: {str(e)}")
