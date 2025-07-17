@@ -1,6 +1,6 @@
-# Team Welly - Health & Wellness App
+# Team Wellness Company - Landing Page Website
 
-A comprehensive health and wellness platform designed for individual and corporate users, offering an intuitive and engaging user experience with personalized programs, live coaching, gamification, and admin portal.
+A professional landing page website for Team Wellness Company, featuring a modern design with sign-in and learn more functionality. The site showcases our wellness services, pricing plans, and company information with an elegant dark theme and responsive design.
 
 ## 🌟 Features
 
