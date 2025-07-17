@@ -115,28 +115,27 @@ This website can be deployed on any static hosting service:
 - **Responsive Design**: Mobile-first CSS with breakpoints
 - **Typography**: Custom font integration with fallbacks
 
-## 🎯 Key User Journeys
+## 🎯 Key Features
 
-### New User Onboarding
-1. Welcome screen with intro video
-2. Goal selection (Reduce Pain, Improve Flexibility, etc.)
-3. Baseline self-assessment
-4. Device integration setup
-5. Dashboard introduction
+### Landing Page Experience
+1. **Professional Welcome**: Company title and tagline with elegant typography
+2. **Call-to-Action Buttons**: "Sign In" and "Learn More" with smooth interactions
+3. **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+4. **Social Media Integration**: Instagram and email contact links
+5. **Modern Aesthetics**: Dark theme with blue-green gradients
 
-### Daily Wellness Routine
-1. Check personalized daily suggestions
-2. Complete wellness activities
-3. Track progress and earn WellyPoints
-4. Participate in challenges
-5. Book coaching sessions
+### Sign In Modal
+1. **SSO Options**: Apple, Google, and X (Twitter) authentication
+2. **Traditional Login**: Corporate and individual user options
+3. **User-Friendly Interface**: Clean design with hover effects
+4. **Accessibility**: Keyboard navigation and screen reader support
 
-### Corporate Admin Flow
-1. View employee engagement dashboard
-2. Analyze wellness program ROI
-3. Send targeted messages to employees
-4. Customize package features
-5. Generate detailed reports
+### Learn More Modal
+1. **Company Information**: Mission, founders, and business details
+2. **Pricing Tables**: Individual and corporate pricing plans
+3. **Contact Forms**: Newsletter signup and contact information
+4. **Service Details**: Comprehensive feature descriptions
+5. **Call-to-Action**: Multiple conversion points throughout
 
 ## 📊 Future Backend Integration
 
