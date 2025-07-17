@@ -178,11 +178,18 @@ This project is licensed under the MIT License.
 
 ## 🤝 Contributing
 
-1. Fork the repository
+1. Fork the repository: `https://github.com/faraon87/TeamWellnessCompanySite`
 2. Create feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit changes (`git commit -m 'Add amazing feature'`)
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open Pull Request
+
+### Contribution Guidelines
+- Follow existing code style and structure
+- Test on multiple devices and browsers
+- Optimize images and assets before committing
+- Update documentation for any new features
+- Ensure accessibility standards are maintained
 
 ## 📞 Support
 
