@@ -42,19 +42,13 @@ body {
     z-index: 10;
 }
 
-.logo .team-welly-logo {
+.logo .team-welly-logo-img {
     width: 60px;
     height: 80px;
     flex-shrink: 0;
     opacity: 0.9;
-}
-
-.logo .team-welly-logo text {
-    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    fill: #2D8A5A;
-    opacity: 0.9;
+    object-fit: contain;
+    border-radius: 8px;
 }
 
 /* Main Content */
