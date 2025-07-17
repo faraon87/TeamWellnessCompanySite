@@ -699,14 +699,13 @@ body {
         gap: 1px;
     }
     
-    .logo .flower-logo {
-        width: 55px;
-        height: 70px;
+    .logo .team-welly-logo {
+        width: 65px;
+        height: 80px;
     }
     
-    .logo-text {
-        font-size: 14px;
-        margin-left: -3px;
+    .logo .team-welly-logo text {
+        font-size: 10px;
     }
     
     .main-content {
