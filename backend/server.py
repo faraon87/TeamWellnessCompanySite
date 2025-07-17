@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
 import os
 from contextlib import asynccontextmanager
@@ -9,6 +10,7 @@ from contextlib import asynccontextmanager
 from app.routers import auth, payments, ai_chat, programs, analytics
 from app.routers.enhanced_auth import router as enhanced_auth_router
 from app.routers.enhanced_payments import router as enhanced_payments_router
+from app.routers.oauth import router as oauth_router
 from app.database import init_database
 
 # Lifespan context manager
