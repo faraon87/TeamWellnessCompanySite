@@ -32,6 +32,9 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# Add session middleware for OAuth
+app.add_middleware(SessionMiddleware, secret_key=os.getenv("JWT_SECRET_KEY", "your-secret-key-here"))
+
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
