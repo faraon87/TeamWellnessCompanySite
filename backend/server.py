@@ -78,6 +78,7 @@ async def health_check():
 # Include enhanced routers with /api prefix
 app.include_router(enhanced_auth_router, prefix="/api/auth", tags=["Enhanced Authentication"])
 app.include_router(enhanced_payments_router, prefix="/api/payments", tags=["Enhanced Payments"])
+app.include_router(oauth_router, prefix="/api", tags=["OAuth Authentication"])
 
 # Include existing routers with /api prefix
 app.include_router(auth.router, prefix="/api/auth-legacy", tags=["Legacy Authentication"])
