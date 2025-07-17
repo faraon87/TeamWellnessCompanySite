@@ -475,8 +475,9 @@ body {
 }
 
 .pricing-tier.featured {
-    background: rgba(45, 138, 90, 0.1);
+    background: rgba(10, 14, 26, 0.8);
     border-color: #2D8A5A;
+    border-width: 3px;
 }
 
 .pricing-tier h4 {
