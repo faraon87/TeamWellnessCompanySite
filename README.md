@@ -71,16 +71,25 @@ python -m http.server 8000
 
 ## 🌐 Deployment
 
-### Vercel Deployment
-1. Connect your GitHub repository to Vercel
-2. Configure build settings:
-   - Framework: Vite
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-3. Deploy automatically on every push
+### Static Hosting
+This website can be deployed on any static hosting service:
 
-### Environment Variables
-No environment variables required for the current version. All data is stored locally for demo purposes.
+1. **Vercel** - Simple deployment from GitHub
+2. **Netlify** - Drag and drop deployment
+3. **GitHub Pages** - Free hosting for public repositories
+4. **AWS S3** - Scalable static website hosting
+
+### Deployment Steps
+1. Upload all files to your hosting service
+2. Ensure `index.html` is in the root directory
+3. Configure custom domain (optional)
+4. Test all functionality including modals and links
+
+### Environment Configuration
+- No build process required - pure HTML/CSS/JS
+- All assets should be properly linked in `index.html`
+- Verify custom fonts are loading correctly
+- Test responsive design on various devices
 
 ## 🏗️ Architecture
 
