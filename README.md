@@ -159,17 +159,18 @@ This website can be deployed on any static hosting service:
 
 ## 🔧 Development Guidelines
 
-### Code Style
-- ES6+ JavaScript with React Hooks
-- Tailwind CSS for styling
-- Component-based architecture
-- Responsive-first design approach
+### Code Structure
+- **HTML**: Semantic markup with proper accessibility attributes
+- **CSS**: Organized with responsive design and custom properties
+- **JavaScript**: Vanilla ES6+ for modal functionality and interactions
+- **Assets**: Optimized images and scalable vector graphics
 
-### Performance Optimization
-- Lazy loading for route components
-- Image optimization and placeholders
-- Progressive Web App caching
-- Efficient state management
+### Best Practices
+- **Performance**: Optimized images and minimal JavaScript
+- **Accessibility**: ARIA labels and keyboard navigation
+- **SEO**: Proper meta tags and semantic HTML structure
+- **Cross-browser**: Compatible with modern browsers
+- **Mobile-first**: Responsive design approach
 
 ## 📄 License
 
