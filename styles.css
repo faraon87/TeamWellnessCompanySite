@@ -211,7 +211,7 @@ body {
 
 .sso-section h3,
 .traditional-section h3 {
-    color: #12e1b9;
+    color: #2D8A5A;
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
     font-size: 18px;
     font-weight: 600;
@@ -227,9 +227,9 @@ body {
 }
 
 .sso-button {
-    background: rgba(7, 13, 41, 0.8);
-    border: 2px solid #12e1b9;
-    color: #f3f4f4;
+    background: rgba(15, 27, 46, 0.8);
+    border: 2px solid #2D8A5A;
+    color: #E8F0F5;
     padding: 15px 20px;
     font-size: 16px;
     font-weight: 500;
@@ -244,10 +244,10 @@ body {
 }
 
 .sso-button:hover {
-    background: #12e1b9;
-    color: #070d29;
+    background: #2D8A5A;
+    color: #0F1B2E;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(18, 225, 185, 0.3);
+    box-shadow: 0 8px 25px rgba(45, 138, 90, 0.3);
 }
 
 .sso-button img,
