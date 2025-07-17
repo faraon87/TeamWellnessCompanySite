@@ -42,21 +42,15 @@ body {
     z-index: 10;
 }
 
-.logo .flower-logo {
-    width: 70px;
-    height: 90px;
+.logo .team-welly-logo {
+    width: 80px;
+    height: 100px;
     flex-shrink: 0;
-    opacity: 0.4;
+    opacity: 0.9;
 }
 
-.logo-text {
-    font-size: 18px;
-    font-weight: 700;
-    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
-    line-height: 1.1;
-    letter-spacing: 0.5px;
-    text-align: center;
-    margin-left: -5px;
+.logo .team-welly-logo text {
+    opacity: 0.9;
 }
 
 /* Main Content */
