@@ -93,23 +93,27 @@ This website can be deployed on any static hosting service:
 
 ## 🏗️ Architecture
 
-### Component Structure
+### File Structure
 ```
-src/
-├── components/
-│   ├── common/           # Reusable UI components
-│   ├── onboarding/       # User onboarding flow
-│   ├── dashboard/        # Main dashboard
-│   ├── programs/         # Programs library
-│   ├── coaching/         # Live coaching features
-│   ├── challenges/       # Gamification system
-│   ├── settings/         # User settings
-│   ├── admin/           # Admin portal
-│   └── membership/      # Subscription plans
-├── contexts/            # React Context providers
-├── hooks/              # Custom React hooks
-└── App.jsx             # Main application component
+/
+├── index.html           # Main landing page with modal structure
+├── styles.css          # All CSS styling and responsive design
+├── fonts/              # Custom typography
+│   ├── SensaWild-Fill.otf
+│   └── SensaWild-Fill.ttf
+├── public/             # Static assets
+│   ├── background.png  # Custom background image
+│   ├── twclogo.svg     # Team Welly logo
+│   └── favicon.ico     # Site icon
+└── README.md           # Documentation
 ```
+
+### Key Components
+- **Landing Page**: Main content with title, buttons, and footer
+- **Sign In Modal**: SSO options and traditional login choices
+- **Learn More Modal**: Complete business information and pricing
+- **Responsive Design**: Mobile-first CSS with breakpoints
+- **Typography**: Custom font integration with fallbacks
 
 ## 🎯 Key User Journeys
 
