@@ -128,26 +128,114 @@ async def google_callback(request: Request):
         session_token = generate_token()
         await create_user_session(user["id"], session_token)
         
-        # Create response
-        response_data = {
-            "access_token": session_token,
-            "user": {
-                "id": user["id"],
-                "email": user["email"],
-                "name": user["name"],
-                "plan": user["plan"],
-                "avatar_url": user.get("avatar_url")
-            },
-            "token_type": "bearer",
-            "message": "Successfully authenticated with Google"
-        }
+        # Create HTML response that stores the token and redirects
+        html_response = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Authentication Successful</title>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                    background-color: #f0f2f5;
+                }}
+                .container {{
+                    text-align: center;
+                    background: white;
+                    padding: 40px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                }}
+                .success {{
+                    color: #28a745;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                }}
+                .loading {{
+                    color: #007bff;
+                    font-size: 16px;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="success">✅ Authentication Successful!</div>
+                <div class="loading">Redirecting to your dashboard...</div>
+            </div>
+            <script>
+                // Store the authentication token
+                localStorage.setItem('oauth_token', '{session_token}');
+                localStorage.setItem('user_info', JSON.stringify({{
+                    "id": "{user['id']}",
+                    "email": "{user['email']}",
+                    "name": "{user['name']}",
+                    "plan": "{user['plan']}",
+                    "avatar_url": "{user.get('avatar_url', '')}",
+                    "oauth_provider": "google"
+                }}));
+                
+                // Redirect to main application
+                setTimeout(() => {{
+                    window.location.href = '/src/BackendIntegratedApp.jsx';
+                }}, 1500);
+            </script>
+        </body>
+        </html>
+        """
         
-        # Redirect to frontend with success
-        # In production, you'd redirect to a success page with the token
-        return JSONResponse(content=response_data)
+        return HTMLResponse(content=html_response)
         
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Google OAuth callback failed: {str(e)}")
+        # Return error HTML page
+        error_html = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Authentication Error</title>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                    background-color: #f0f2f5;
+                }}
+                .container {{
+                    text-align: center;
+                    background: white;
+                    padding: 40px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                }}
+                .error {{
+                    color: #dc3545;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                }}
+                .retry {{
+                    color: #007bff;
+                    font-size: 16px;
+                    cursor: pointer;
+                    text-decoration: underline;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="error">❌ Authentication Failed</div>
+                <div class="retry" onclick="window.location.href='/'">← Back to Home</div>
+            </div>
+        </body>
+        </html>
+        """
+        return HTMLResponse(content=error_html)
 
 # Apple Sign-In Endpoints (Placeholder Structure)
 @router.get("/auth/apple")
