@@ -16,7 +16,8 @@ from app.routers import auth, programs, analytics
 # Temporarily disabled routers due to emergentintegrations dependency
 # from app.routers import payments, ai_chat
 from app.routers.enhanced_auth import router as enhanced_auth_router
-from app.routers.enhanced_payments import router as enhanced_payments_router
+# Temporarily disabled enhanced_payments due to emergentintegrations dependency on Railway  
+# from app.routers.enhanced_payments import router as enhanced_payments_router
 from app.routers.oauth import router as oauth_router
 from app.database import init_database
 
