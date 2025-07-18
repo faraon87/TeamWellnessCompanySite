@@ -458,6 +458,30 @@
             }
         });
 
+        // Apple OAuth Functions
+        async function initiateAppleOAuth() {
+            try {
+                // Use the Railway backend URL directly
+                const backendUrl = 'https://teamwellnesscompanysite-production.up.railway.app';
+                
+                // Show loading state
+                const appleButton = document.querySelector('.apple-sso span');
+                const originalText = appleButton.textContent;
+                appleButton.textContent = 'Redirecting...';
+                
+                // Redirect to Apple OAuth endpoint
+                window.location.href = `${backendUrl}/api/auth/apple`;
+                
+            } catch (error) {
+                console.error('Apple OAuth initiation failed:', error);
+                alert('Failed to start Apple sign-in. Please try again.');
+                
+                // Reset button text
+                const appleButton = document.querySelector('.apple-sso span');
+                appleButton.textContent = 'Continue with Apple';
+            }
+        }
+
         // Google OAuth Functions
         async function initiateGoogleOAuth() {
             try {
