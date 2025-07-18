@@ -487,18 +487,181 @@ async def apple_callback(request: Request):
         """
         return HTMLResponse(content=error_html)
 
-# Twitter/X OAuth Endpoints (Placeholder Structure)
+# Twitter/X OAuth Configuration
+oauth.register(
+    name='twitter',
+    client_id=os.getenv('TWITTER_API_KEY'),
+    client_secret=os.getenv('TWITTER_API_SECRET'),
+    request_token_url='https://api.twitter.com/oauth/request_token',
+    access_token_url='https://api.twitter.com/oauth/access_token',
+    authorize_url='https://api.twitter.com/oauth/authenticate',
+    api_base_url='https://api.twitter.com/1.1/',
+    client_kwargs=None,
+)
+
+# Twitter/X OAuth Endpoints
 @router.get("/auth/twitter")
 async def twitter_login(request: Request):
-    """Initiate Twitter/X OAuth login (Placeholder)"""
-    # TODO: Implement Twitter/X OAuth when credentials are available
-    raise HTTPException(status_code=501, detail="Twitter/X OAuth not implemented yet. Please provide Twitter credentials.")
+    """Initiate Twitter/X OAuth login"""
+    try:
+        api_key = os.getenv('TWITTER_API_KEY')
+        if not api_key:
+            raise HTTPException(status_code=500, detail="Twitter OAuth not configured")
+        
+        # Build redirect URI
+        redirect_uri = str(request.url_for("twitter_callback"))
+        
+        # Initiate OAuth 1.0a flow
+        return await oauth.twitter.authorize_redirect(request, redirect_uri)
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Twitter OAuth initiation failed: {str(e)}")
 
 @router.get("/auth/twitter/callback")
 async def twitter_callback(request: Request):
-    """Handle Twitter/X OAuth callback (Placeholder)"""
-    # TODO: Implement Twitter/X OAuth callback when credentials are available
-    raise HTTPException(status_code=501, detail="Twitter/X OAuth callback not implemented yet. Please provide Twitter credentials.")
+    """Handle Twitter/X OAuth callback"""
+    try:
+        # Get the access token from Twitter
+        token = await oauth.twitter.authorize_access_token(request)
+        
+        # Get user info from Twitter
+        user_response = await oauth.twitter.get(
+            'account/verify_credentials.json',
+            token=token,
+            params={'include_email': 'true'}
+        )
+        
+        user_info = user_response.json()
+        
+        # Create OAuth user object
+        oauth_user = OAuthUser(
+            email=user_info.get('email'),
+            name=user_info.get('name'),
+            provider='twitter',
+            provider_id=user_info.get('id_str'),
+            avatar_url=user_info.get('profile_image_url_https')
+        )
+        
+        # Create or update user in database
+        user = await create_or_update_oauth_user(oauth_user)
+        
+        # Create session token
+        session_token = generate_token()
+        await create_user_session(user["id"], session_token)
+        
+        # Create HTML response that stores the token and redirects
+        html_response = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Twitter Sign-In Successful</title>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                    background-color: #f0f2f5;
+                }}
+                .container {{
+                    text-align: center;
+                    background: white;
+                    padding: 40px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                }}
+                .success {{
+                    color: #28a745;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                }}
+                .loading {{
+                    color: #007bff;
+                    font-size: 16px;
+                }}
+                .twitter-logo {{
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="twitter-logo">🐦</div>
+                <div class="success">✅ Twitter Sign-In Successful!</div>
+                <div class="loading">Redirecting to your dashboard...</div>
+            </div>
+            <script>
+                // Store the authentication token
+                localStorage.setItem('oauth_token', '{session_token}');
+                localStorage.setItem('user_info', JSON.stringify({{
+                    "id": "{user['id']}",
+                    "email": "{user['email']}",
+                    "name": "{user['name']}",
+                    "plan": "{user['plan']}",
+                    "avatar_url": "{user.get('avatar_url', '')}",
+                    "oauth_provider": "twitter"
+                }}));
+                
+                // Redirect to main application
+                setTimeout(() => {{
+                    window.location.href = '/src/BackendIntegratedApp.jsx';
+                }}, 1500);
+            </script>
+        </body>
+        </html>
+        """
+        
+        return HTMLResponse(content=html_response)
+        
+    except Exception as e:
+        # Return error HTML page
+        error_html = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Twitter Sign-In Error</title>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                    background-color: #f0f2f5;
+                }}
+                .container {{
+                    text-align: center;
+                    background: white;
+                    padding: 40px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                }}
+                .error {{
+                    color: #dc3545;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                }}
+                .retry {{
+                    color: #007bff;
+                    font-size: 16px;
+                    cursor: pointer;
+                    text-decoration: underline;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="error">🐦 ❌ Twitter Sign-In Failed</div>
+                <div class="retry" onclick="window.location.href='/'">← Back to Home</div>
+            </div>
+        </body>
+        </html>
+        """
+        return HTMLResponse(content=error_html)
 
 # General OAuth endpoints
 @router.post("/auth/oauth/logout")
