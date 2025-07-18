@@ -111,12 +111,12 @@ class OAuthIntegrationTester:
         
         # Test Google OAuth initiation
         success, data, status = await self.make_request("GET", f"{RAILWAY_BACKEND_URL}/api/auth/google")
-        # Should return redirect info or 302 redirect
-        oauth_working = status in [200, 302] or ("google" in str(data).lower() and "oauth" in str(data).lower())
+        # Should return redirect info or redirect status codes (302, 307)
+        oauth_working = status in [200, 302, 307] or ("google" in str(data).lower() and "oauth" in str(data).lower())
         self.log_test(
             "Google OAuth initiation", 
             oauth_working,
-            f"Status: {status}, OAuth flow initiated properly"
+            f"Status: {status}, OAuth flow initiated properly (redirect status expected)"
         )
         
         # Test Google OAuth callback (without code, should handle gracefully)
