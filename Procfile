@@ -1,1 +1,1 @@
-web: python -m uvicorn backend.twitter_oauth_server:app --host 0.0.0.0 --port $PORT
+web: python main.py
