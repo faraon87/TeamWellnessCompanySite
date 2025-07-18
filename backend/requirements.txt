@@ -14,3 +14,5 @@ bcrypt
 starlette
 itsdangerous
 email-validator
+pyjwt
+cryptography
