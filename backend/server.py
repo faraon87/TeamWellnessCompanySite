@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
 import os
 from contextlib import asynccontextmanager
@@ -9,6 +10,7 @@ from contextlib import asynccontextmanager
 from app.routers import auth, payments, ai_chat, programs, analytics
 from app.routers.enhanced_auth import router as enhanced_auth_router
 from app.routers.enhanced_payments import router as enhanced_payments_router
+from app.routers.oauth import router as oauth_router
 from app.database import init_database
 
 # Lifespan context manager
@@ -30,6 +32,9 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# Add session middleware for OAuth
+app.add_middleware(SessionMiddleware, secret_key=os.getenv("JWT_SECRET_KEY", "your-secret-key-here"))
+
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -47,6 +52,7 @@ async def root():
         "version": "2.0.0",
         "features": [
             "✅ Enhanced Authentication with Emergent Auth",
+            "✅ OAuth Authentication (Google, Apple, Twitter/X)",
             "✅ Stripe Payment Integration",
             "✅ AI-powered Wellness Coaching",
             "✅ Comprehensive Program Management",
@@ -73,6 +79,7 @@ async def health_check():
 # Include enhanced routers with /api prefix
 app.include_router(enhanced_auth_router, prefix="/api/auth", tags=["Enhanced Authentication"])
 app.include_router(enhanced_payments_router, prefix="/api/payments", tags=["Enhanced Payments"])
+app.include_router(oauth_router, prefix="/api", tags=["OAuth Authentication"])
 
 # Include existing routers with /api prefix
 app.include_router(auth.router, prefix="/api/auth-legacy", tags=["Legacy Authentication"])

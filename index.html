@@ -435,9 +435,9 @@
 
             if (appleSSOButton) {
                 appleSSOButton.addEventListener('click', function() {
-                    // Handle Apple SSO
+                    // Handle Apple SSO - Not implemented yet
                     console.log('Apple SSO clicked');
-                    // Implement Apple OAuth flow here
+                    alert('Apple Sign-In will be available soon. Please provide Apple credentials to enable this feature.');
                 });
             }
 
@@ -445,17 +445,84 @@
                 googleSSOButton.addEventListener('click', function() {
                     // Handle Google SSO
                     console.log('Google SSO clicked');
-                    // Implement Google OAuth flow here
+                    initiateGoogleOAuth();
                 });
             }
 
             if (xSSOButton) {
                 xSSOButton.addEventListener('click', function() {
-                    // Handle X SSO
+                    // Handle X SSO - Not implemented yet
                     console.log('X SSO clicked');
-                    // Implement X OAuth flow here
+                    alert('Twitter/X Sign-In will be available soon. Please provide Twitter credentials to enable this feature.');
                 });
             }
+        });
+
+        // Google OAuth Functions
+        async function initiateGoogleOAuth() {
+            try {
+                // Get the backend URL from environment
+                const backendUrl = window.location.origin;
+                
+                // Show loading state
+                const googleButton = document.querySelector('.google-sso span');
+                const originalText = googleButton.textContent;
+                googleButton.textContent = 'Redirecting...';
+                
+                // Redirect to Google OAuth endpoint
+                window.location.href = `${backendUrl}/api/auth/google`;
+                
+            } catch (error) {
+                console.error('Google OAuth initiation failed:', error);
+                alert('Failed to start Google sign-in. Please try again.');
+                
+                // Reset button text
+                const googleButton = document.querySelector('.google-sso span');
+                googleButton.textContent = 'Sign in with Google';
+            }
+        }
+
+        // Handle OAuth callback (when user returns from Google)
+        async function handleOAuthCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const error = urlParams.get('error');
+            
+            if (error) {
+                console.error('OAuth error:', error);
+                alert('Authentication failed. Please try again.');
+                return;
+            }
+            
+            if (code) {
+                try {
+                    // The backend will handle the OAuth callback automatically
+                    console.log('OAuth callback received, processing...');
+                    
+                    // Check if user is authenticated
+                    const response = await fetch('/api/auth/oauth/me', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('oauth_token')}`
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const user = await response.json();
+                        console.log('User authenticated:', user);
+                        
+                        // Redirect to main app
+                        window.location.href = '/src/BackendIntegratedApp.jsx';
+                    }
+                } catch (error) {
+                    console.error('OAuth callback processing failed:', error);
+                }
+            }
+        }
+
+        // Check for OAuth callback on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            handleOAuthCallback();
         });
     </script>
 </body>

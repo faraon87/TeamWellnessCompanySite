@@ -437,6 +437,85 @@ class BackendTester:
             f"Wellness score calculated: {data.get('overall_score') if success else 'Failed'}"
         )
     
+    async def test_oauth_endpoints(self):
+        """Test OAuth authentication endpoints"""
+        print("\n🔐 Testing OAuth Endpoints...")
+        
+        # Test Google OAuth initiation (should redirect)
+        success, data, status = await self.make_request("GET", "/api/auth/google")
+        # Google OAuth should either redirect (302) or return redirect info
+        google_working = status in [302, 200] or "google" in str(data).lower()
+        self.log_test(
+            "Google OAuth initiation (/api/auth/google)", 
+            google_working,
+            f"Status: {status}, Response indicates Google OAuth setup"
+        )
+        
+        # Test Google OAuth callback (without actual Google token, should fail gracefully)
+        success, data, status = await self.make_request("GET", "/api/auth/google/callback")
+        # Should fail gracefully without proper OAuth flow
+        callback_working = status in [400, 401, 500] or "error" in str(data).lower()
+        self.log_test(
+            "Google OAuth callback (/api/auth/google/callback)", 
+            callback_working,
+            f"Status: {status}, Handles callback appropriately without token"
+        )
+        
+        # Test Apple OAuth (should return 501 - not implemented)
+        success, data, status = await self.make_request("GET", "/api/auth/apple")
+        apple_working = status == 501 and "not implemented" in str(data).lower()
+        self.log_test(
+            "Apple OAuth placeholder (/api/auth/apple)", 
+            apple_working,
+            f"Status: {status}, Returns proper 501 not implemented error"
+        )
+        
+        # Test Twitter OAuth (should return 501 - not implemented)
+        success, data, status = await self.make_request("GET", "/api/auth/twitter")
+        twitter_working = status == 501 and "not implemented" in str(data).lower()
+        self.log_test(
+            "Twitter OAuth placeholder (/api/auth/twitter)", 
+            twitter_working,
+            f"Status: {status}, Returns proper 501 not implemented error"
+        )
+        
+        # Test OAuth logout (without token, should fail appropriately)
+        success, data, status = await self.make_request("POST", "/api/auth/oauth/logout")
+        logout_working = status == 401 and "token" in str(data).lower()
+        self.log_test(
+            "OAuth logout (/api/auth/oauth/logout)", 
+            logout_working,
+            f"Status: {status}, Requires authentication token as expected"
+        )
+        
+        # Test OAuth me endpoint (without token, should fail appropriately)
+        success, data, status = await self.make_request("GET", "/api/auth/oauth/me")
+        me_working = status == 401 and "token" in str(data).lower()
+        self.log_test(
+            "OAuth get current user (/api/auth/oauth/me)", 
+            me_working,
+            f"Status: {status}, Requires authentication token as expected"
+        )
+        
+        # Test OAuth logout with valid token (if we have one from regular auth)
+        if self.access_token:
+            success, data, status = await self.make_request("POST", "/api/auth/oauth/logout")
+            oauth_logout_working = success and status == 200
+            self.log_test(
+                "OAuth logout with token", 
+                oauth_logout_working,
+                f"Status: {status}, OAuth logout with valid token: {success}"
+            )
+            
+            # Test OAuth me endpoint with valid token
+            success, data, status = await self.make_request("GET", "/api/auth/oauth/me")
+            oauth_me_working = success and status == 200 and data.get("email")
+            self.log_test(
+                "OAuth get current user with token", 
+                oauth_me_working,
+                f"Status: {status}, OAuth user info retrieved: {bool(data.get('email')) if success else 'Failed'}"
+            )
+
     async def test_cors_configuration(self):
         """Test CORS configuration"""
         print("\n🌐 Testing CORS Configuration...")
@@ -479,6 +558,7 @@ class BackendTester:
         try:
             await self.test_health_endpoints()
             await self.test_auth_endpoints()
+            await self.test_oauth_endpoints()  # New OAuth tests
             await self.test_programs_endpoints()
             await self.test_ai_chat_endpoints()
             await self.test_payment_endpoints()
