@@ -189,7 +189,7 @@ Complete revamp of "Team Welly" health and wellness app with focus on:
 - **Message**: OAuth endpoints testing completed successfully. Google OAuth is properly configured and working, Apple and Twitter return appropriate 501 errors as expected. Minor issue with OAuth user info retrieval endpoint (500 error) but core OAuth functionality is working. Backend success rate improved to 47.6%. Main remaining issues are Programs and Analytics implementations, not OAuth-related.
 
 - **Agent**: testing
-- **Message**: OAuth credentials testing completed with new rotated Google OAuth secret (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). Testing results: ✅ Google OAuth initiation working properly ✅ OAuth callback handling working ✅ Apple/Twitter placeholders returning proper 501 errors ✅ OAuth session management working ✅ Fixed OAuth user info retrieval endpoint - now working with valid tokens ✅ OAuth logout working with valid tokens. Overall OAuth success rate: 87.5%. Backend is properly loading new credentials from .env.local file. All existing authentication endpoints still functional. No regression detected.
+- **Message**: OAuth credentials testing completed with new rotated Google OAuth secret (GOCSPX-[REDACTED]). Testing results: ✅ Google OAuth initiation working properly ✅ OAuth callback handling working ✅ Apple/Twitter placeholders returning proper 501 errors ✅ OAuth session management working ✅ Fixed OAuth user info retrieval endpoint - now working with valid tokens ✅ OAuth logout working with valid tokens. Overall OAuth success rate: 87.5%. Backend is properly loading new credentials from .env.local file. All existing authentication endpoints still functional. No regression detected.
 
 ## Notes
 - User wants manual testing
