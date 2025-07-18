@@ -500,7 +500,8 @@
                     console.log('OAuth callback received, processing...');
                     
                     // Check if user is authenticated
-                    const response = await fetch('/api/auth/oauth/me', {
+                    const backendUrl = import.meta.env.REACT_APP_BACKEND_URL || 'https://teamwellnesscompanysite-production.up.railway.app';
+                    const response = await fetch(`${backendUrl}/api/auth/oauth/me`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('oauth_token')}`
