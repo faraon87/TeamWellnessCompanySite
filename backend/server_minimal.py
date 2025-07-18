@@ -68,7 +68,7 @@ async def health_check():
     return {
         "status": "healthy",
         "timestamp": "2025-01-17T22:00:00Z",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "services": {
             "database": "✅ Connected",
             "oauth": "✅ OAuth Ready",
