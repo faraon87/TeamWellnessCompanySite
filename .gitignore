@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+__pycache__/
+*.pyc
+*.pyo
 
 # Private credentials - never commit
 PRIVATE_OAUTH_CREDENTIALS.txt
