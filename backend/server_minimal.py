@@ -32,7 +32,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="Team Welly API",
     description="Health and wellness platform with OAuth authentication",
-    version="2.0.0",
+    version="2.1.0",  # Updated version to force Railway redeploy
     lifespan=lifespan
 )
 
