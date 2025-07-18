@@ -84,6 +84,10 @@ app.include_router(oauth_router, prefix="/api", tags=["OAuth Authentication"])
 # API Info endpoint
 @app.get("/api/info")
 async def api_info():
+    # Check if Twitter OAuth credentials are loaded
+    twitter_client_id = os.getenv('TWITTER_CLIENT_ID')
+    twitter_configured = "✅ Configured" if twitter_client_id else "❌ Not Configured"
+    
     return {
         "title": "Team Welly API v2.0 - Railway Deployment",
         "description": "Health and wellness platform with OAuth authentication",
@@ -91,7 +95,7 @@ async def api_info():
             "oauth_authentication": {
                 "google_oauth": "✅ Working with rotated credentials",
                 "apple_oauth": "✅ Working with real credentials",
-                "twitter_oauth": "✅ Working with OAuth 2.0",
+                "twitter_oauth": f"{twitter_configured} - OAuth 2.0",
                 "session_management": "✅ 7-day session tokens"
             },
             "enhanced_authentication": {
@@ -108,6 +112,10 @@ async def api_info():
             "oauth": "/api/auth/google, /api/auth/apple, /api/auth/twitter",
             "auth": "/api/auth/*",
             "payments": "/api/payments/*"
+        },
+        "debug": {
+            "twitter_client_id_present": bool(twitter_client_id),
+            "twitter_client_id_length": len(twitter_client_id) if twitter_client_id else 0
         }
     }
 
