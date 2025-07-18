@@ -53,7 +53,7 @@ app.add_middleware(
 async def root():
     return {
         "message": "🏥 Team Welly API is running!",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "features": [
             "✅ OAuth Authentication (Google, Apple, Twitter/X)",
             "✅ Enhanced Authentication with Emergent Auth",
