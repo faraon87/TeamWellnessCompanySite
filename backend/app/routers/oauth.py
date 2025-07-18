@@ -308,7 +308,10 @@ async def get_current_oauth_user(request: Request):
             raise HTTPException(status_code=401, detail="Invalid or expired session")
         
         # Get user info - handle both OAuth and regular users
-        user = await users_collection.find_one({"id": session["user_id"]})
+        user = await users_collection.find_one({"_id": session["user_id"]})
+        if not user:
+            # Try with id field for backward compatibility
+            user = await users_collection.find_one({"id": session["user_id"]})
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
         
