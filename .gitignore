@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Private credentials - never commit
+PRIVATE_OAUTH_CREDENTIALS.txt
+backend/.env.local
+test_result.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
