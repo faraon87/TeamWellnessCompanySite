@@ -73,8 +73,8 @@ async def root():
 async def health_check():
     return {
         "status": "healthy",
-        "timestamp": "2025-01-16T02:30:00Z",
-        "version": "2.0.0",
+        "timestamp": "2025-01-17T22:00:00Z",
+        "version": "2.1.0",  # Updated version to match
         "services": {
             "database": "✅ Connected",
             "auth": "✅ Emergent Auth Ready",
