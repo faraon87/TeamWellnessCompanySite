@@ -1,80 +1,100 @@
 <analysis>
-The previous AI engineer effectively transitioned the Team Wellness Company's landing page, integrating Sign In and Learn More modals with key design elements and content. The major undertaking involved implementing functional Google OAuth SSO, which evolved into a complex debugging and deployment challenge. The engineer navigated persistent GitHub push protection errors by meticulously moving secrets to local-only files and extensively cleaning git history. Subsequently, deployment to Railway encountered multiple dependency issues (, , , ) and configuration problems ( format, ). The engineer systematically addressed these by creating minimal server configurations and guiding the user through platform-specific adjustments. The current state is a successfully deployed backend on Railway with working Google OAuth, ready for frontend integration and further SSO development.
+The previous AI engineer successfully initiated a major refactor and feature expansion for the Team Wellness Company, moving from a basic landing page to one with interactive modals and comprehensive SSO. Initial work included integrating Sign In and Learn More modals, design elements, and basic content. The core challenge became implementing functional Google, Apple, and X (Twitter) OAuth SSO, compounded by persistent GitHub push protection issues and complex Railway deployment failures. The AI engineer systematically debugged environment variable loading, Python pathing, and Railway's aggressive caching and server detection mechanisms. Multiple strategies were attempted, including explicit server file renames, adding diagnostic endpoints, and force-refreshing deployments. Despite extensive debugging, including a nuclear reset of the Railway service and identifying Node.js autodetection, the application still failed to deploy correctly, ending with an Application not found error. The primary challenge throughout the trajectory was Railway's inconsistent behavior in picking up code changes and proper server startup commands.
 </analysis>
 
 <product_requirements>
-The user initially requested a comprehensive redesign of the Team Wellness Company landing page. This involved transforming the main interface into two interactive modals: Sign In and Learn More. The Sign In modal required Apple, Google, and X (Twitter) SSO options, alongside corporate/individual login fields. The Learn More modal was to feature About Us, pricing tiers, a Sign Up Today! CTA, and specific contact details (email: , Calendly: ). Design consistency was critical, mandating adherence to existing font colors, SensaWild-Fill font, and a blue-green gradient background (later replaced with an image). The Team Welly logo needed to precisely match a user-provided image. Content for Learn More included a mission statement, 5-step framework, pricing, corporate wellness info, and FAQ. Subsequent requests included adding LinkedIn hyperlinks with icons, changing wellness app to wellness platform, and incorporating a Legal Notice link with a placeholder pop-up in the footer. The most recent explicit request was to implement functional SSO, starting with Google OAuth, and then address frontend integration and deployment, followed by Apple and X OAuth.
+The initial request aimed to transform the Team Wellness Company landing page into two interactive modals: Sign In and Learn More. The Sign In modal required Google, Apple, and X (Twitter) SSO, plus corporate/individual login. The Learn More modal needed About Us, pricing, a Sign Up Today! CTA, and contact details. Design elements like font, gradient background (later an image), and logo fidelity were critical. Subsequent requests included LinkedIn hyperlinks and a Legal Notice link. The main ongoing requirement was to implement functional SSO for Google, Apple, and X, integrating with a Railway-deployed backend, followed by frontend deployment and domain migration from Squarespace to Railway. The current focus in the trajectory was completing X OAuth and the full migration to Railway hosting.
 </product_requirements>
 
 <key_technical_concepts>
--   **React/Vite Frontend**: Primary UI and application bundling.
--   **FastAPI Backend**: Python-based API server.
--   **MongoDB Database**: Data storage.
--   **OAuth/SSO**: Integration for third-party authentication (Google, Apple, X).
--   **Authlib**: Python library for OAuth implementation.
--   **PyJWT, Cryptography**: For secure token handling (Apple SSO).
--   **Environment Variables**: Secure configuration.
--   **Railway Deployment**: Cloud platform for hosting the application.
--   **Supervisor**: Process management.
--   **Git Conflict Resolution**: Handling version control merges.
+-   **React/Vite Frontend**: User interface and application bundling.
+-   **FastAPI Backend**: Python-based API server for core logic and authentication.
+-   **OAuth/SSO**: Implementation for Google, Apple, and X (Twitter) third-party authentication.
+-   **Authlib**: Python library used for OAuth flows.
+-   **Railway Deployment**: Cloud platform for hosting, primary source of deployment challenges.
+-   **Environment Variables**: Secure configuration for sensitive data (API keys, secrets).
+-   **Nixpacks**: Railway's build system, frequently auto-detecting wrong project types.
+-   **Supervisor**: Process management for local backend/frontend.
 </key_technical_concepts>
 
 <code_architecture>
-The application has a full-stack architecture with a React/Vite frontend and a FastAPI backend.
+The application employs a full-stack architecture featuring a React/Vite frontend and a FastAPI backend.
 
 
 
--   : The main landing page, defining UI structure and containing JavaScript for modal interactivity and frontend OAuth calls.
-    -   **Summary**: Serves as the user's entry point. It hosts the Sign In and Learn More modals, integrates the SSO buttons for Google, Apple, and X, and includes JavaScript functions (, , ) to redirect users to the backend for OAuth flow. It also includes  to manage post-authentication redirection.
-    -   **Changes Made**: Updated to include Apple and X SSO buttons, their respective JavaScript event listeners, and functions that redirect to the Railway backend URL () for OAuth initiation.
--   : Central stylesheet for visual design.
-    -   **Summary**: Provides the visual styling for the entire application, including the main landing page, modals, buttons, and social links, ensuring design consistency.
-    -   **Changes Made**: Extensive styling for new modals,  incorporation, logo styling, and new styles for LinkedIn and Legal Notice.
--   : Main FastAPI application, serving as the backend entry point.
-    -   **Summary**: The core of the backend application, responsible for routing requests, managing sessions, and integrating various API functionalities, including authentication.
-    -   **Changes Made**: SessionMiddleware added for OAuth.  (from ) included. Temporary changes involved commenting out , , ,  routers to isolate dependency issues during Railway deployment. Logic was added to load environment variables from  for local development.
--   : Environment variables for backend, now holding placeholder values for sensitive data.
-    -   **Summary**: Defines environment-specific variables for the backend, crucial for configuring database connections and external API credentials securely.
-    -   **Changes Made**: Google OAuth  and  were initially added, then replaced with placeholders. Placeholder entries for Apple and Twitter/X OAuth were also added.
--   : New file to store actual sensitive OAuth credentials for local development, excluded from Git.
-    -   **Summary**: A critical security measure to prevent sensitive API keys and secrets from being committed to the public repository.
-    -   **Changes Made**: Created to hold Google, Apple (, , , ), and Twitter/X (, ) OAuth credentials.
--   : New Python file for handling OAuth logic (Google, Apple, X).
-    -   **Summary**: Contains all the backend logic for initiating and handling callbacks for Google, Apple, and Twitter OAuth, including token exchange and user data retrieval.
-    -   **Changes Made**: Implements endpoints for Google (, ), Apple (, ), and Twitter/X (, ). Includes logic to handle  from environment and dynamically construct . Apple OAuth uses custom JWT implementation, while Google and Twitter use Authlib.
--   : Python dependencies for the backend.
-    -   **Summary**: Lists all Python libraries required for the backend application to run, ensuring consistent environments across development and deployment.
-    -   **Changes Made**: , ,  were added.  and  were added for Apple OAuth.  was temporarily removed to resolve deployment issues.
--   : A temporary, simplified FastAPI server used for debugging Railway deployment.
-    -   **Summary**: Used as a barebones server during deployment troubleshooting to verify basic functionality and OAuth endpoints without complex dependencies. It includes a health check and an API info endpoint summarizing features.
-    -   **Changes Made**: Modified to include updated API information reflecting the status of Google, Apple, and Twitter/X OAuth, and to show health check details. This file was frequently involved in Git conflicts due to ongoing feature updates.
--   : Specifies files/patterns to be ignored by Git.
-    -   **Summary**: Ensures that sensitive data, local configurations, and build artifacts are not committed to the version control system.
-    -   **Changes Made**: ,  and other temporary files were added.
--   : Contains testing protocols and results.
-    -   **Summary**: Documents the outcome of various tests, especially for OAuth functionality, providing a record of successful implementations and issues encountered.
-    -   **Changes Made**: Updated to reflect the successful implementation and testing of Google, Apple, and Twitter OAuth flows.
+-   : Main landing page, initiating frontend OAuth redirects.
+    -   **Summary**: Frontend entry point, hosts modals, SSO buttons, and JavaScript functions (, , ) to redirect to the backend for OAuth.
+    -   **Changes Made**: Confirmed to use  for OAuth initiation, no explicit changes in this trajectory.
+-   : Original main FastAPI backend server.
+    -   **Summary**: Core backend application, handling routing, sessions, and API functionalities.
+    -   **Changes Made**: Temporarily commented out other routers for deployment isolation. Updated to version  and included the  endpoint (as a fallback when  was not being picked up).
+-   : A simplified FastAPI server, intended for Railway deployment.
+    -   **Summary**: Used for debugging Railway deployment, includes health checks and API info. It was intended to be the primary backend for Railway.
+    -   **Changes Made**: Updated to include a  endpoint, and its reported version was updated to . Later, it was effectively replaced by .
+-   : Stores sensitive OAuth credentials locally, ignored by Git.
+    -   **Summary**: Critical for local secure storage of API keys.
+    -   **Changes Made**: Confirmed to contain  and .
+-   : Handles all OAuth backend logic.
+    -   **Summary**: Contains endpoints and logic for Google, Apple, and Twitter/X OAuth.
+    -   **Changes Made**: Confirmed to have complete backend implementation for X OAuth.
+-   : Lists Python dependencies.
+    -   **Summary**: Ensures consistent Python environment.
+    -   **Changes Made**: No direct changes in this trajectory, but its contents were implicitly used for installations. Later, it was copied to the root level.
+-   : Documents testing protocols and results.
+    -   **Summary**: Records successful implementations and issues.
+    -   **Changes Made**: Updated to reflect successful X OAuth backend integration.
+-   : Railway deployment configuration for the frontend and later for the backend.
+    -   **Summary**: Specifies build and start commands for Railway.
+    -   **Changes Made**: Initially configured for frontend. Later, modified to specify the backend's start command (e.g., , , , and finally ).
+-   : (Renamed from )
+    -   **Summary**: Created as an attempt to force Railway to pick up the correct server file.
+    -   **Changes Made**: Copied content from  to ensure Twitter OAuth functionality, version , and debug endpoints.
+-   : (Later renamed to )
+    -   **Summary**: A new, clear server file created to bypass Railway caching.
+    -   **Changes Made**: Included all OAuth logic, debug endpoints, and explicit version .
+-   : The final, simplified server file specifically created to match Railway's custom start command.
+    -   **Summary**: This file was identified as the one Railway's custom start command was *actually* looking for. It contains the full OAuth logic, debug endpoints, and version .
+    -   **Changes Made**: Created with a simplified structure to minimize import issues, with explicit version , Twitter OAuth endpoint, and a debug endpoint. Later modified to include cache-busting headers.
+-   : Added as another attempt to explicitly define the start command for Railway.
+    -   **Summary**: Specifies the command to run the web service ().
+    -   **Changes Made**: Created to point to  at the root level.
+-   : A root-level Python file intended to import and run the core backend server.
+    -   **Summary**: Created as part of the aggressive cache-busting strategy, intended as a Railway entry point.
+    -   **Changes Made**: Imports  and runs it.
+-    and : Frontend dependency files.
+    -   **Summary**: Defines frontend dependencies.
+    -   **Changes Made**: Renamed to  and  to prevent Railway's Nixpacks from auto-detecting the project as Node.js.
 </code_architecture>
 
 <pending_tasks>
--   Add Twitter OAuth 2.0 credentials (, ) to the Railway environment variables.
--   Deploy the frontend application to Railway for a complete production setup.
--   Conduct comprehensive end-to-end testing of all implemented OAuth flows on the deployed Railway environment.
+-   Frontend deployment to Railway for a complete production setup.
+-   Comprehensive end-to-end testing of all implemented OAuth flows on the deployed Railway environment.
+-   Domain migration setup for  from Squarespace to Railway.
 -   Future work includes implementing core application features like programs, analytics, and AI chat.
 </pending_tasks>
 
 <current_work>
-Immediately before this summary, the AI engineer successfully implemented and integrated Google, Apple, and Twitter (X) OAuth into the Team Wellness Company application. The backend (FastAPI) is deployed on Railway () with Google and Apple OAuth confirmed fully functional. Twitter OAuth backend logic is also complete and ready for production credentials.
+Immediately before this summary, the AI engineer was engaged in a prolonged effort to deploy the FastAPI backend, specifically ensuring the Twitter/X OAuth functionality, to Railway. The core issue was Railway consistently serving old or cached versions of the application, despite numerous attempts to update the code, change server entry points, and force redeployments.
 
-The work accomplished includes:
-1.  **Frontend URL Configuration**: The  file, which orchestrates the frontend OAuth initiation, was updated to consistently use the Railway backend URL () for all OAuth redirects, ensuring seamless communication with the deployed backend.
-2.  **Apple OAuth Integration**: The user provided the necessary Apple Developer credentials, including , , , and the . These sensitive credentials were securely stored in . New Python dependencies (, ) were added to . The  file was extended to handle Apple's unique JWT-based OAuth flow, and  was updated with the  JavaScript function. Apple OAuth was verified as successfully deployed and functional on Railway following the user's update of Railway environment variables.
-3.  **Twitter/X OAuth Integration**: The user provided Twitter OAuth 2.0 credentials (, ), which were added to . The  file was updated to implement the Twitter OAuth 2.0 flow, and  was modified to include the  JavaScript function. This makes Twitter OAuth ready for production.
-4.  **Git Conflict Resolution**: Persistent Git merge conflicts were encountered in  and . The AI engineer provided the complete, merged, and clean code for both files to the user for manual replacement, successfully resolving these conflicts and ensuring all new OAuth features (and updated API info in ) are correctly integrated and preserved.
+The previous engineer had successfully confirmed the Twitter OAuth backend logic was functional locally and had instructed the user to add the X OAuth credentials to Railway environment variables. The user confirmed adding these.
 
-All services (backend, frontend, MongoDB) are confirmed running and healthy. The application now features a robust, enterprise-grade SSO suite with Google, Apple, and Twitter authentication.
+However, subsequent deployments to Railway continued to show old API information (version 1.0.0 instead of 2.1.0), and the Twitter OAuth endpoint remained inaccessible (404 Not Found). The debugging process involved:
+1.  **Verifying  and **: Ensuring they contained the correct OAuth logic and updated version numbers.
+2.  **Modifying  and adding **: To explicitly define the backend's start command.
+3.  **Renaming server files (e.g., to , , )**: As cache-busting measures.
+4.  **Creating a  and moving  to root**: To influence Railway's build process.
+5.  **Adding debug endpoints ()**: To verify environment variables and code version on the deployed server.
+6.  **Extensive analysis of Railway deployment logs**: Which repeatedly showed that Railway *was* running the intended, updated server file (), but responses were still stale.
+
+The latest critical discovery was that Railway's custom start command was explicitly pointing to . The AI engineer then created this  file with all the correct and updated code.
+
+Despite this, the service continued to return old responses, leading to an investigation into Railway's serverless mode (which was enabled and causing caching/cold start issues) and eventual disabling of it. Even after disabling serverless and adding cache-busting headers, the old responses persisted.
+
+The last major attempt involved a nuclear reset where the user deleted and recreated the Railway service from scratch, setting the custom start command to . However, this redeployment failed, with logs indicating python: command not found and Nixpacks detecting the project as Node.js due to . The  and  files were then renamed to prevent this auto-detection, and the  was explicitly updated to point to .
+
+The *immediate* current state is that after these latest changes (renaming frontend files, updating ), the user attempted another deployment, which resulted in an Application not found (404) error, indicating a new deployment failure.
 </current_work>
 
 <optional_next_step>
-The next logical step is to add the collected Twitter OAuth 2.0 credentials to the Railway environment variables for full production readiness.
+Investigate the Application not found error by checking the Railway deployment status and logs for specific error messages or reasons for failure.
 </optional_next_step>
