@@ -461,8 +461,8 @@
         // Google OAuth Functions
         async function initiateGoogleOAuth() {
             try {
-                // Get the backend URL from environment
-                const backendUrl = window.location.origin;
+                // Get the backend URL from environment variable
+                const backendUrl = import.meta.env.REACT_APP_BACKEND_URL || 'https://teamwellnesscompanysite-production.up.railway.app';
                 
                 // Show loading state
                 const googleButton = document.querySelector('.google-sso span');
