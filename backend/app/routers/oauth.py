@@ -243,6 +243,9 @@ async def google_callback(request: Request):
 def generate_apple_client_secret():
     """Generate Apple Client Secret JWT"""
     private_key = os.getenv('APPLE_PRIVATE_KEY')
+    # Handle Railway environment variable format (single line with \n escapes)
+    if private_key and '\\n' in private_key:
+        private_key = private_key.replace('\\n', '\n')
     team_id = os.getenv('APPLE_TEAM_ID')
     key_id = os.getenv('APPLE_KEY_ID')
     service_id = os.getenv('APPLE_SERVICE_ID')
