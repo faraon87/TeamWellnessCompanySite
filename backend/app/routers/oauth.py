@@ -98,8 +98,9 @@ async def create_or_update_oauth_user(oauth_user: OAuthUser):
 async def google_login(request: Request):
     """Initiate Google OAuth login"""
     try:
-        # Get the redirect URI for Google OAuth
-        redirect_uri = str(request.url_for("google_callback"))
+        # Use absolute redirect URI for Railway deployment
+        base_url = str(request.base_url).rstrip('/')
+        redirect_uri = f"{base_url}/api/auth/google/callback"
         return await oauth.google.authorize_redirect(request, redirect_uri)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Google OAuth initiation failed: {str(e)}")
