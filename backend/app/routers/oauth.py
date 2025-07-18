@@ -239,18 +239,253 @@ async def google_callback(request: Request):
         """
         return HTMLResponse(content=error_html)
 
-# Apple Sign-In Endpoints (Placeholder Structure)
+# Apple Sign-In Configuration
+def generate_apple_client_secret():
+    """Generate Apple Client Secret JWT"""
+    private_key = os.getenv('APPLE_PRIVATE_KEY')
+    team_id = os.getenv('APPLE_TEAM_ID')
+    key_id = os.getenv('APPLE_KEY_ID')
+    service_id = os.getenv('APPLE_SERVICE_ID')
+    
+    if not all([private_key, team_id, key_id, service_id]):
+        raise ValueError("Missing Apple OAuth credentials")
+    
+    now = datetime.utcnow()
+    
+    payload = {
+        "iss": team_id,
+        "aud": "https://appleid.apple.com",
+        "sub": service_id,
+        "iat": int(now.timestamp()),
+        "exp": int((now + timedelta(days=150)).timestamp()),
+    }
+    
+    return jwt.encode(
+        payload,
+        private_key,
+        algorithm="ES256",
+        headers={"kid": key_id}
+    )
+
+# Apple Sign-In Endpoints
 @router.get("/auth/apple")
 async def apple_login(request: Request):
-    """Initiate Apple Sign-In (Placeholder)"""
-    # TODO: Implement Apple Sign-In when credentials are available
-    raise HTTPException(status_code=501, detail="Apple Sign-In not implemented yet. Please provide Apple credentials.")
+    """Initiate Apple Sign-In"""
+    try:
+        service_id = os.getenv('APPLE_SERVICE_ID')
+        if not service_id:
+            raise HTTPException(status_code=500, detail="Apple OAuth not configured")
+        
+        # Build redirect URI
+        redirect_uri = str(request.url_for("apple_callback"))
+        
+        # Generate state for CSRF protection
+        state = str(uuid.uuid4())
+        
+        # Store state in session for verification
+        request.session['apple_state'] = state
+        
+        # Build Apple authorization URL
+        auth_url = (
+            f"https://appleid.apple.com/auth/authorize"
+            f"?client_id={service_id}"
+            f"&redirect_uri={redirect_uri}"
+            f"&response_type=code"
+            f"&scope=email name"
+            f"&response_mode=form_post"
+            f"&state={state}"
+        )
+        
+        return RedirectResponse(url=auth_url)
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Apple OAuth initiation failed: {str(e)}")
 
 @router.post("/auth/apple/callback")
 async def apple_callback(request: Request):
-    """Handle Apple Sign-In callback (Placeholder)"""
-    # TODO: Implement Apple Sign-In callback when credentials are available
-    raise HTTPException(status_code=501, detail="Apple Sign-In callback not implemented yet. Please provide Apple credentials.")
+    """Handle Apple Sign-In callback"""
+    try:
+        # Get form data from Apple
+        form_data = await request.form()
+        authorization_code = form_data.get('code')
+        state = form_data.get('state')
+        user_info = form_data.get('user')
+        
+        if not authorization_code:
+            raise HTTPException(status_code=400, detail="No authorization code received")
+        
+        # Verify state for CSRF protection
+        if state != request.session.get('apple_state'):
+            raise HTTPException(status_code=400, detail="Invalid state parameter")
+        
+        # Generate client secret
+        client_secret = generate_apple_client_secret()
+        
+        # Exchange authorization code for tokens
+        token_response = requests.post(
+            "https://appleid.apple.com/auth/token",
+            data={
+                "client_id": os.getenv('APPLE_SERVICE_ID'),
+                "client_secret": client_secret,
+                "code": authorization_code,
+                "grant_type": "authorization_code",
+                "redirect_uri": str(request.url_for("apple_callback"))
+            },
+            headers={"Content-Type": "application/x-www-form-urlencoded"}
+        )
+        
+        if token_response.status_code != 200:
+            raise HTTPException(status_code=400, detail="Failed to exchange authorization code")
+        
+        tokens = token_response.json()
+        
+        # Decode ID token to get user info
+        id_token = tokens.get('id_token')
+        if not id_token:
+            raise HTTPException(status_code=400, detail="No ID token received")
+        
+        # Decode JWT (without verification for now - in production, verify signature)
+        decoded_token = jwt.decode(id_token, options={"verify_signature": False})
+        
+        # Parse user info (sent on first login only)
+        user_name = "Apple User"
+        if user_info:
+            user_data = json.loads(user_info)
+            name_data = user_data.get('name', {})
+            if name_data:
+                first_name = name_data.get('firstName', '')
+                last_name = name_data.get('lastName', '')
+                user_name = f"{first_name} {last_name}".strip() or "Apple User"
+        
+        # Create OAuth user object
+        oauth_user = OAuthUser(
+            email=decoded_token.get('email'),
+            name=user_name,
+            provider='apple',
+            provider_id=decoded_token.get('sub'),
+            avatar_url=None  # Apple doesn't provide avatar URLs
+        )
+        
+        # Create or update user in database
+        user = await create_or_update_oauth_user(oauth_user)
+        
+        # Create session token
+        session_token = generate_token()
+        await create_user_session(user["id"], session_token)
+        
+        # Create HTML response that stores the token and redirects
+        html_response = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Apple Sign-In Successful</title>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                    background-color: #f0f2f5;
+                }}
+                .container {{
+                    text-align: center;
+                    background: white;
+                    padding: 40px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                }}
+                .success {{
+                    color: #28a745;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                }}
+                .loading {{
+                    color: #007bff;
+                    font-size: 16px;
+                }}
+                .apple-logo {{
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="apple-logo">🍎</div>
+                <div class="success">✅ Apple Sign-In Successful!</div>
+                <div class="loading">Redirecting to your dashboard...</div>
+            </div>
+            <script>
+                // Store the authentication token
+                localStorage.setItem('oauth_token', '{session_token}');
+                localStorage.setItem('user_info', JSON.stringify({{
+                    "id": "{user['id']}",
+                    "email": "{user['email']}",
+                    "name": "{user['name']}",
+                    "plan": "{user['plan']}",
+                    "avatar_url": null,
+                    "oauth_provider": "apple"
+                }}));
+                
+                // Redirect to main application
+                setTimeout(() => {{
+                    window.location.href = '/src/BackendIntegratedApp.jsx';
+                }}, 1500);
+            </script>
+        </body>
+        </html>
+        """
+        
+        return HTMLResponse(content=html_response)
+        
+    except Exception as e:
+        # Return error HTML page
+        error_html = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Apple Sign-In Error</title>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                    background-color: #f0f2f5;
+                }}
+                .container {{
+                    text-align: center;
+                    background: white;
+                    padding: 40px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                }}
+                .error {{
+                    color: #dc3545;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                }}
+                .retry {{
+                    color: #007bff;
+                    font-size: 16px;
+                    cursor: pointer;
+                    text-decoration: underline;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="error">🍎 ❌ Apple Sign-In Failed</div>
+                <div class="retry" onclick="window.location.href='/'">← Back to Home</div>
+            </div>
+        </body>
+        </html>
+        """
+        return HTMLResponse(content=error_html)
 
 # Twitter/X OAuth Endpoints (Placeholder Structure)
 @router.get("/auth/twitter")
