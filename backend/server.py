@@ -6,6 +6,11 @@ from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
 import os
 from contextlib import asynccontextmanager
+from dotenv import load_dotenv
+
+# Load environment variables from .env.local first, then .env
+load_dotenv('.env.local')
+load_dotenv('.env')
 
 from app.routers import auth, payments, ai_chat, programs, analytics
 from app.routers.enhanced_auth import router as enhanced_auth_router
