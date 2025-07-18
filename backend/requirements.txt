@@ -8,8 +8,9 @@ motor
 authlib
 httpx
 requests
-pydantic
+pydantic[email]
 pymongo
 bcrypt
 starlette
 itsdangerous
+email-validator
