@@ -90,8 +90,8 @@ async def api_info():
         "features": {
             "oauth_authentication": {
                 "google_oauth": "✅ Working with rotated credentials",
-                "apple_oauth": "⚠️ Placeholder - awaiting credentials",
-                "twitter_oauth": "⚠️ Placeholder - awaiting credentials",
+                "apple_oauth": "✅ Working with real credentials",
+                "twitter_oauth": "✅ Working with OAuth 2.0",
                 "session_management": "✅ 7-day session tokens"
             },
             "enhanced_authentication": {
