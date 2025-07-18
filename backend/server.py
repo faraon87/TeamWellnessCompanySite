@@ -12,9 +12,9 @@ from dotenv import load_dotenv
 load_dotenv('.env.local')
 load_dotenv('.env')
 
-from app.routers import auth, ai_chat, programs, analytics
-# Temporarily disabled payments router due to emergentintegrations dependency
-# from app.routers import payments
+from app.routers import auth, programs, analytics
+# Temporarily disabled routers due to emergentintegrations dependency
+# from app.routers import payments, ai_chat
 from app.routers.enhanced_auth import router as enhanced_auth_router
 from app.routers.enhanced_payments import router as enhanced_payments_router
 from app.routers.oauth import router as oauth_router
