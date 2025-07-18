@@ -12,3 +12,4 @@ pydantic
 pymongo
 bcrypt
 starlette
+itsdangerous
