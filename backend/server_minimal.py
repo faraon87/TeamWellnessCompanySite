@@ -30,7 +30,7 @@ async def lifespan(app: FastAPI):
 
 # Create FastAPI app
 app = FastAPI(
-    title="Team Welly API",
+    title="Team Welly API v2.1 - OAuth Ready",  # Changed title to force cache invalidation
     description="Health and wellness platform with OAuth authentication",
     version="2.1.0",  # Updated version to force Railway redeploy
     lifespan=lifespan
