@@ -499,21 +499,22 @@ class BackendTester:
         
         # Test OAuth logout with valid token (if we have one from regular auth)
         if self.access_token:
-            success, data, status = await self.make_request("POST", "/api/auth/oauth/logout")
-            oauth_logout_working = success and status == 200
-            self.log_test(
-                "OAuth logout with token", 
-                oauth_logout_working,
-                f"Status: {status}, OAuth logout with valid token: {success}"
-            )
-            
-            # Test OAuth me endpoint with valid token
+            # Test OAuth me endpoint with valid token BEFORE logout
             success, data, status = await self.make_request("GET", "/api/auth/oauth/me")
             oauth_me_working = success and status == 200 and data.get("email")
             self.log_test(
                 "OAuth get current user with token", 
                 oauth_me_working,
                 f"Status: {status}, OAuth user info retrieved: {bool(data.get('email')) if success else 'Failed'}"
+            )
+            
+            # Test OAuth logout with valid token
+            success, data, status = await self.make_request("POST", "/api/auth/oauth/logout")
+            oauth_logout_working = success and status == 200
+            self.log_test(
+                "OAuth logout with token", 
+                oauth_logout_working,
+                f"Status: {status}, OAuth logout with valid token: {success}"
             )
 
     async def test_cors_configuration(self):
