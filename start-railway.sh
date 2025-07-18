@@ -9,7 +9,7 @@ which python
 python --version
 
 echo "🔧 Checking if backend module exists..."
-python -c "import backend.server_minimal; print('✅ Backend module found')" || echo "❌ Backend module not found"
+python -c "import backend.main; print('✅ Backend module found')" || echo "❌ Backend module not found"
 
 echo "🌐 Starting server..."
-python -m uvicorn backend.server_minimal:app --host 0.0.0.0 --port $PORT
+python -m uvicorn backend.main:app --host 0.0.0.0 --port $PORT
