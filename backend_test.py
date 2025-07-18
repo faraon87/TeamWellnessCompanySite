@@ -12,7 +12,7 @@ from datetime import datetime
 from typing import Dict, Any, Optional
 
 # Test configuration
-BASE_URL = "https://demobackend.emergentagent.com"
+BASE_URL = "http://localhost:8001"
 TEST_USER_DATA = {
     "email": "sarah.wellness@teamwelly.com",
     "name": "Sarah Wellness",
