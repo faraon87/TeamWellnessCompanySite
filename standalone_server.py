@@ -31,13 +31,16 @@ async def add_cache_headers(request, call_next):
 # Simple test endpoint
 @app.get("/")
 async def root():
+    import time
     return {
-        "message": "🚀 STANDALONE SERVER IS WORKING!",
+        "message": "🚀 STANDALONE SERVER IS WORKING! TIMESTAMP: " + str(int(time.time())),
         "version": "2.1.0",
         "status": "healthy",
         "oauth": "ready",
         "deployment": "railway",
         "twitter_oauth": "READY TO TEST",
+        "timestamp": int(time.time()),
+        "cache_buster": str(int(time.time())),
         "features": [
             "✅ Google OAuth Integration",
             "✅ Apple OAuth Integration", 
