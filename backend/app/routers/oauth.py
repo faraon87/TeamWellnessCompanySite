@@ -8,6 +8,8 @@ import os
 import uuid
 from datetime import datetime, timedelta
 import requests
+import jwt
+import json
 from ..database import get_database, users_collection, user_sessions_collection
 
 router = APIRouter()
