@@ -139,8 +139,8 @@ async def test_page():
         <div class="endpoint"><strong>GET /health</strong> - Health check</div>
         <div class="endpoint"><strong>GET /api/info</strong> - API information</div>
         <div class="endpoint"><strong>GET /api/auth/google</strong> - Google OAuth</div>
-        <div class="endpoint"><strong>GET /api/auth/apple</strong> - Apple OAuth (placeholder)</div>
-        <div class="endpoint"><strong>GET /api/auth/twitter</strong> - Twitter OAuth (placeholder)</div>
+        <div class="endpoint"><strong>GET /api/auth/apple</strong> - Apple OAuth</div>
+        <div class="endpoint"><strong>GET /api/auth/twitter</strong> - Twitter OAuth</div>
         
         <h2>OAuth Test:</h2>
         <a href="/api/auth/google" style="display: inline-block; padding: 10px 20px; background: #4285f4; color: white; text-decoration: none; border-radius: 5px;">
