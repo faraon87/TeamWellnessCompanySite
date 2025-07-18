@@ -12,7 +12,9 @@ from dotenv import load_dotenv
 load_dotenv('.env.local')
 load_dotenv('.env')
 
-from app.routers import auth, payments, ai_chat, programs, analytics
+from app.routers import auth, ai_chat, programs, analytics
+# Temporarily disabled payments router due to emergentintegrations dependency
+# from app.routers import payments
 from app.routers.enhanced_auth import router as enhanced_auth_router
 from app.routers.enhanced_payments import router as enhanced_payments_router
 from app.routers.oauth import router as oauth_router
@@ -88,7 +90,8 @@ app.include_router(oauth_router, prefix="/api", tags=["OAuth Authentication"])
 
 # Include existing routers with /api prefix
 app.include_router(auth.router, prefix="/api/auth-legacy", tags=["Legacy Authentication"])
-app.include_router(payments.router, prefix="/api/payments-legacy", tags=["Legacy Payments"])
+# Temporarily disabled payments router due to emergentintegrations dependency
+# app.include_router(payments.router, prefix="/api/payments-legacy", tags=["Legacy Payments"])
 app.include_router(ai_chat.router, prefix="/api/ai", tags=["AI Chat"])
 
 app.include_router(programs.router, prefix="/api/programs", tags=["Programs"])
