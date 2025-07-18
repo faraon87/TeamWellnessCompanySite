@@ -47,6 +47,27 @@ async def health():
         }
     }
 
+# Debug endpoint
+@app.get("/debug")
+async def debug_info():
+    """Debug endpoint to check environment variables and OAuth setup"""
+    client_id = os.getenv("GOOGLE_CLIENT_ID", "NOT_SET")
+    client_secret = os.getenv("GOOGLE_CLIENT_SECRET", "NOT_SET")
+    
+    return {
+        "environment_check": {
+            "client_id_present": "YES" if client_id != "NOT_SET" else "NO",
+            "client_id_preview": client_id[:20] + "..." if len(client_id) > 20 else client_id,
+            "client_secret_present": "YES" if client_secret != "NOT_SET" else "NO",
+            "client_secret_preview": client_secret[:10] + "..." if len(client_secret) > 10 else client_secret
+        },
+        "oauth_urls": {
+            "initiate": "https://teamwellnesscompanysite-production.up.railway.app/api/auth/google",
+            "callback": "https://teamwellnesscompanysite-production.up.railway.app/api/auth/google/callback"
+        },
+        "expected_redirect_uri": "https://teamwellnesscompanysite-production.up.railway.app/api/auth/google/callback"
+    }
+
 # Google OAuth initiation
 @app.get("/api/auth/google")
 async def google_auth(request: Request):
@@ -150,16 +171,9 @@ async def test_page():
             <div class="endpoint"><strong>GET /</strong> - API Status & Information</div>
             <div class="endpoint"><strong>GET /health</strong> - Health Check</div>
             <div class="endpoint"><strong>GET /test</strong> - This Test Page</div>
+            <div class="endpoint"><strong>GET /debug</strong> - Debug Information</div>
             <div class="endpoint"><strong>GET /api/auth/google</strong> - Google OAuth Initiation</div>
             <div class="endpoint"><strong>GET /api/auth/google/callback</strong> - Google OAuth Callback</div>
-            
-            <h2>🚀 Next Steps:</h2>
-            <ol>
-                <li>Test the Google OAuth flow above</li>
-                <li>Update your frontend to use this Railway URL</li>
-                <li>Configure your Google OAuth redirect URIs</li>
-                <li>Deploy your frontend</li>
-            </ol>
         </div>
     </body>
     </html>
@@ -179,13 +193,14 @@ async def api_info():
                 "google": "✅ Configured",
                 "apple": "🔄 Coming Soon",
                 "twitter": "🔄 Coming Soon"
-    },
+            },
             "cors": "✅ Enabled",
             "health_check": "✅ Available"
         },
         "endpoints": {
             "health": "/health",
             "test": "/test",
+            "debug": "/debug",
             "google_oauth": "/api/auth/google",
             "oauth_callback": "/api/auth/google/callback"
         }
