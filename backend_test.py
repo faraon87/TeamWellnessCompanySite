@@ -11,8 +11,8 @@ import sys
 from datetime import datetime
 from typing import Dict, Any, Optional
 
-# Test configuration
-BASE_URL = "http://localhost:8001"
+# Test configuration - Use Railway backend URL as configured in frontend
+BASE_URL = "https://teamwellnesscompanysite-production.up.railway.app"
 TEST_USER_DATA = {
     "email": "sarah.wellness@teamwelly.com",
     "name": "Sarah Wellness",
