@@ -97,6 +97,20 @@ app.include_router(auth.router, prefix="/api/auth-legacy", tags=["Legacy Authent
 app.include_router(programs.router, prefix="/api/programs", tags=["Programs"])
 app.include_router(analytics.router, prefix="/api/analytics", tags=["Analytics"])
 
+# Debug endpoint to check environment variables
+@app.get("/debug/env")
+async def debug_env():
+    return {
+        "twitter_client_id": os.getenv('TWITTER_CLIENT_ID', 'NOT_SET'),
+        "google_client_id": os.getenv('GOOGLE_CLIENT_ID', 'NOT_SET'),
+        "apple_service_id": os.getenv('APPLE_SERVICE_ID', 'NOT_SET'),
+        "env_vars_loaded": {
+            "twitter": bool(os.getenv('TWITTER_CLIENT_ID')),
+            "google": bool(os.getenv('GOOGLE_CLIENT_ID')),
+            "apple": bool(os.getenv('APPLE_SERVICE_ID'))
+        }
+    }
+
 # API Info endpoint
 @app.get("/api/info")
 async def api_info():
