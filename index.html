@@ -458,6 +458,30 @@
             }
         });
 
+        // Twitter/X OAuth Functions
+        async function initiateTwitterOAuth() {
+            try {
+                // Use the Railway backend URL directly
+                const backendUrl = 'https://teamwellnesscompanysite-production.up.railway.app';
+                
+                // Show loading state
+                const twitterButton = document.querySelector('.x-sso span');
+                const originalText = twitterButton.textContent;
+                twitterButton.textContent = 'Redirecting...';
+                
+                // Redirect to Twitter OAuth endpoint
+                window.location.href = `${backendUrl}/api/auth/twitter`;
+                
+            } catch (error) {
+                console.error('Twitter OAuth initiation failed:', error);
+                alert('Failed to start Twitter sign-in. Please try again.');
+                
+                // Reset button text
+                const twitterButton = document.querySelector('.x-sso span');
+                twitterButton.textContent = 'Continue with X';
+            }
+        }
+
         // Apple OAuth Functions
         async function initiateAppleOAuth() {
             try {
