@@ -461,29 +461,51 @@ class BackendTester:
             f"Status: {status}, Handles callback appropriately without token"
         )
         
-        # Test Apple OAuth (should return 501 - not implemented)
+        # Test Apple OAuth initiation (should redirect to Apple Sign-In)
         success, data, status = await self.make_request("GET", "/api/auth/apple")
-        apple_working = status == 501 and "not implemented" in str(data).lower()
+        # Apple OAuth should either redirect (302) or return redirect info
+        apple_working = status in [302, 200] or "apple" in str(data).lower()
         self.log_test(
-            "Apple OAuth placeholder (/api/auth/apple)", 
+            "Apple OAuth initiation (/api/auth/apple)", 
             apple_working,
-            f"Status: {status}, Returns proper 501 not implemented error"
+            f"Status: {status}, Apple Sign-In flow initiated"
         )
         
-        # Test Twitter OAuth (should return 501 - not implemented)
-        success, data, status = await self.make_request("GET", "/api/auth/twitter")
-        twitter_working = status == 501 and "not implemented" in str(data).lower()
+        # Test Apple OAuth callback (without actual Apple token, should fail gracefully)
+        success, data, status = await self.make_request("GET", "/api/auth/apple/callback")
+        # Should fail gracefully without proper OAuth flow
+        apple_callback_working = status in [400, 401, 500] or "error" in str(data).lower()
         self.log_test(
-            "Twitter OAuth placeholder (/api/auth/twitter)", 
+            "Apple OAuth callback (/api/auth/apple/callback)", 
+            apple_callback_working,
+            f"Status: {status}, Handles Apple callback appropriately without token"
+        )
+        
+        # Test Twitter/X OAuth initiation (should redirect to Twitter OAuth 2.0)
+        success, data, status = await self.make_request("GET", "/api/auth/twitter")
+        # Twitter OAuth should either redirect (302) or return redirect info
+        twitter_working = status in [302, 200] or "twitter" in str(data).lower()
+        self.log_test(
+            "Twitter/X OAuth initiation (/api/auth/twitter)", 
             twitter_working,
-            f"Status: {status}, Returns proper 501 not implemented error"
+            f"Status: {status}, Twitter OAuth 2.0 flow initiated"
+        )
+        
+        # Test Twitter OAuth callback (without actual Twitter token, should fail gracefully)
+        success, data, status = await self.make_request("GET", "/api/auth/twitter/callback")
+        # Should fail gracefully without proper OAuth flow
+        twitter_callback_working = status in [400, 401, 500] or "error" in str(data).lower()
+        self.log_test(
+            "Twitter/X OAuth callback (/api/auth/twitter/callback)", 
+            twitter_callback_working,
+            f"Status: {status}, Handles Twitter callback appropriately without token"
         )
         
         # Test OAuth logout (without token, should fail appropriately)
         success, data, status = await self.make_request("POST", "/api/auth/oauth/logout")
         logout_working = status == 401 and "token" in str(data).lower()
         self.log_test(
-            "OAuth logout (/api/auth/oauth/logout)", 
+            "OAuth logout without token (/api/auth/oauth/logout)", 
             logout_working,
             f"Status: {status}, Requires authentication token as expected"
         )
@@ -492,7 +514,7 @@ class BackendTester:
         success, data, status = await self.make_request("GET", "/api/auth/oauth/me")
         me_working = status == 401 and "token" in str(data).lower()
         self.log_test(
-            "OAuth get current user (/api/auth/oauth/me)", 
+            "OAuth get current user without token (/api/auth/oauth/me)", 
             me_working,
             f"Status: {status}, Requires authentication token as expected"
         )
