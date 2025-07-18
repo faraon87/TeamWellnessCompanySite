@@ -88,7 +88,8 @@ app.include_router(oauth_router, prefix="/api", tags=["OAuth Authentication"])
 
 # Include existing routers with /api prefix
 app.include_router(auth.router, prefix="/api/auth-legacy", tags=["Legacy Authentication"])
-app.include_router(payments.router, prefix="/api/payments-legacy", tags=["Legacy Payments"])
+# Temporarily disabled payments router due to emergentintegrations dependency
+# app.include_router(payments.router, prefix="/api/payments-legacy", tags=["Legacy Payments"])
 app.include_router(ai_chat.router, prefix="/api/ai", tags=["AI Chat"])
 
 app.include_router(programs.router, prefix="/api/programs", tags=["Programs"])
