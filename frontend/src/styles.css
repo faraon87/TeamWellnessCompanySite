@@ -1064,3 +1064,335 @@ body::before {
         max-width: 280px;
     }
 }
+
+/* New Modal Styles */
+
+/* Sign Up Form */
+.signup-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #2D8A5A;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(15, 27, 46, 0.8);
+    border: 2px solid #2D8A5A;
+    color: #E8F0F5;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 14px;
+    border-radius: 0;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    background: rgba(45, 138, 90, 0.1);
+    border-color: #4AE54A;
+}
+
+.form-group input::placeholder {
+    color: rgba(232, 240, 245, 0.6);
+}
+
+/* Founders Modal */
+.founders-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.founder-profile {
+    text-align: center;
+    padding: 20px;
+    background: rgba(15, 27, 46, 0.3);
+    border-left: 3px solid #2D8A5A;
+}
+
+.founder-image-placeholder {
+    margin: 0 auto 20px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #2D8A5A;
+}
+
+.founder-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.founder-profile h3 {
+    color: #2D8A5A;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.founder-profile h4 {
+    color: #4AE54A;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.founder-profile p {
+    color: #E8F0F5;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    opacity: 0.9;
+    text-align: left;
+}
+
+/* Pricing Navigation Buttons */
+.pricing-nav-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* Individual Pricing Table */
+.individual-pricing-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.integration-note {
+    background: rgba(45, 138, 90, 0.1);
+    padding: 15px;
+    border: 2px solid #2D8A5A;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.integration-note p {
+    color: #2D8A5A;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Enterprise Pricing Table */
+.enterprise-pricing-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.enterprise-features {
+    background: rgba(15, 27, 46, 0.3);
+    padding: 20px;
+    border-left: 3px solid #2D8A5A;
+    margin: 20px 0;
+}
+
+.enterprise-features h4 {
+    color: #2D8A5A;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.enterprise-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.enterprise-features li {
+    color: #E8F0F5;
+    font-size: 14px;
+    padding: 5px 0;
+    position: relative;
+    padding-left: 20px;
+    opacity: 0.9;
+}
+
+.enterprise-features li:before {
+    content: "✓";
+    color: #2D8A5A;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* FAQ Modal */
+.faq-content section {
+    margin-bottom: 30px;
+}
+
+.why-welly-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.why-item {
+    background: rgba(15, 27, 46, 0.4);
+    padding: 20px;
+    border-left: 3px solid #2D8A5A;
+}
+
+.why-item h4 {
+    color: #2D8A5A;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(15, 27, 46, 0.3);
+    border-left: 3px solid #2D8A5A;
+}
+
+.faq-item h4 {
+    color: #2D8A5A;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.faq-item p {
+    color: #E8F0F5;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Founders Section Clickable */
+.founders-section {
+    background: rgba(15, 27, 46, 0.3);
+    padding: 20px;
+    border-left: 3px solid #2D8A5A;
+    margin: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.founders-section:hover {
+    background: rgba(45, 138, 90, 0.1);
+    border-color: #4AE54A;
+}
+
+.founders-section h3:hover {
+    color: #4AE54A;
+}
+
+/* Pricing Banner */
+.pricing-banner {
+    background: rgba(15, 27, 46, 0.3);
+    padding: 20px;
+    border-left: 3px solid #2D8A5A;
+    margin-bottom: 30px;
+}
+
+.pricing-banner h3 {
+    color: #2D8A5A;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.pricing-banner p {
+    color: #E8F0F5;
+    font-size: 16px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.pricing-banner ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pricing-banner li {
+    color: #E8F0F5;
+    font-size: 14px;
+    padding: 5px 0;
+    position: relative;
+    padding-left: 20px;
+    opacity: 0.9;
+}
+
+.pricing-banner li:before {
+    content: "✓";
+    color: #2D8A5A;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+@media (max-width: 768px) {
+    .founders-content {
+        gap: 30px;
+    }
+    
+    .individual-pricing-table {
+        grid-template-columns: 1fr;
+    }
+    
+    .enterprise-pricing-table {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .why-welly-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pricing-nav-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .enterprise-pricing-table {
+        grid-template-columns: 1fr;
+    }
+    
+    .founder-profile {
+        padding: 15px;
+    }
+    
+    .founder-image-placeholder {
+        width: 120px;
+        height: 120px;
+    }
+}
