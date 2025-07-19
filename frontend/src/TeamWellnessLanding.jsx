@@ -229,20 +229,26 @@ const TeamWellnessLanding = () => {
       {showLegalModal && (
         <div className="modal" style={{display: 'block'}}>
           <div className="modal-content">
-            <span className="close" onClick={() => setShowLegalModal(false)}>&times;</span>
-            <h2>Legal Notice</h2>
-            <div className="legal-content">
-              <h3>Privacy Policy</h3>
-              <p>Your privacy is important to us. We collect and use your information in accordance with our privacy policy to provide and improve our wellness services.</p>
-              
-              <h3>Terms of Service</h3>
-              <p>By using our platform, you agree to our terms of service. Our wellness programs are designed to support your health journey and are not a substitute for professional medical advice.</p>
-              
-              <h3>Data Security</h3>
-              <p>We employ industry-standard security measures to protect your personal and health information. All data is encrypted and stored securely.</p>
-              
-              <h3>Contact Information</h3>
-              <p>For legal inquiries, please contact us at <a href="mailto:Drchriszeiter@gmail.com">Drchriszeiter@gmail.com</a></p>
+            <div className="modal-header">
+              <h2>Legal Notice</h2>
+              <span className="close" onClick={() => setShowLegalModal(false)}>&times;</span>
+            </div>
+            <div className="modal-body">
+              <div className="legal-notice-content">
+                <div className="legal-placeholder">
+                  <h3>Privacy Policy</h3>
+                  <p>Your privacy is important to us. We collect and use your information in accordance with our privacy policy to provide and improve our wellness services.</p>
+                  
+                  <h3>Terms of Service</h3>
+                  <p>By using our platform, you agree to our terms of service. Our wellness programs are designed to support your health journey and are not a substitute for professional medical advice.</p>
+                  
+                  <h3>Data Security</h3>
+                  <p>We employ industry-standard security measures to protect your personal and health information. All data is encrypted and stored securely.</p>
+                  
+                  <h3>Contact Information</h3>
+                  <p>For legal inquiries, please contact us at <a href="mailto:Drchriszeiter@gmail.com" className="contact-link">Drchriszeiter@gmail.com</a></p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
