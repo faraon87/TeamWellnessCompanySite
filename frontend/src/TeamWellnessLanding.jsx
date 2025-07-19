@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8001';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 
+  (window.location.hostname.includes('railway.app') ? 
+    'https://teamwellnesscompanysite-production.up.railway.app' : 
+    'http://localhost:8001');
 
 const TeamWellnessLanding = () => {
   const [showSignInModal, setShowSignInModal] = useState(false);
