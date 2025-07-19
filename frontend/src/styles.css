@@ -90,6 +90,42 @@ body {
     line-height: 1.4;
 }
 
+.subtitle-section {
+    margin-bottom: 60px;
+    max-width: 600px;
+}
+
+.subtitle-header {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    line-height: 1.3;
+    color: #E8F0F5;
+}
+
+.subtitle-tagline {
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    color: #B8C8D3;
+    font-style: italic;
+}
+
+.subtitle-description {
+    font-size: 12.6px;
+    font-weight: 400;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    letter-spacing: 0.8px;
+    line-height: 1.6;
+    opacity: 0.9;
+    color: #E8F0F5;
+}
+
 /* Buttons Grid */
 .buttons-grid {
     display: grid;
