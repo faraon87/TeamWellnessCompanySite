@@ -174,7 +174,9 @@ const TeamWellnessLanding = () => {
               <div className="learn-more-content">
                 <section>
                   <h3>🎯 Our Mission</h3>
-                  <p>We transform workplace wellness through innovative programs and personalized solutions that boost employee engagement, reduce healthcare costs, and create thriving work environments.</p>
+                  <p>We believe that when people feel better, they lead better — at home, at work, and everywhere in between.</p>
+                  <p>Team Welly was created to make wellness actionable, measurable, and meaningful for both individuals and companies. Whether you're recovering from stress, aiming to move better, or leading a high-performing team, our platform helps you build sustainable routines that actually stick.</p>
+                  <p>We're not just another wellness app. We're a movement towards daily ownership of mind, body, and culture.</p>
                 </section>
                 
                 <section>
