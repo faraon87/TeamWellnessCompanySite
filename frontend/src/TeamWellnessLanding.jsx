@@ -271,6 +271,280 @@ const TeamWellnessLanding = () => {
           </div>
         </div>
       )}
+
+      {/* Sign Up Modal */}
+      {showSignUpModal && (
+        <div className="modal" style={{display: 'block'}}>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>Create Your Account</h2>
+              <span className="close" onClick={() => setShowSignUpModal(false)}>&times;</span>
+            </div>
+            <div className="modal-body">
+              <form className="signup-form">
+                <div className="form-group">
+                  <label>Full Name</label>
+                  <input type="text" placeholder="Enter your full name" required />
+                </div>
+                <div className="form-group">
+                  <label>Email Address</label>
+                  <input type="email" placeholder="Enter your email" required />
+                </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input type="password" placeholder="Create a password" required />
+                </div>
+                <div className="form-group">
+                  <label>Account Type</label>
+                  <select required>
+                    <option value="">Select account type</option>
+                    <option value="individual">Individual</option>
+                    <option value="corporate">Corporate</option>
+                  </select>
+                </div>
+                <button type="submit" className="cta-button primary">Create Account</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Meet the Founders Modal */}
+      {showFoundersModal && (
+        <div className="modal" style={{display: 'block'}}>
+          <div className="modal-content learn-more-modal">
+            <div className="modal-header">
+              <h2>Meet The Founders</h2>
+              <span className="close" onClick={() => setShowFoundersModal(false)}>&times;</span>
+            </div>
+            <div className="modal-body">
+              <div className="founders-content">
+                <div className="founder-profile">
+                  <div className="founder-image-placeholder">
+                    <img src="/api/placeholder/150/150" alt="Dr. Chris Zeiter" className="founder-image" />
+                  </div>
+                  <h3>Dr. Chris Zeiter, DC, CPT, CCWS</h3>
+                  <h4>Chiropractor · Trainer · Recovery Director · Corporate Wellness Specialist</h4>
+                  <p>Dr. Chris Zeiter's journey began with pain — years of unresolved back issues that affected not just his body, but his confidence, mindset, and daily life. One breakthrough moment changed everything: a single visit where someone finally listened to his story, addressed the root cause, and helped him move forward.</p>
+                  <p>That experience became his purpose.</p>
+                  <p>Today, Dr. Zeiter empowers others to take control of their health before pain becomes permanent. With a deep understanding of the human body, behavior change, and movement mechanics, he bridges the gap between passive treatment and proactive performance. His approach blends mobility, nervous system regulation, and real-world recovery tools to guide people from discomfort and confusion toward consistency, clarity, and long-term wellness.</p>
+                  <p>Driven by personal experience and professional expertise, Dr. Zeiter has helped countless individuals move better, feel stronger, and reclaim their potential — not just in the gym, but in work, life, and everything in between.</p>
+                </div>
+
+                <div className="founder-profile">
+                  <div className="founder-image-placeholder">
+                    <img src="/api/placeholder/150/150" alt="Franchesca Yates" className="founder-image" />
+                  </div>
+                  <h3>Franchesca Yates, SHRM-CP</h3>
+                  <h4>People & Culture Manager · HR Consultant · Wellness Culture Strategist · Certified Sculpt Instructor</h4>
+                  <p>With 7+ years of experience in fast-paced, high-growth companies, Fran has built HR programs that prioritize real employee wellbeing — not just check-the-box perks. She's supported teams through sensitive employee relations cases, led culture-building initiatives across both remote and hybrid teams, and helped implement wellness strategies that fuel both people and performance. Her approach is grounded in empathy, transparency, and a deep commitment to helping employees succeed while companies scale sustainably.</p>
+                  <p>Fran's passion for wellness doesn't stop at the workplace. As a sculpt instructor, she has seen firsthand how movement can build resilience, boost confidence, and reconnect people to their purpose. After years of navigating demanding roles, she understands what it takes to show up for yourself — mentally, physically, and emotionally — and she's bringing that lived experience into everything she helps design.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Individual Pricing Modal */}
+      {showIndividualPricingModal && (
+        <div className="modal" style={{display: 'block'}}>
+          <div className="modal-content learn-more-modal">
+            <div className="modal-header">
+              <h2>Individual Pricing</h2>
+              <span className="close" onClick={() => setShowIndividualPricingModal(false)}>&times;</span>
+            </div>
+            <div className="modal-body">
+              <div className="pricing-banner">
+                <h3>Individual Plans</h3>
+                <p>Choose your level of commitment and support.</p>
+                <ul>
+                  <li><strong>Personalized Coaching</strong> - 1-on-1 sessions with certified professionals</li>
+                  <li><strong>Wellness Challenges</strong> - Community-driven fitness and health goals</li>
+                  <li><strong>Progress Tracking</strong> - Comprehensive health and fitness monitoring</li>
+                  <li><strong>Resource Library</strong> - Expert-curated wellness content</li>
+                </ul>
+              </div>
+              
+              <div className="individual-pricing-table">
+                <div className="pricing-tier">
+                  <h4>Core Recovery</h4>
+                  <div className="price">$99/mo</div>
+                  <p>Guided mobility + breathwork routines, daily wellness dashboard</p>
+                </div>
+                <div className="pricing-tier">
+                  <h4>Flex & Focus</h4>
+                  <div className="price">$199/mo</div>
+                  <p>All of Core + custom progressions + email support</p>
+                </div>
+                <div className="pricing-tier featured">
+                  <h4>1-on-1 Coaching</h4>
+                  <div className="price">$299/mo</div>
+                  <p>All of above + 1 monthly virtual session with a coach</p>
+                </div>
+                <div className="pricing-tier">
+                  <h4>Elite Plan</h4>
+                  <div className="price">$499/mo</div>
+                  <p>Full access, advanced tracking, 2x coaching sessions, performance programming</p>
+                </div>
+              </div>
+              
+              <div className="integration-note">
+                <p><strong>All plans include:</strong> Apple Health/Fitbit/Oura integration + WellyPoints system</p>
+              </div>
+              
+              <div className="action-buttons">
+                <button className="cta-button primary">Start my Plan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Enterprise Pricing Modal */}
+      {showEnterprisePricingModal && (
+        <div className="modal" style={{display: 'block'}}>
+          <div className="modal-content learn-more-modal">
+            <div className="modal-header">
+              <h2>Enterprise Pricing</h2>
+              <span className="close" onClick={() => setShowEnterprisePricingModal(false)}>&times;</span>
+            </div>
+            <div className="modal-body">
+              <div className="pricing-banner">
+                <h3>Corporate Wellness</h3>
+                <p>Bring better health to your culture.</p>
+                <ul>
+                  <li><strong>Comprehensive Wellness Programs</strong> - Fitness, nutrition, mental health</li>
+                  <li><strong>Employee Engagement Platform</strong> - Gamification and challenges</li>
+                  <li><strong>Health Risk Assessments</strong> - Data-driven wellness insights</li>
+                  <li><strong>ROI Analytics</strong> - Measure program effectiveness</li>
+                </ul>
+              </div>
+              
+              <div className="enterprise-pricing-table">
+                <div className="corporate-tier">
+                  <div className="team-size">0–15 employees</div>
+                  <div className="price">$350 Monthly</div>
+                </div>
+                <div className="corporate-tier">
+                  <div className="team-size">16–50 employees</div>
+                  <div className="price">$750 Monthly</div>
+                </div>
+                <div className="corporate-tier">
+                  <div className="team-size">51–100 employees</div>
+                  <div className="price">$1,200 Monthly</div>
+                </div>
+                <div className="corporate-tier">
+                  <div className="team-size">100+ employees</div>
+                  <div className="price">Custom quote</div>
+                </div>
+              </div>
+              
+              <div className="enterprise-features">
+                <h4>What's Included:</h4>
+                <ul>
+                  <li>Monthly virtual wellness talks</li>
+                  <li>Employee onboarding and wellness assessments</li>
+                  <li>1-on-1 coaching access (optional)</li>
+                  <li>Admin dashboard with usage + engagement data</li>
+                  <li>Customized reporting for ROI tracking</li>
+                </ul>
+              </div>
+              
+              <div className="action-buttons">
+                <button className="cta-button primary" onClick={() => window.open('https://calendly.com/drchriszeiter', '_blank')}>
+                  Talk to Sales
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* FAQ Modal */}
+      {showFAQModal && (
+        <div className="modal" style={{display: 'block'}}>
+          <div className="modal-content learn-more-modal">
+            <div className="modal-header">
+              <h2>FAQ & What's Coming</h2>
+              <span className="close" onClick={() => setShowFAQModal(false)}>&times;</span>
+            </div>
+            <div className="modal-body">
+              <div className="faq-content">
+                <section>
+                  <h3>What's Coming</h3>
+                  <p>We're building for now and the future.</p>
+                  
+                  <h4>Phase 1 (Months 1–3):</h4>
+                  <ul>
+                    <li>Daily dashboard, program library, and wellness goals</li>
+                    <li>WellyPoints + HR reporting system</li>
+                    <li>Apple Health / Fitbit / Oura Ring syncing</li>
+                  </ul>
+                  
+                  <h4>Phase 2 (Months 4–6):</h4>
+                  <ul>
+                    <li>AI-powered program recommendations</li>
+                    <li>Video coaching + scheduling tools</li>
+                    <li>Community leaderboards + challenge automation</li>
+                    <li>Deep analytics & ROI tracking</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h3>Why Team Welly?</h3>
+                  <div className="why-welly-grid">
+                    <div className="why-item">
+                      <h4>We're proactive, not reactive.</h4>
+                      <p>Burnout, stress, and disconnection don't come with easy fixes — and many companies simply don't have the tools to address them. We meet you where you are and help build simple, sustainable systems that support wellbeing from the inside out.</p>
+                    </div>
+                    <div className="why-item">
+                      <h4>We solve real pain points.</h4>
+                      <p>Lack of consistency. Low engagement. Mental fatigue. We've seen it, supported it, and now we're creating wellness solutions that truly work in fast-moving, high-pressure environments.</p>
+                    </div>
+                    <div className="why-item">
+                      <h4>Wellness grounded in real-world experience.</h4>
+                      <p>With backgrounds in HR and holistic health, we understand what it takes to support people — emotionally, mentally, and physically — while helping your business thrive.</p>
+                    </div>
+                    <div className="why-item">
+                      <h4>Personalized, secure, and built for scale.</h4>
+                      <p>Whether your teams are remote, in-office, or hybrid across the U.S., our platform adapts to your needs — with data security, flexibility, and measurable outcomes at its core.</p>
+                    </div>
+                    <div className="why-item">
+                      <h4>Human-centered, never one-size-fits-all.</h4>
+                      <p>We blend everyday simplicity with intentional care — so wellness feels accessible, personal, and part of the culture.</p>
+                    </div>
+                    <div className="why-item">
+                      <h4>Because when your people feel better, they perform better.</h4>
+                      <p>We turn daily habits into long-term resilience, engagement, and impact.</p>
+                    </div>
+                  </div>
+                </section>
+
+                <section>
+                  <h3>FAQ</h3>
+                  <div className="faq-item">
+                    <h4>Q: Can my company customize the program?</h4>
+                    <p>A: Yes. We work with People teams to tailor onboarding, programming, and engagement strategy.</p>
+                  </div>
+                  <div className="faq-item">
+                    <h4>Q: Are coaching sessions included?</h4>
+                    <p>A: Individuals can choose coaching tiers. Companies can add sessions à la carte or in bundles.</p>
+                  </div>
+                  <div className="faq-item">
+                    <h4>Q: How long does onboarding take?</h4>
+                    <p>A: Less than 5 minutes for individuals. For companies, 10-14 days depending on company size.</p>
+                  </div>
+                  <div className="faq-item">
+                    <h4>Q: What tech is supported?</h4>
+                    <p>A: Apple HealthKit, Fitbit, Oura, Calendly/Zoom, Outlook, Eventbrite, SurveyMonkey, Google Forms, and more.</p>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
