@@ -9,6 +9,11 @@ const TeamWellnessLanding = () => {
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showLearnMoreModal, setShowLearnMoreModal] = useState(false);
   const [showLegalModal, setShowLegalModal] = useState(false);
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [showFoundersModal, setShowFoundersModal] = useState(false);
+  const [showIndividualPricingModal, setShowIndividualPricingModal] = useState(false);
+  const [showEnterprisePricingModal, setShowEnterprisePricingModal] = useState(false);
+  const [showFAQModal, setShowFAQModal] = useState(false);
 
   // OAuth Functions
   const initiateGoogleOAuth = () => {
