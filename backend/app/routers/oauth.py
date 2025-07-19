@@ -513,9 +513,8 @@ async def twitter_login(request: Request):
         if not client_id:
             raise HTTPException(status_code=500, detail="Twitter OAuth not configured")
         
-        # Build redirect URI using absolute URL
-        base_url = str(request.base_url).rstrip('/')
-        redirect_uri = f"{base_url}/api/auth/twitter/callback"
+        # Build redirect URI using HTTPS URL
+        redirect_uri = "https://teamwellnesscompanysite-production.up.railway.app/api/auth/twitter/callback"
         
         # Generate state for CSRF protection
         state = str(uuid.uuid4())
