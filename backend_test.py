@@ -598,27 +598,33 @@ class BackendTester:
             self.log_test("CORS preflight request", False, f"Error: {str(e)}")
     
     async def run_all_tests(self):
-        """Run all backend tests"""
-        print("🚀 Starting Team Welly Backend API Tests")
+        """Run all backend tests with focus on OAuth functionality"""
+        print("🚀 Starting Team Welly Backend API Tests - OAuth Focus")
         print(f"Testing against: {BASE_URL}")
         print("=" * 60)
         
         try:
+            # Run health checks first to ensure backend is accessible
             await self.test_health_endpoints()
+            
+            # Run authentication to get token for OAuth session tests
             await self.test_auth_endpoints()
-            await self.test_oauth_endpoints()  # New OAuth tests
-            await self.test_programs_endpoints()
-            await self.test_ai_chat_endpoints()
-            await self.test_payment_endpoints()
-            await self.test_analytics_endpoints()
+            
+            # PRIMARY FOCUS: OAuth functionality testing
+            await self.test_oauth_endpoints()
+            
+            # Test CORS for OAuth requests
             await self.test_cors_configuration()
+            
+            # Optional: Run other tests if time permits (but OAuth is priority)
+            print("\n📝 Note: Focusing on OAuth testing as requested. Other endpoint tests available but not priority.")
             
         except Exception as e:
             print(f"❌ Test suite error: {str(e)}")
         
         # Print summary
         print("\n" + "=" * 60)
-        print("📋 TEST SUMMARY")
+        print("📋 OAUTH TEST SUMMARY")
         print("=" * 60)
         
         total_tests = len(self.test_results)
@@ -629,6 +635,18 @@ class BackendTester:
         print(f"✅ Passed: {passed_tests}")
         print(f"❌ Failed: {failed_tests}")
         print(f"Success Rate: {(passed_tests/total_tests*100):.1f}%" if total_tests > 0 else "No tests run")
+        
+        # Separate OAuth-specific results
+        oauth_tests = [result for result in self.test_results if "oauth" in result["test"].lower() or "google" in result["test"].lower() or "apple" in result["test"].lower() or "twitter" in result["test"].lower()]
+        oauth_passed = sum(1 for result in oauth_tests if result["success"])
+        oauth_total = len(oauth_tests)
+        
+        if oauth_total > 0:
+            print(f"\n🔐 OAuth-Specific Results:")
+            print(f"OAuth Tests: {oauth_total}")
+            print(f"✅ OAuth Passed: {oauth_passed}")
+            print(f"❌ OAuth Failed: {oauth_total - oauth_passed}")
+            print(f"OAuth Success Rate: {(oauth_passed/oauth_total*100):.1f}%")
         
         if failed_tests > 0:
             print("\n❌ FAILED TESTS:")
