@@ -27,7 +27,7 @@ const TeamWellnessLanding = () => {
     <div className="container">
       {/* Logo in top right */}
       <div className="logo">
-        <img src="/public/twclogo_new.png" alt="Team Welly Logo" className="team-welly-logo-img" />
+        <img src="/twclogo_new.png" alt="Team Welly Logo" className="team-welly-logo-img" />
       </div>
 
       {/* Main Content */}
