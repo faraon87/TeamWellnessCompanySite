@@ -1392,7 +1392,7 @@ body::before {
     background: rgba(15, 27, 46, 0.3);
     padding: 20px;
     border-left: 3px solid #2D8A5A;
-    margin: 20px 0;
+    margin: 15px 0;
     transition: all 0.3s ease;
 }
 
