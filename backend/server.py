@@ -124,72 +124,40 @@ async def apple_app_site_association():
 @app.get("/debug/apple-oauth")
 async def debug_apple_oauth():
     """Comprehensive Apple OAuth configuration diagnostics"""
-    import jwt as pyjwt
-    from datetime import datetime, timedelta
     
-    try:
-        # Check environment variables
-        service_id = os.getenv('APPLE_SERVICE_ID')
-        team_id = os.getenv('APPLE_TEAM_ID')
-        key_id = os.getenv('APPLE_KEY_ID')
-        private_key = os.getenv('APPLE_PRIVATE_KEY')
-        
-        # Environment check
-        env_status = {
-            "APPLE_SERVICE_ID": {"value": service_id, "status": "✅ SET" if service_id else "❌ MISSING"},
-            "APPLE_TEAM_ID": {"value": team_id, "status": "✅ SET" if team_id else "❌ MISSING"},
-            "APPLE_KEY_ID": {"value": key_id, "status": "✅ SET" if key_id else "❌ MISSING"},
-            "APPLE_PRIVATE_KEY": {"value": "***REDACTED***", "status": "✅ SET" if private_key else "❌ MISSING"}
-        }
-        
-        # Test JWT generation
-        jwt_test = {"status": "❌ FAILED", "error": None}
-        if all([service_id, team_id, key_id, private_key]):
-            try:
-                # Handle Railway environment variable format
-                if private_key and '\\n' in private_key:
-                    private_key = private_key.replace('\\n', '\n')
-                
-                now = datetime.utcnow()
-                payload = {
-                    "iss": team_id,
-                    "aud": "https://appleid.apple.com",
-                    "sub": service_id,
-                    "iat": int(now.timestamp()),
-                    "exp": int((now + timedelta(days=150)).timestamp()),
-                }
-                
-                test_jwt = pyjwt.encode(payload, private_key, algorithm="ES256", headers={"kid": key_id})
-                jwt_test = {"status": "✅ SUCCESS", "jwt_length": len(test_jwt)}
-                
-            except Exception as e:
-                jwt_test = {"status": "❌ FAILED", "error": str(e)}
-        
-        # Expected configuration
-        expected_config = {
-            "service_id": service_id or "com.teamwellnesscompany.web",
-            "redirect_uri": "https://teamwellnesscompanysite-production.up.railway.app/api/auth/apple/callback",
-            "domain": "teamwellnesscompanysite-production.up.railway.app",
-            "return_url": "https://teamwellnesscompanysite-production.up.railway.app/api/auth/apple/callback"
-        }
-        
-        return {
-            "timestamp": datetime.utcnow().isoformat(),
-            "environment_variables": env_status,
-            "jwt_generation": jwt_test,
-            "expected_apple_configuration": expected_config,
-            "domain_verification_url": "https://teamwellnesscompanysite-production.up.railway.app/.well-known/apple-developer-domain-association.txt",
-            "debug_instructions": {
-                "1": "Check if Service ID is enabled for 'Sign in with Apple'",
-                "2": "Verify Primary App ID is set in Service ID configuration",
-                "3": "Confirm domain verification status is 'Verified'",
-                "4": "Double-check Return URLs exactly match expected_config",
-                "5": "Ensure email sources are configured and verified"
-            }
-        }
-        
-    except Exception as e:
-        return {"error": f"Diagnostic failed: {str(e)}"}
+    # Check environment variables
+    service_id = os.getenv('APPLE_SERVICE_ID')
+    team_id = os.getenv('APPLE_TEAM_ID') 
+    key_id = os.getenv('APPLE_KEY_ID')
+    private_key = os.getenv('APPLE_PRIVATE_KEY')
+    
+    # Environment check
+    env_status = {
+        "APPLE_SERVICE_ID": service_id or "NOT_SET",
+        "APPLE_TEAM_ID": team_id or "NOT_SET", 
+        "APPLE_KEY_ID": key_id or "NOT_SET",
+        "APPLE_PRIVATE_KEY": "SET" if private_key else "NOT_SET"
+    }
+    
+    # Expected configuration
+    expected_config = {
+        "service_id": service_id or "com.teamwellnesscompany.web",
+        "redirect_uri": "https://teamwellnesscompanysite-production.up.railway.app/api/auth/apple/callback",
+        "domain": "teamwellnesscompanysite-production.up.railway.app"
+    }
+    
+    return {
+        "environment_variables": env_status,
+        "expected_apple_configuration": expected_config,
+        "domain_verification_url": "/.well-known/apple-developer-domain-association.txt",
+        "instructions": [
+            "1. Check if Service ID is enabled for 'Sign in with Apple'",
+            "2. Verify Primary App ID is set in Service ID configuration", 
+            "3. Confirm domain verification status is 'Verified'",
+            "4. Double-check Return URLs exactly match expected redirect_uri",
+            "5. Ensure email sources are configured and verified"
+        ]
+    }
 
 # Debug endpoint to check environment variables
 @app.get("/debug/env")
