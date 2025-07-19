@@ -452,23 +452,32 @@ const TeamWellnessLanding = () => {
             <div className="modal-body">
               <div className="faq-content">
                 <section>
-                  <h3>What's Coming</h3>
-                  <p>We're building for now and the future.</p>
-                  
-                  <h4>Phase 1 (Months 1–3):</h4>
-                  <ul>
-                    <li>Daily dashboard, program library, and wellness goals</li>
-                    <li>WellyPoints + HR reporting system</li>
-                    <li>Apple Health / Fitbit / Oura Ring syncing</li>
-                  </ul>
-                  
-                  <h4>Phase 2 (Months 4–6):</h4>
-                  <ul>
-                    <li>AI-powered program recommendations</li>
-                    <li>Video coaching + scheduling tools</li>
-                    <li>Community leaderboards + challenge automation</li>
-                    <li>Deep analytics & ROI tracking</li>
-                  </ul>
+                  <div className="whats-coming-section">
+                    <h3 className="centered-title">We're building for now and the future. Coming Soon:</h3>
+                    
+                    <div className="phases-container">
+                      <div className="phase-column">
+                        <h4>Phase 1 (Months 1–3)</h4>
+                        <ul>
+                          <li>Daily dashboard, program library, and wellness goals</li>
+                          <li>WellyPoints + HR reporting system</li>
+                          <li>Apple Health / Fitbit / Oura Ring syncing</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="phase-divider"></div>
+                      
+                      <div className="phase-column">
+                        <h4>Phase 2 (Months 4–6)</h4>
+                        <ul>
+                          <li>AI-powered program recommendations</li>
+                          <li>Video coaching + scheduling tools</li>
+                          <li>Community leaderboards + challenge automation</li>
+                          <li>Deep analytics & ROI tracking</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </section>
 
                 <section>
