@@ -162,60 +162,64 @@ const TeamWellnessLanding = () => {
       {/* Learn More Modal */}
       {showLearnMoreModal && (
         <div className="modal" style={{display: 'block'}}>
-          <div className="modal-content">
-            <span className="close" onClick={() => setShowLearnMoreModal(false)}>&times;</span>
-            <h2>About Team Wellness Company</h2>
-            
-            <div className="modal-sections">
-              <div className="modal-section">
-                <h3>🎯 Our Mission</h3>
-                <p>We transform workplace wellness through innovative programs and personalized solutions that boost employee engagement, reduce healthcare costs, and create thriving work environments.</p>
-              </div>
-              
-              <div className="modal-section">
-                <h3>💼 Corporate Solutions</h3>
-                <ul>
-                  <li><strong>Comprehensive Wellness Programs</strong> - Fitness, nutrition, mental health</li>
-                  <li><strong>Employee Engagement Platform</strong> - Gamification and challenges</li>
-                  <li><strong>Health Risk Assessments</strong> - Data-driven wellness insights</li>
-                  <li><strong>ROI Analytics</strong> - Measure program effectiveness</li>
-                </ul>
-              </div>
-              
-              <div className="modal-section">
-                <h3>👤 Individual Programs</h3>
-                <ul>
-                  <li><strong>Personalized Coaching</strong> - 1-on-1 sessions with certified professionals</li>
-                  <li><strong>Wellness Challenges</strong> - Community-driven fitness and health goals</li>
-                  <li><strong>Progress Tracking</strong> - Comprehensive health and fitness monitoring</li>
-                  <li><strong>Resource Library</strong> - Expert-curated wellness content</li>
-                </ul>
-              </div>
-              
-              <div className="modal-section pricing">
-                <h3>💰 Pricing</h3>
-                <div className="pricing-tiers">
-                  <div className="pricing-tier">
-                    <h4>Individual</h4>
-                    <p className="price">$29/month</p>
-                    <p>Personal wellness coaching and tracking</p>
-                  </div>
-                  <div className="pricing-tier featured">
-                    <h4>Corporate</h4>
-                    <p className="price">Custom</p>
-                    <p>Enterprise solutions for teams of all sizes</p>
-                  </div>
-                </div>
-              </div>
+          <div className="modal-content learn-more-modal">
+            <div className="modal-header">
+              <h2>About Team Wellness Company</h2>
+              <span className="close" onClick={() => setShowLearnMoreModal(false)}>&times;</span>
             </div>
-            
-            <div className="cta-section">
-              <button className="btn-primary" onClick={() => {setShowLearnMoreModal(false); setShowSignInModal(true);}}>
-                Sign Up Today! <span className="arrow">›</span>
-              </button>
-              <p className="contact-info">
-                Questions? Contact us at <a href="mailto:Drchriszeiter@gmail.com">Drchriszeiter@gmail.com</a>
-              </p>
+            <div className="modal-body">
+              <div className="learn-more-content">
+                <section>
+                  <h3>🎯 Our Mission</h3>
+                  <p>We transform workplace wellness through innovative programs and personalized solutions that boost employee engagement, reduce healthcare costs, and create thriving work environments.</p>
+                </section>
+                
+                <section>
+                  <h3>💼 Corporate Solutions</h3>
+                  <ul>
+                    <li><strong>Comprehensive Wellness Programs</strong> - Fitness, nutrition, mental health</li>
+                    <li><strong>Employee Engagement Platform</strong> - Gamification and challenges</li>
+                    <li><strong>Health Risk Assessments</strong> - Data-driven wellness insights</li>
+                    <li><strong>ROI Analytics</strong> - Measure program effectiveness</li>
+                  </ul>
+                </section>
+                
+                <section>
+                  <h3>👤 Individual Programs</h3>
+                  <ul>
+                    <li><strong>Personalized Coaching</strong> - 1-on-1 sessions with certified professionals</li>
+                    <li><strong>Wellness Challenges</strong> - Community-driven fitness and health goals</li>
+                    <li><strong>Progress Tracking</strong> - Comprehensive health and fitness monitoring</li>
+                    <li><strong>Resource Library</strong> - Expert-curated wellness content</li>
+                  </ul>
+                </section>
+                
+                <section>
+                  <h3>💰 Pricing</h3>
+                  <div className="pricing-table">
+                    <div className="pricing-tier">
+                      <h4>Individual</h4>
+                      <div className="price">$29/month</div>
+                      <p>Personal wellness coaching and tracking</p>
+                    </div>
+                    <div className="pricing-tier featured">
+                      <h4>Corporate</h4>
+                      <div className="price">Custom</div>
+                      <p>Enterprise solutions for teams of all sizes</p>
+                    </div>
+                  </div>
+                  
+                  <div className="action-buttons">
+                    <button className="cta-button primary" onClick={() => {setShowLearnMoreModal(false); setShowSignInModal(true);}}>
+                      Sign Up Today!
+                    </button>
+                  </div>
+                  
+                  <div className="contact-info">
+                    <p>Questions? Contact us at <a href="mailto:Drchriszeiter@gmail.com" className="contact-link">Drchriszeiter@gmail.com</a></p>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
         </div>
