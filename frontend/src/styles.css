@@ -15,7 +15,7 @@
 body {
     font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
     background-color: #0A0E1A;
-    background: url('/public/background.png') no-repeat center center fixed;
+    background: url('/background.png') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     color: #E8F0F5;
