@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 
-  (window.location.hostname.includes('railway.app') ? 
+  (typeof window !== 'undefined' && window.location.hostname.includes('railway.app') ? 
     'https://teamwellnesscompanysite-production.up.railway.app' : 
     'http://localhost:8001');
 
