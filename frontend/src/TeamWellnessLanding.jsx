@@ -205,89 +205,37 @@ const TeamWellnessLanding = () => {
                 </section>
                 
                 <section>
-                  <h3>💰 Pricing Plans</h3>
-                  
-                  {/* Individual Pricing */}
-                  <h4>Individual Plans</h4>
-                  <div className="pricing-table">
-                    <div className="pricing-tier">
-                      <h4>Basic</h4>
-                      <div className="price">$19/month</div>
-                      <p>Essential wellness tracking and resources</p>
-                      <ul>
-                        <li>Personal dashboard</li>
-                        <li>Basic health tracking</li>
-                        <li>Wellness library access</li>
-                        <li>Community challenges</li>
-                      </ul>
-                    </div>
-                    <div className="pricing-tier featured">
-                      <h4>Premium</h4>
-                      <div className="price">$39/month</div>
-                      <p>Complete wellness coaching experience</p>
-                      <ul>
-                        <li>Everything in Basic</li>
-                        <li>1-on-1 coaching sessions</li>
-                        <li>Personalized meal plans</li>
-                        <li>Priority support</li>
-                        <li>Advanced analytics</li>
-                      </ul>
-                    </div>
+                  <div className="founders-section">
+                    <h3 
+                      style={{cursor: 'pointer', textDecoration: 'underline'}} 
+                      onClick={() => setShowFoundersModal(true)}
+                    >
+                      👥 Meet The Founders
+                    </h3>
+                    <p>Click to learn about the team behind Team Wellness Company</p>
                   </div>
-
-                  {/* Corporate Pricing */}
-                  <h4>Corporate Solutions</h4>
-                  <div className="corporate-pricing">
-                    <div className="corporate-tier">
-                      <div className="team-size">Small Teams</div>
-                      <div className="price">$15/employee/month</div>
-                      <p>5-50 employees</p>
-                      <ul>
-                        <li>Employee wellness portal</li>
-                        <li>Basic analytics</li>
-                        <li>Group challenges</li>
-                        <li>Email support</li>
-                      </ul>
-                    </div>
-                    <div className="corporate-tier">
-                      <div className="team-size">Medium Teams</div>
-                      <div className="price">$12/employee/month</div>
-                      <p>51-250 employees</p>
-                      <ul>
-                        <li>Everything in Small</li>
-                        <li>Advanced analytics</li>
-                        <li>Custom challenges</li>
-                        <li>Dedicated support</li>
-                        <li>API integration</li>
-                      </ul>
-                    </div>
-                    <div className="corporate-tier">
-                      <div className="team-size">Enterprise</div>
-                      <div className="price">Custom Pricing</div>
-                      <p>250+ employees</p>
-                      <ul>
-                        <li>Everything in Medium</li>
-                        <li>White-label solution</li>
-                        <li>Custom integrations</li>
-                        <li>On-site training</li>
-                        <li>24/7 premium support</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Call to Action */}
-                  <div className="action-buttons">
-                    <button className="cta-button primary" onClick={() => {setShowLearnMoreModal(false); setShowSignInModal(true);}}>
-                      Sign Up Today!
+                </section>
+                
+                <section>
+                  <h3>📊 Pricing Options</h3>
+                  <div className="pricing-nav-buttons">
+                    <button className="cta-button secondary" onClick={() => setShowIndividualPricingModal(true)}>
+                      Individual Pricing
                     </button>
-                    <button className="cta-button secondary">
-                      Request Corporate Demo
+                    <button className="cta-button secondary" onClick={() => setShowEnterprisePricingModal(true)}>
+                      Enterprise Pricing
                     </button>
                   </div>
-                  
-                  <div className="contact-info">
-                    <p>Questions? <a href="mailto:Drchriszeiter@gmail.com" className="contact-link">Contact us</a> or <a href="https://calendly.com/drchriszeiter" target="_blank" rel="noopener noreferrer" className="contact-link">schedule a consultation</a></p>
-                  </div>
+                </section>
+
+                <section>
+                  <h3 
+                    style={{cursor: 'pointer', textDecoration: 'underline'}} 
+                    onClick={() => setShowFAQModal(true)}
+                  >
+                    ❓ FAQ & What's Coming
+                  </h3>
+                  <p>Learn about our roadmap and frequently asked questions</p>
                 </section>
               </div>
             </div>
