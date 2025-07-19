@@ -11,8 +11,8 @@ import sys
 from datetime import datetime
 from typing import Dict, Any, Optional
 
-# Test configuration - Use Railway backend for deployment verification
-BASE_URL = "https://teamwellnesscompanysite-production.up.railway.app"
+# Test configuration - Use production backend URL from environment
+BASE_URL = "https://api.teamwellnesscompany.com"
 TEST_USER_DATA = {
     "email": "sarah.wellness@teamwelly.com",
     "name": "Sarah Wellness",
