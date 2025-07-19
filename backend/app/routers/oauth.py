@@ -565,7 +565,7 @@ async def twitter_callback(request: Request):
             data={
                 "code": code,
                 "grant_type": "authorization_code",
-                "redirect_uri": str(request.url_for("twitter_callback")),
+                "redirect_uri": "https://teamwellnesscompanysite-production.up.railway.app/api/auth/twitter/callback",
                 "code_verifier": "challenge"
             },
             headers={"Content-Type": "application/x-www-form-urlencoded"}
