@@ -42,7 +42,16 @@ const TeamWellnessLanding = () => {
       <div className="main-content">
         <div className="header">
           <h1 className="main-title">TEAM WELLNESS COMPANY</h1>
-          <p className="subtitle">Transforming workplace wellness through innovative programs and personalized solutions</p>
+          <div className="subtitle-section">
+            <h2 className="subtitle-header">Custom Wellness for Teams & Individuals</h2>
+            <h3 className="subtitle-tagline">Feel better. Move better. Perform better.</h3>
+            <p className="subtitle-description">
+              Team Welly is your modern wellness partner, built for busy professionals and high-performing teams. 
+              Whether you're an HR leader creating a healthier workplace or an individual ready to take control 
+              of your well-being, our platform gives you the tools to build healthy habits, reduce stress, and 
+              unlock lasting energy – all in one place.
+            </p>
+          </div>
         </div>
         
         {/* Buttons Grid */}
