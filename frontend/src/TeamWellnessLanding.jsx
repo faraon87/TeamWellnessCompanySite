@@ -37,13 +37,19 @@ const TeamWellnessLanding = () => {
           <p className="subtitle">Transforming workplace wellness through innovative programs and personalized solutions</p>
         </div>
         
-        {/* Buttons */}
-        <div className="button-container">
-          <button className="btn-primary" onClick={() => setShowSignInModal(true)}>
-            SIGN IN <span className="arrow">›</span>
+        {/* Buttons Grid */}
+        <div className="buttons-grid">
+          <button className="action-button" onClick={() => setShowSignInModal(true)}>
+            SIGN IN
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="9,18 15,12 9,6"></polyline>
+            </svg>
           </button>
-          <button className="btn-secondary" onClick={() => setShowLearnMoreModal(true)}>
-            LEARN MORE <span className="arrow">›</span>
+          <button className="action-button" onClick={() => setShowLearnMoreModal(true)}>
+            LEARN MORE
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="9,18 15,12 9,6"></polyline>
+            </svg>
           </button>
         </div>
       </div>
