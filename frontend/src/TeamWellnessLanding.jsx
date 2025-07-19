@@ -185,26 +185,6 @@ const TeamWellnessLanding = () => {
                 </section>
                 
                 <section>
-                  <h3>💼 Corporate Solutions</h3>
-                  <ul>
-                    <li><strong>Comprehensive Wellness Programs</strong> - Fitness, nutrition, mental health</li>
-                    <li><strong>Employee Engagement Platform</strong> - Gamification and challenges</li>
-                    <li><strong>Health Risk Assessments</strong> - Data-driven wellness insights</li>
-                    <li><strong>ROI Analytics</strong> - Measure program effectiveness</li>
-                  </ul>
-                </section>
-                
-                <section>
-                  <h3>👤 Individual Programs</h3>
-                  <ul>
-                    <li><strong>Personalized Coaching</strong> - 1-on-1 sessions with certified professionals</li>
-                    <li><strong>Wellness Challenges</strong> - Community-driven fitness and health goals</li>
-                    <li><strong>Progress Tracking</strong> - Comprehensive health and fitness monitoring</li>
-                    <li><strong>Resource Library</strong> - Expert-curated wellness content</li>
-                  </ul>
-                </section>
-                
-                <section>
                   <div className="founders-section">
                     <h3 
                       style={{cursor: 'pointer', textDecoration: 'underline'}} 
