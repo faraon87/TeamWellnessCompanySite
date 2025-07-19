@@ -438,9 +438,14 @@ body {
 
 .founders-section {
     background: rgba(15, 27, 46, 0.3);
-    padding: 15px;
+    padding: 20px 15px;
     border-left: 3px solid #2D8A5A;
     margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 80px;
 }
 
 .founder {
