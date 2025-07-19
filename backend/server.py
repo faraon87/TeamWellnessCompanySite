@@ -99,6 +99,27 @@ app.include_router(auth.router, prefix="/api/auth-legacy", tags=["Legacy Authent
 app.include_router(programs.router, prefix="/api/programs", tags=["Programs"])
 app.include_router(analytics.router, prefix="/api/analytics", tags=["Analytics"])
 
+# Apple domain verification endpoint
+@app.get("/.well-known/apple-developer-domain-association.txt")
+async def apple_domain_verification():
+    """Apple domain verification file"""
+    return PlainTextResponse("apple-domain-verification=30afIBcvoegSIX")
+
+@app.get("/apple-app-site-association")
+async def apple_app_site_association():
+    """Apple App Site Association file"""
+    return {
+        "applinks": {
+            "apps": [],
+            "details": [
+                {
+                    "appID": "R7C8RHPVHC.com.teamwellnesscompany.web",
+                    "paths": ["*"]
+                }
+            ]
+        }
+    }
+
 # Debug endpoint to check environment variables
 @app.get("/debug/env")
 async def debug_env():
