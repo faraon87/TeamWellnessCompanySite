@@ -11,8 +11,8 @@ import sys
 from datetime import datetime
 from typing import Dict, Any, Optional
 
-# Test configuration - Use local backend for testing
-BASE_URL = "http://localhost:8001"
+# Test configuration - Use production backend for testing
+BASE_URL = "https://teamwellnesscompanysite-production.up.railway.app"
 TEST_USER_DATA = {
     "email": "sarah.wellness@teamwelly.com",
     "name": "Sarah Wellness",
