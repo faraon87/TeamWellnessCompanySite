@@ -498,7 +498,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
-    margin: 20px 0;
+    margin: 15px 0;
 }
 
 .corporate-tier {
