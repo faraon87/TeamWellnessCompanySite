@@ -279,8 +279,8 @@ async def apple_login(request: Request):
         if not service_id:
             raise HTTPException(status_code=500, detail="Apple OAuth not configured")
         
-        # Build redirect URI
-        redirect_uri = str(request.url_for("apple_callback"))
+        # Build redirect URI with HTTPS
+        redirect_uri = "https://teamwellnesscompanysite-production.up.railway.app/api/auth/apple/callback"
         
         # Generate state for CSRF protection
         state = str(uuid.uuid4())
