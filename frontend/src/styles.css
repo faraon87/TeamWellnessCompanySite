@@ -448,6 +448,14 @@ body {
     min-height: 80px;
 }
 
+.founders-section h3 {
+    margin-bottom: 8px;
+}
+
+.founders-section p {
+    margin-bottom: 0;
+}
+
 .founder {
     margin-bottom: 20px;
 }
