@@ -332,7 +332,7 @@ async def apple_callback(request: Request):
                 "client_secret": client_secret,
                 "code": authorization_code,
                 "grant_type": "authorization_code",
-                "redirect_uri": str(request.url_for("apple_callback"))
+                "redirect_uri": "https://teamwellnesscompanysite-production.up.railway.app/api/auth/apple/callback"
             },
             headers={"Content-Type": "application/x-www-form-urlencoded"}
         )
