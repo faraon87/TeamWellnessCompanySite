@@ -954,3 +954,113 @@ body::before {
         transform: translateY(0);
     }
 }
+
+/* Enhanced Pricing Section Styles */
+.pricing-tier ul,
+.corporate-tier ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+    text-align: left;
+}
+
+.pricing-tier li,
+.corporate-tier li {
+    color: #E8F0F5;
+    font-size: 13px;
+    padding: 5px 0;
+    position: relative;
+    padding-left: 20px;
+    opacity: 0.9;
+}
+
+.pricing-tier li:before,
+.corporate-tier li:before {
+    content: "✓";
+    color: #2D8A5A;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.pricing-tier.featured {
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-tier.featured:before {
+    content: "MOST POPULAR";
+    position: absolute;
+    top: 10px;
+    right: -35px;
+    background: #2D8A5A;
+    color: #0F1B2E;
+    padding: 5px 40px;
+    font-size: 10px;
+    font-weight: bold;
+    transform: rotate(45deg);
+    letter-spacing: 1px;
+}
+
+.corporate-tier .team-size {
+    color: #2D8A5A;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.corporate-tier .price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #E8F0F5;
+    margin-bottom: 8px;
+}
+
+.corporate-tier p {
+    color: #E8F0F5;
+    opacity: 0.8;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.learn-more-content h4 {
+    color: #2D8A5A;
+    font-family: 'SensaWild-Fill', "Arial", "Helvetica", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: 30px 0 20px 0;
+    text-transform: uppercase;
+}
+
+.pricing-tier:hover,
+.corporate-tier:hover {
+    border-color: #4AE54A;
+    box-shadow: 0 15px 40px rgba(45, 138, 90, 0.3);
+}
+
+.pricing-tier:hover .price,
+.corporate-tier:hover .price {
+    color: #4AE54A;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin: 30px 0 20px 0;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-button {
+        width: 100%;
+        max-width: 280px;
+    }
+}
