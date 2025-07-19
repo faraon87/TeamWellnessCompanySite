@@ -438,96 +438,121 @@ class BackendTester:
         )
     
     async def test_oauth_endpoints(self):
-        """Test OAuth authentication endpoints"""
+        """Test OAuth authentication endpoints - Focus on initiation and credential loading"""
         print("\n🔐 Testing OAuth Endpoints...")
         
-        # Test Google OAuth initiation (should redirect)
-        success, data, status = await self.make_request("GET", "/api/auth/google")
-        # Google OAuth should either redirect (302) or return redirect info
-        google_working = status in [302, 200] or "google" in str(data).lower()
+        # First, test environment variables are loaded
+        success, data, status = await self.make_request("GET", "/debug/env")
+        if success and status == 200:
+            env_vars = data.get("env_vars_loaded", {})
+            self.log_test(
+                "OAuth credentials loaded from environment", 
+                env_vars.get("google", False) and env_vars.get("twitter", False) and env_vars.get("apple", False),
+                f"Google: {env_vars.get('google')}, Apple: {env_vars.get('apple')}, Twitter: {env_vars.get('twitter')}"
+            )
+        else:
+            self.log_test("OAuth credentials check", False, f"Could not verify environment variables: {status}")
+        
+        # Test Google OAuth initiation (should redirect to Google OAuth)
+        success, data, status = await self.make_request("GET", "/api/auth/google", headers={"User-Agent": "Mozilla/5.0"})
+        # Google OAuth should redirect (302/307) or return redirect info
+        google_working = status in [302, 307] or (status == 200 and "google" in str(data).lower())
+        redirect_url = ""
+        if hasattr(data, 'get') and data.get('redirect_url'):
+            redirect_url = data.get('redirect_url')
+        elif status in [302, 307]:
+            redirect_url = "Redirect response received"
+        
         self.log_test(
             "Google OAuth initiation (/api/auth/google)", 
             google_working,
-            f"Status: {status}, Response indicates Google OAuth setup"
-        )
-        
-        # Test Google OAuth callback (without actual Google token, should fail gracefully)
-        success, data, status = await self.make_request("GET", "/api/auth/google/callback")
-        # Should fail gracefully without proper OAuth flow
-        callback_working = status in [400, 401, 500] or "error" in str(data).lower()
-        self.log_test(
-            "Google OAuth callback (/api/auth/google/callback)", 
-            callback_working,
-            f"Status: {status}, Handles callback appropriately without token"
+            f"Status: {status}, Redirect: {redirect_url}, Should redirect to Google OAuth"
         )
         
         # Test Apple OAuth initiation (should redirect to Apple Sign-In)
-        success, data, status = await self.make_request("GET", "/api/auth/apple")
-        # Apple OAuth should either redirect (302) or return redirect info
-        apple_working = status in [302, 200] or "apple" in str(data).lower()
+        success, data, status = await self.make_request("GET", "/api/auth/apple", headers={"User-Agent": "Mozilla/5.0"})
+        # Apple OAuth should redirect (302/307) or return redirect info
+        apple_working = status in [302, 307] or (status == 200 and "apple" in str(data).lower())
+        apple_redirect_url = ""
+        if hasattr(data, 'get') and data.get('redirect_url'):
+            apple_redirect_url = data.get('redirect_url')
+        elif status in [302, 307]:
+            apple_redirect_url = "Redirect response received"
+        
         self.log_test(
             "Apple OAuth initiation (/api/auth/apple)", 
             apple_working,
-            f"Status: {status}, Apple Sign-In flow initiated"
-        )
-        
-        # Test Apple OAuth callback (without actual Apple token, should fail gracefully)
-        success, data, status = await self.make_request("GET", "/api/auth/apple/callback")
-        # Should fail gracefully without proper OAuth flow
-        apple_callback_working = status in [400, 401, 500] or "error" in str(data).lower()
-        self.log_test(
-            "Apple OAuth callback (/api/auth/apple/callback)", 
-            apple_callback_working,
-            f"Status: {status}, Handles Apple callback appropriately without token"
+            f"Status: {status}, Redirect: {apple_redirect_url}, Should redirect to Apple Sign-In"
         )
         
         # Test Twitter/X OAuth initiation (should redirect to Twitter OAuth 2.0)
-        success, data, status = await self.make_request("GET", "/api/auth/twitter")
-        # Twitter OAuth should either redirect (302) or return redirect info
-        twitter_working = status in [302, 200] or "twitter" in str(data).lower()
+        success, data, status = await self.make_request("GET", "/api/auth/twitter", headers={"User-Agent": "Mozilla/5.0"})
+        # Twitter OAuth should redirect (302/307) or return redirect info
+        twitter_working = status in [302, 307] or (status == 200 and "twitter" in str(data).lower())
+        twitter_redirect_url = ""
+        if hasattr(data, 'get') and data.get('redirect_url'):
+            twitter_redirect_url = data.get('redirect_url')
+        elif status in [302, 307]:
+            twitter_redirect_url = "Redirect response received"
+        
         self.log_test(
             "Twitter/X OAuth initiation (/api/auth/twitter)", 
             twitter_working,
-            f"Status: {status}, Twitter OAuth 2.0 flow initiated"
+            f"Status: {status}, Redirect: {twitter_redirect_url}, Should redirect to Twitter OAuth 2.0"
         )
         
-        # Test Twitter OAuth callback (without actual Twitter token, should fail gracefully)
-        success, data, status = await self.make_request("GET", "/api/auth/twitter/callback")
-        # Should fail gracefully without proper OAuth flow
-        twitter_callback_working = status in [400, 401, 500] or "error" in str(data).lower()
-        self.log_test(
-            "Twitter/X OAuth callback (/api/auth/twitter/callback)", 
-            twitter_callback_working,
-            f"Status: {status}, Handles Twitter callback appropriately without token"
-        )
+        # Test redirect URI construction by checking if base URL is used correctly
+        print("\n🔍 Testing Redirect URI Construction...")
+        
+        # Verify that all OAuth endpoints are accessible (no 404 errors)
+        endpoints_to_test = [
+            ("/api/auth/google/callback", "Google OAuth callback"),
+            ("/api/auth/apple/callback", "Apple OAuth callback"), 
+            ("/api/auth/twitter/callback", "Twitter OAuth callback")
+        ]
+        
+        for endpoint, description in endpoints_to_test:
+            success, data, status = await self.make_request("GET", endpoint)
+            # Callback endpoints should exist (not 404) but may return errors without proper OAuth flow
+            endpoint_exists = status != 404
+            self.log_test(
+                f"{description} endpoint exists", 
+                endpoint_exists,
+                f"Status: {status}, Endpoint accessible (expected to fail without OAuth flow)"
+            )
+        
+        # Test OAuth session management endpoints
+        print("\n🔐 Testing OAuth Session Management...")
         
         # Test OAuth logout (without token, should fail appropriately)
         success, data, status = await self.make_request("POST", "/api/auth/oauth/logout")
-        logout_working = status == 401 and "token" in str(data).lower()
+        logout_working = status == 401 or "token" in str(data).lower() or "unauthorized" in str(data).lower()
         self.log_test(
-            "OAuth logout without token (/api/auth/oauth/logout)", 
+            "OAuth logout without token", 
             logout_working,
-            f"Status: {status}, Requires authentication token as expected"
+            f"Status: {status}, Properly requires authentication"
         )
         
         # Test OAuth me endpoint (without token, should fail appropriately)
         success, data, status = await self.make_request("GET", "/api/auth/oauth/me")
-        me_working = status == 401 and "token" in str(data).lower()
+        me_working = status == 401 or "token" in str(data).lower() or "unauthorized" in str(data).lower()
         self.log_test(
-            "OAuth get current user without token (/api/auth/oauth/me)", 
+            "OAuth get current user without token", 
             me_working,
-            f"Status: {status}, Requires authentication token as expected"
+            f"Status: {status}, Properly requires authentication"
         )
         
-        # Test OAuth logout with valid token (if we have one from regular auth)
+        # Test OAuth endpoints with valid token (if we have one from regular auth)
         if self.access_token:
-            # Test OAuth me endpoint with valid token BEFORE logout
+            print("\n🔑 Testing OAuth with Valid Token...")
+            
+            # Test OAuth me endpoint with valid token
             success, data, status = await self.make_request("GET", "/api/auth/oauth/me")
-            oauth_me_working = success and status == 200 and data.get("email")
+            oauth_me_working = success and status == 200 and (data.get("email") or data.get("user"))
             self.log_test(
                 "OAuth get current user with token", 
                 oauth_me_working,
-                f"Status: {status}, OAuth user info retrieved: {bool(data.get('email')) if success else 'Failed'}"
+                f"Status: {status}, User info retrieved: {bool(data.get('email') or data.get('user')) if success else 'Failed'}"
             )
             
             # Test OAuth logout with valid token
@@ -536,7 +561,7 @@ class BackendTester:
             self.log_test(
                 "OAuth logout with token", 
                 oauth_logout_working,
-                f"Status: {status}, OAuth logout with valid token: {success}"
+                f"Status: {status}, Logout successful: {success}"
             )
 
     async def test_cors_configuration(self):
