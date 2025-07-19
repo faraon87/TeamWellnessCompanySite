@@ -330,11 +330,11 @@ body {
 .learn-more-content {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 25px;
 }
 
 .learn-more-content section {
-    padding: 20px 0;
+    padding: 15px 0;
     border-bottom: 1px solid rgba(18, 225, 185, 0.2);
 }
 
